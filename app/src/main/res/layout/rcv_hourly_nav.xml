@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.todayweather.ui.home.model.Hourly" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:paddingHorizontal="17dp"
+        android:paddingVertical="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_hourly_nav_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgView_hourly_nav_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="#4E4E4E"
+                android:foregroundGravity="center_horizontal"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setIcon="@{item.weather[0].icon}"
+                app:shapeAppearanceOverlay="@style/RoundImage"
+                app:srcCompat="@mipmap/ic_cloud" />
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#2196F3"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgView_hourly_nav_icon"
+                app:setPop="@{item.pop}"
+                tools:ignore="SmallSp"
+                tools:text="100%" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout_hourly_nav_left"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_time"
+                style="@style/txt_title_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setTime="@{item.dt}"
+                tools:text="9:00" />
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_temp"
+                style="@style/txt_title_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_time"
+                app:setFeelsLike="@{item.feels_like}"
+                app:setTempCurrent="@{item.temp}"
+                tools:text="24°C - Cảm Giác Như: 24°C" />
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_status_above"
+                style="@style/txt_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_temp"
+                app:setStatus="@{item.weather[0].description}"
+                tools:text="Mây đen u ám." />
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_status_below"
+                style="@style/txt_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_status_above"
+                app:setWindStatusDescription="@{item.wind_deg}"
+                app:setWindStatusSpeed="@{item.wind_speed}"
+                tools:text="Gió: 7km/h • Bắc - Đông Bắc" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,3668 @@
+[
+  {
+    "country": "Việt Nam",
+    "name": "Yên Vinh",
+    "lat": "18.66667",
+    "lng": "105.66667"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Thành",
+    "lat": "18.99856",
+    "lng": "105.47116"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Ninh",
+    "lat": "20.18396",
+    "lng": "106.06121"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Yên Minh",
+    "lat": "23.11792",
+    "lng": "105.14159"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yến Lạc",
+    "lat": "22.23693",
+    "lng": "106.18149"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Lạc",
+    "lat": "21.23646",
+    "lng": "105.57297"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Châu",
+    "lat": "21.04584",
+    "lng": "104.30101"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Bái",
+    "lat": "21.72288",
+    "lng": "104.9113"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cai Doi Vam",
+    "lat": "8.85707",
+    "lng": "104.81199"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trảng Bom",
+    "lat": "10.95358",
+    "lng": "107.00589"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gia Ray",
+    "lat": "10.92615",
+    "lng": "107.40172"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vũng Tàu",
+    "lat": "10.34599",
+    "lng": "107.08426"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vũng Liêm",
+    "lat": "10.09576",
+    "lng": "106.18548"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vụ Bản",
+    "lat": "20.4642",
+    "lng": "105.44348"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Võ Xu",
+    "lat": "11.18691",
+    "lng": "107.56025"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vị Thanh",
+    "lat": "9.78449",
+    "lng": "105.47012"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Yên",
+    "lat": "21.30891",
+    "lng": "105.60489"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Vĩnh Tuy",
+    "lat": "22.27441",
+    "lng": "104.89091"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Thuận",
+    "lat": "9.50802",
+    "lng": "105.25747"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Thạnh",
+    "lat": "14.10884",
+    "lng": "108.78381"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Long",
+    "lat": "10.25369",
+    "lng": "105.9722"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Lộc",
+    "lat": "20.05438",
+    "lng": "105.61567"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Châu",
+    "lat": "9.32439",
+    "lng": "105.98006"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Bình",
+    "lat": "10.34498",
+    "lng": "106.58056"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vinh",
+    "lat": "18.67337",
+    "lng": "105.69232"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Việt Trì",
+    "lat": "21.32274",
+    "lng": "105.40198"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Văn Quan",
+    "lat": "21.86516",
+    "lng": "106.53925"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vạn Giã",
+    "lat": "12.69203",
+    "lng": "109.22069"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vân Đình",
+    "lat": "20.73514",
+    "lng": "105.77236"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Văn Điển",
+    "lat": "20.9463",
+    "lng": "105.845"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vân Canh",
+    "lat": "13.61945",
+    "lng": "108.99805"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Uông Bí",
+    "lat": "21.03433",
+    "lng": "106.77049"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tuy Phước",
+    "lat": "13.82738",
+    "lng": "109.16651"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tuy Hòa",
+    "lat": "13.09546",
+    "lng": "109.32094"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Tuyên Quang",
+    "lat": "21.82356",
+    "lng": "105.21424"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hòa Bình",
+    "lat": "19.26393",
+    "lng": "104.47232"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tư Nghĩa",
+    "lat": "15.08451",
+    "lng": "108.826"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Trùng Khánh",
+    "lat": "22.83514",
+    "lng": "106.52496"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tri Tôn",
+    "lat": "10.4202",
+    "lng": "105.00073"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trà Vinh",
+    "lat": "9.94719",
+    "lng": "106.34225"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trà Ôn",
+    "lat": "9.96261",
+    "lng": "105.92168"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trảng Bàng",
+    "lat": "11.02987",
+    "lng": "106.35751"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Trạm Tấu",
+    "lat": "21.46659",
+    "lng": "104.37966"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trà My",
+    "lat": "15.33965",
+    "lng": "108.22065"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tràm Chim",
+    "lat": "10.67001",
+    "lng": "105.56469"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trà Cú",
+    "lat": "9.69774",
+    "lng": "106.25834"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trà Bồng",
+    "lat": "15.25569",
+    "lng": "108.51722"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tĩnh Gia",
+    "lat": "19.44645",
+    "lng": "105.77861"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tiểu Cần",
+    "lat": "9.81166",
+    "lng": "106.19067"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tiên Phước",
+    "lat": "15.48819",
+    "lng": "108.30736"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thủ Thừa",
+    "lat": "10.60232",
+    "lng": "106.40207"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thường Xuân",
+    "lat": "19.90294",
+    "lng": "105.34723"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thủ Đức",
+    "lat": "10.84863",
+    "lng": "106.77209"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thủ Dầu Một",
+    "lat": "10.9804",
+    "lng": "106.6519"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thọ Xuân",
+    "lat": "19.93133",
+    "lng": "105.52179"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thốt Nốt",
+    "lat": "10.27213",
+    "lng": "105.5338"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thới Lai",
+    "lat": "10.06522",
+    "lng": "105.55863"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thới Bình",
+    "lat": "9.35584",
+    "lng": "105.09929"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ái Tử",
+    "lat": "16.76886",
+    "lng": "107.16504"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Thất Khê",
+    "lat": "22.25525",
+    "lng": "106.47359"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Than Uyên",
+    "lat": "21.95907",
+    "lng": "103.88001"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Lộc",
+    "lat": "9.42838",
+    "lng": "105.74111"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Sơn",
+    "lat": "21.19867",
+    "lng": "105.17892"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thạnh Phú",
+    "lat": "9.94827",
+    "lng": "106.51629"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ho Chi Minh City",
+    "lat": "10.82302",
+    "lng": "106.62965"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Nê",
+    "lat": "20.3881",
+    "lng": "106.43834"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Hóa",
+    "lat": "19.8",
+    "lng": "105.76667"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Chương",
+    "lat": "18.77877",
+    "lng": "105.33356"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Bình",
+    "lat": "10.5619",
+    "lng": "105.48411"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Thái Nguyên",
+    "lat": "21.59422",
+    "lng": "105.84817"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Thái Bình",
+    "lat": "20.45",
+    "lng": "106.34002"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kim Tân",
+    "lat": "20.13053",
+    "lng": "105.67454"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thạch Hà",
+    "lat": "18.36788",
+    "lng": "105.86122"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tây Ninh",
+    "lat": "11.31004",
+    "lng": "106.09828"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tây Hồ",
+    "lat": "21.06895",
+    "lng": "105.81053"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tây Đằng",
+    "lat": "21.19809",
+    "lng": "105.42217"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đầm Dơi",
+    "lat": "8.99214",
+    "lng": "105.19602"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Kỳ",
+    "lat": "19.04756",
+    "lng": "105.26807"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tánh Linh",
+    "lat": "11.08421",
+    "lng": "107.68095"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Hiệp",
+    "lat": "10.44905",
+    "lng": "106.34386"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Hiệp",
+    "lat": "10.11709",
+    "lng": "105.28578"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Châu",
+    "lat": "10.79832",
+    "lng": "105.23887"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân An",
+    "lat": "10.53589",
+    "lng": "106.41366"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tam Kỳ",
+    "lat": "15.57364",
+    "lng": "108.47403"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trai Ngau",
+    "lat": "21.39324",
+    "lng": "105.61441"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tam Bình",
+    "lat": "10.04811",
+    "lng": "106.00017"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Tà Lùng",
+    "lat": "22.4979",
+    "lng": "106.5669"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn Tịnh",
+    "lat": "15.15856",
+    "lng": "108.79582"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn Tây",
+    "lat": "21.14053",
+    "lng": "105.50686"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn Hà",
+    "lat": "15.04193",
+    "lng": "108.46973"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn Dương",
+    "lat": "21.69676",
+    "lng": "105.39901"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn La",
+    "lat": "21.3256",
+    "lng": "103.91882"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sông Mã",
+    "lat": "21.05091",
+    "lng": "103.74987"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sông Cầu",
+    "lat": "13.4556",
+    "lng": "109.22348"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sóc Trăng",
+    "lat": "9.59995",
+    "lng": "105.97193"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Sìn Hồ",
+    "lat": "22.36647",
+    "lng": "103.23438"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Si Ma Cai",
+    "lat": "22.6951",
+    "lng": "104.27857"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sa Pá",
+    "lat": "22.34023",
+    "lng": "103.84415"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sa Dec",
+    "lat": "10.29085",
+    "lng": "105.75635"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Rạch Giá",
+    "lat": "10.01245",
+    "lng": "105.08091"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Chiên",
+    "lat": "21.8424",
+    "lng": "103.56608"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quỳnh Côi",
+    "lat": "20.66192",
+    "lng": "106.32744"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Qui Nhon",
+    "lat": "13.77648",
+    "lng": "109.22367"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quỳ Hợp",
+    "lat": "19.32546",
+    "lng": "105.18251"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Oui Dat",
+    "lat": "17.80459",
+    "lng": "105.97044"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quỳ Châu",
+    "lat": "19.55206",
+    "lng": "105.09387"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quế Sơn",
+    "lat": "15.67356",
+    "lng": "108.2201"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kim Sơn",
+    "lat": "19.60409",
+    "lng": "104.91903"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quan Hóa",
+    "lat": "20.38481",
+    "lng": "105.10024"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quảng Yên",
+    "lat": "20.9421",
+    "lng": "106.8027"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Quảng Uyên",
+    "lat": "22.69499",
+    "lng": "106.44235"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ba Đồn",
+    "lat": "17.75353",
+    "lng": "106.42355"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quán Hàu",
+    "lat": "17.40438",
+    "lng": "106.64072"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quảng Ngãi",
+    "lat": "15.12047",
+    "lng": "108.79232"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Plei Kần",
+    "lat": "14.70495",
+    "lng": "107.6862"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Pleiku",
+    "lat": "13.98333",
+    "lng": "108"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phù Yên",
+    "lat": "21.26331",
+    "lng": "104.64439"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Vang",
+    "lat": "16.43911",
+    "lng": "107.71438"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Túc",
+    "lat": "13.19682",
+    "lng": "108.69043"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phủ Thông",
+    "lat": "22.27314",
+    "lng": "105.87943"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Thọ",
+    "lat": "21.39963",
+    "lng": "105.22221"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Dương Đông",
+    "lat": "10.21716",
+    "lng": "103.95929"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Phong",
+    "lat": "13.90964",
+    "lng": "108.91903"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phước An",
+    "lat": "12.71298",
+    "lng": "108.30148"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phù Ninh",
+    "lat": "21.08333",
+    "lng": "105.95"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phụng Hiệp",
+    "lat": "9.77972",
+    "lng": "105.7338"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phù Mỹ",
+    "lat": "14.17182",
+    "lng": "109.04888"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Phủ Lý",
+    "lat": "20.54531",
+    "lng": "105.91221"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Lộc",
+    "lat": "16.28035",
+    "lng": "107.85898"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Khương",
+    "lat": "11.28333",
+    "lng": "106.13333"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phúc Yên",
+    "lat": "21.23695",
+    "lng": "105.70483"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phù Cát",
+    "lat": "14.00316",
+    "lng": "109.05804"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phong Thổ",
+    "lat": "22.54433",
+    "lng": "103.29776"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phong Điền",
+    "lat": "16.58321",
+    "lng": "107.36438"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phong Điền",
+    "lat": "9.99753",
+    "lng": "105.6673"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Phố Lu",
+    "lat": "22.31918",
+    "lng": "104.18719"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phố Châu",
+    "lat": "18.51335",
+    "lng": "105.42411"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bến Sung",
+    "lat": "19.63141",
+    "lng": "105.57815"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phát Diệm",
+    "lat": "20.09054",
+    "lng": "106.08323"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phan Thiết",
+    "lat": "10.92889",
+    "lng": "108.10208"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phan Rang-Tháp Chàm",
+    "lat": "11.56432",
+    "lng": "108.98858"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ô Môn",
+    "lat": "10.10974",
+    "lng": "105.62318"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Nước Hai",
+    "lat": "22.73738",
+    "lng": "106.15216"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Núi Đèo",
+    "lat": "20.91569",
+    "lng": "106.6744"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ninh Hòa",
+    "lat": "12.49187",
+    "lng": "109.12495"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ninh Giang",
+    "lat": "20.73083",
+    "lng": "106.39789"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Ninh Bình",
+    "lat": "20.25809",
+    "lng": "105.97965"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Như Quỳnh",
+    "lat": "20.98167",
+    "lng": "105.98486"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nho Quan",
+    "lat": "20.32279",
+    "lng": "105.75189"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nhơn Trạch",
+    "lat": "10.72294",
+    "lng": "106.88341"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nha Trang",
+    "lat": "12.24507",
+    "lng": "109.19432"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nhà Bè",
+    "lat": "10.69672",
+    "lng": "106.74032"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nhà Bàng",
+    "lat": "10.62502",
+    "lng": "105.00854"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Nguyên Bình",
+    "lat": "22.64995",
+    "lng": "105.95985"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngô Đồng",
+    "lat": "20.28296",
+    "lng": "106.44347"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngọc Lặc",
+    "lat": "20.09189",
+    "lng": "105.36761"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tiền Hải",
+    "lat": "20.40557",
+    "lng": "106.50365"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nghi Xuân",
+    "lat": "18.66206",
+    "lng": "105.75575"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quán Hành",
+    "lat": "18.77927",
+    "lng": "105.64597"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nghĩa Hành",
+    "lat": "15.04568",
+    "lng": "108.77724"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nga Sơn",
+    "lat": "20.00722",
+    "lng": "105.97044"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vân Tùng",
+    "lat": "22.43082",
+    "lng": "105.99687"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Ngải Giao",
+    "lat": "10.6471",
+    "lng": "107.24577"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Na Sầm",
+    "lat": "22.05639",
+    "lng": "106.6151"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Nam Định",
+    "lat": "20.43389",
+    "lng": "106.17729"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nam Đàn",
+    "lat": "18.69799",
+    "lng": "105.49881"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Năm Căn",
+    "lat": "8.75899",
+    "lng": "104.99285"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mỹ Xuyên",
+    "lat": "9.56006",
+    "lng": "105.98984"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mỹ Tho",
+    "lat": "10.36004",
+    "lng": "106.35996"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mỹ Thọ",
+    "lat": "10.44267",
+    "lng": "105.69508"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mỹ Lộc",
+    "lat": "20.44111",
+    "lng": "106.10238"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thạnh Mỹ",
+    "lat": "15.74889",
+    "lng": "107.83678"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Nhé",
+    "lat": "22.19236",
+    "lng": "102.4579"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Mường Khương",
+    "lat": "22.76141",
+    "lng": "104.12156"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Lát",
+    "lat": "20.52915",
+    "lng": "104.60138"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mù Cang Chải",
+    "lat": "21.85125",
+    "lng": "104.08954"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Móng Cái",
+    "lat": "21.52471",
+    "lng": "107.96619"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mộ Đức",
+    "lat": "14.95513",
+    "lng": "108.88586"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mộc Châu",
+    "lat": "20.85199",
+    "lng": "104.62177"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mỏ Cày",
+    "lat": "10.13312",
+    "lng": "106.33519"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Minh Lương",
+    "lat": "9.90248",
+    "lng": "105.1595"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Minh Long",
+    "lat": "14.93218",
+    "lng": "108.70328"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Mèo Vạc",
+    "lat": "23.16411",
+    "lng": "105.40993"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ma Đa Gui",
+    "lat": "11.38702",
+    "lng": "107.53508"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Long Xuyên",
+    "lat": "10.38639",
+    "lng": "105.43518"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Long Thành",
+    "lat": "10.78909",
+    "lng": "106.95029"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Long Phú",
+    "lat": "9.61025",
+    "lng": "106.11881"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Long Mỹ",
+    "lat": "9.68141",
+    "lng": "105.57226"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lộc Ninh",
+    "lat": "11.84476",
+    "lng": "106.59073"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lộc Bình",
+    "lat": "21.75873",
+    "lng": "106.92335"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lien De",
+    "lat": "20.22095",
+    "lng": "106.18747"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Liên Hương",
+    "lat": "11.22761",
+    "lng": "108.72366"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kiến Giang",
+    "lat": "17.22328",
+    "lng": "106.79011"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lấp Vò",
+    "lat": "10.36161",
+    "lng": "105.51924"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lao Chải",
+    "lat": "22.31377",
+    "lng": "103.86844"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lào Cai",
+    "lat": "22.48556",
+    "lng": "103.97066"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Lạng Sơn",
+    "lat": "21.85264",
+    "lng": "106.76101"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Phước Bửu",
+    "lat": "10.53472",
+    "lng": "107.40202"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lũng Hồ",
+    "lat": "22.98479",
+    "lng": "105.23983"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lang Chánh",
+    "lat": "20.15611",
+    "lng": "105.24223"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lai Vung",
+    "lat": "10.28701",
+    "lng": "105.6617"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lái Thiêu",
+    "lat": "10.90512",
+    "lng": "106.69949"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lai Cách",
+    "lat": "20.93252",
+    "lng": "106.24756"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "La Gi",
+    "lat": "10.65993",
+    "lng": "107.77206"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lắk",
+    "lat": "12.41086",
+    "lng": "108.17682"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lạc Dương",
+    "lat": "12.00405",
+    "lng": "108.41905"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Xén",
+    "lat": "19.39795",
+    "lng": "104.15239"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kỳ Anh",
+    "lat": "18.06243",
+    "lng": "106.29832"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kon Tum",
+    "lat": "14.35451",
+    "lng": "108.00759"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kinh Môn",
+    "lat": "20.98962",
+    "lng": "106.5551"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kim Bài",
+    "lat": "20.85265",
+    "lng": "105.76963"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kiên Lương",
+    "lat": "10.28624",
+    "lng": "104.64616"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Khe Sanh",
+    "lat": "16.62825",
+    "lng": "106.73884"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Khánh Yên",
+    "lat": "22.08935",
+    "lng": "104.25149"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kẻ Sặt",
+    "lat": "20.91007",
+    "lng": "106.14771"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kế Sách",
+    "lat": "9.76743",
+    "lng": "105.98574"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hữu Lũng",
+    "lat": "21.5056",
+    "lng": "106.34459"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hương Trà",
+    "lat": "16.52539",
+    "lng": "107.4755"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hương Khê",
+    "lat": "18.17669",
+    "lng": "105.70019"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hương Canh",
+    "lat": "21.27882",
+    "lng": "105.64697"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hưng Yên",
+    "lat": "20.64637",
+    "lng": "106.05112"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Huế",
+    "lat": "16.4619",
+    "lng": "107.59546"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hồ Xá",
+    "lat": "17.06836",
+    "lng": "107.0052"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Long",
+    "lat": "11.64711",
+    "lng": "106.60586"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Hạ Long",
+    "lat": "20.95045",
+    "lng": "107.07336"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngoc Hon Doc",
+    "lat": "10.18462",
+    "lng": "104.92959"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hội An",
+    "lat": "15.87944",
+    "lng": "108.335"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hóc Môn",
+    "lat": "10.8891",
+    "lng": "106.59533"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hòa Vang",
+    "lat": "15.98764",
+    "lng": "108.13893"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hòa Mạc",
+    "lat": "20.64173",
+    "lng": "105.989"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hoài Ân",
+    "lat": "14.36352",
+    "lng": "108.96476"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Hòa Bình",
+    "lat": "20.81717",
+    "lng": "105.33759"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Doug An",
+    "lat": "15.58224",
+    "lng": "108.11422"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hà Tĩnh",
+    "lat": "18.34282",
+    "lng": "105.90569"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hà Tiên",
+    "lat": "10.3831",
+    "lng": "104.48753"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hanoi",
+    "lat": "21.0245",
+    "lng": "105.84117"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Thanh Nhật",
+    "lat": "22.68749",
+    "lng": "106.67004"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hà Lam",
+    "lat": "15.73871",
+    "lng": "108.35062"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Haiphong",
+    "lat": "20.86481",
+    "lng": "106.68345"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hải Lăng",
+    "lat": "16.69347",
+    "lng": "107.25124"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Hải Dương",
+    "lat": "20.94099",
+    "lng": "106.33302"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hạ Hòa",
+    "lat": "21.56302",
+    "lng": "105.00512"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Hà Giang",
+    "lat": "22.82333",
+    "lng": "104.98357"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hà Đông",
+    "lat": "20.97136",
+    "lng": "105.77876"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gò Quao",
+    "lat": "9.7332",
+    "lng": "105.27393"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Giồng Riềng",
+    "lat": "9.90974",
+    "lng": "105.31433"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gio Linh",
+    "lat": "16.9248",
+    "lng": "107.08438"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gia Nghĩa",
+    "lat": "12.00423",
+    "lng": "107.69074"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Duy Xuyên",
+    "lat": "15.82898",
+    "lng": "108.25956"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đưc Trọng",
+    "lat": "11.73559",
+    "lng": "108.3733"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đức Thọ",
+    "lat": "18.53957",
+    "lng": "105.58302"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đức Phong",
+    "lat": "11.81346",
+    "lng": "107.24433"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Pho Duc",
+    "lat": "14.81355",
+    "lng": "108.95931"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tram de Dak Mil",
+    "lat": "12.44957",
+    "lng": "107.62237"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "La Hai",
+    "lat": "13.37732",
+    "lng": "109.10807"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Don Luan",
+    "lat": "11.53495",
+    "lng": "106.88324"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Đồng Văn",
+    "lat": "23.27841",
+    "lng": "105.36291"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đồng Mỏ",
+    "lat": "21.65701",
+    "lng": "106.57832"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Đông Khê",
+    "lat": "22.42939",
+    "lng": "106.43194"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kwang Binh",
+    "lat": "17.46885",
+    "lng": "106.62226"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ðông Hà",
+    "lat": "16.81625",
+    "lng": "107.10031"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Anh Son",
+    "lat": "18.96961",
+    "lng": "105.05505"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đoan Hùng",
+    "lat": "21.62254",
+    "lng": "105.18462"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đình Lập",
+    "lat": "21.54633",
+    "lng": "107.09812"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Di Linh",
+    "lat": "11.58153",
+    "lng": "108.07641"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Diên Khánh",
+    "lat": "12.2549",
+    "lng": "109.09332"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Diễn Châu",
+    "lat": "18.97652",
+    "lng": "105.60034"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Dien Bien Phu",
+    "lat": "21.38602",
+    "lng": "103.02301"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quang Nam",
+    "lat": "15.88853",
+    "lng": "108.25447"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Giemdiem",
+    "lat": "20.55832",
+    "lng": "106.56882"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Dĩ An",
+    "lat": "10.90682",
+    "lng": "106.7694"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Dầu Tiếng",
+    "lat": "11.2741",
+    "lng": "106.35879"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phuoc Tho",
+    "lat": "10.49093",
+    "lng": "107.27014"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Da Nang",
+    "lat": "16.06778",
+    "lng": "108.22083"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ðà Lạt",
+    "lat": "11.94646",
+    "lng": "108.44193"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đắk Song",
+    "lat": "12.25518",
+    "lng": "107.60924"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đại Lộc",
+    "lat": "15.88214",
+    "lng": "108.12092"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đắk Tô",
+    "lat": "14.66092",
+    "lng": "107.8389"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Củng Sơn",
+    "lat": "13.04998",
+    "lng": "108.97895"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Củ Chi",
+    "lat": "10.97333",
+    "lng": "106.49325"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cờ Đỏ",
+    "lat": "10.09377",
+    "lng": "105.42916"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Côn Sơn",
+    "lat": "8.68641",
+    "lng": "106.60824"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Con Cuông",
+    "lat": "19.04996",
+    "lng": "104.88124"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chúc Sơn",
+    "lat": "20.92375",
+    "lng": "105.70155"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chũ",
+    "lat": "21.37379",
+    "lng": "106.56649"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chơn Thành",
+    "lat": "11.42821",
+    "lng": "106.63536"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chợ Mới",
+    "lat": "21.88374",
+    "lng": "105.77281"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chợ Mới",
+    "lat": "10.55123",
+    "lng": "105.40441"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chợ Lách",
+    "lat": "10.26032",
+    "lng": "106.11892"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Giồng Trôm",
+    "lat": "10.15021",
+    "lng": "106.50606"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chợ Gạo",
+    "lat": "10.34984",
+    "lng": "106.4634"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chợ Chu",
+    "lat": "21.90724",
+    "lng": "105.64219"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chí Thạnh",
+    "lat": "13.30845",
+    "lng": "109.21522"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chi Nê",
+    "lat": "20.49056",
+    "lng": "105.778"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Huyện Chiêm Hóa",
+    "lat": "22.14413",
+    "lng": "105.27277"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cho Dok",
+    "lat": "10.7",
+    "lng": "105.11667"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cầu Kè",
+    "lat": "9.8724",
+    "lng": "106.05497"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cầu Giát",
+    "lat": "19.146",
+    "lng": "105.63089"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cát Bà",
+    "lat": "20.72779",
+    "lng": "107.04819"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cao Thượng",
+    "lat": "21.38707",
+    "lng": "106.12931"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cao Lãnh",
+    "lat": "10.46017",
+    "lng": "105.63294"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Cao Bằng",
+    "lat": "22.66568",
+    "lng": "106.25786"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cần Thơ",
+    "lat": "10.03711",
+    "lng": "105.78825"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cần Giờ",
+    "lat": "10.41115",
+    "lng": "106.95474"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cần Đước",
+    "lat": "10.50966",
+    "lng": "106.60308"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cần Giuộc",
+    "lat": "10.60857",
+    "lng": "106.67135"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cẩm Xuyên",
+    "lat": "18.25029",
+    "lng": "106.00132"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cẩm Thủy",
+    "lat": "20.20866",
+    "lng": "105.4695"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cam Ranh",
+    "lat": "11.92144",
+    "lng": "109.15913"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cẩm Phả Mines",
+    "lat": "21.01667",
+    "lng": "107.3"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cẩm Phả",
+    "lat": "21.01004",
+    "lng": "107.27345"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cam Lộ",
+    "lat": "16.80797",
+    "lng": "106.99405"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cà Mau",
+    "lat": "9.17682",
+    "lng": "105.15242"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cái Tàu Hạ",
+    "lat": "10.25973",
+    "lng": "105.87044"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cái Răng",
+    "lat": "10.0009",
+    "lng": "105.75095"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cái Nước",
+    "lat": "8.94231",
+    "lng": "105.01411"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cái Nhum",
+    "lat": "10.17412",
+    "lng": "106.11051"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Buôn Trấp",
+    "lat": "12.48478",
+    "lng": "108.02982"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Buôn Ma Thuột",
+    "lat": "12.66747",
+    "lng": "108.03775"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hoàn Lão",
+    "lat": "17.58436",
+    "lng": "106.53425"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bồng Sơn",
+    "lat": "14.42907",
+    "lng": "109.0156"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bù Đốp",
+    "lat": "11.95486",
+    "lng": "106.80018"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Thủy",
+    "lat": "10.07431",
+    "lng": "105.73974"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Sơn",
+    "lat": "15.29776",
+    "lng": "108.76124"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Gia",
+    "lat": "21.96094",
+    "lng": "106.36448"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Đại",
+    "lat": "10.18964",
+    "lng": "106.69149"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Túc",
+    "lat": "10.69541",
+    "lng": "106.59128"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bỉm Sơn",
+    "lat": "20.07806",
+    "lng": "105.86028"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Biên Hòa",
+    "lat": "10.94469",
+    "lng": "106.82432"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bến Tre",
+    "lat": "10.24147",
+    "lng": "106.37585"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bến Cầu",
+    "lat": "11.11051",
+    "lng": "106.17924"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ba Tri",
+    "lat": "10.04427",
+    "lng": "106.5902"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ba Tơ",
+    "lat": "14.7636",
+    "lng": "108.73223"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Phố Ràng",
+    "lat": "22.23429",
+    "lng": "104.47643"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bảo Lộc",
+    "lat": "11.54798",
+    "lng": "107.80772"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Bảo Lạc",
+    "lat": "22.94924",
+    "lng": "105.68046"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bẩn Yên Nhân",
+    "lat": "20.93653",
+    "lng": "106.05711"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ít Ong",
+    "lat": "21.5175",
+    "lng": "104.02701"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Thuận Châu",
+    "lat": "21.43849",
+    "lng": "103.69"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bắc Yên",
+    "lat": "21.24626",
+    "lng": "104.43281"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bắc Sơn",
+    "lat": "21.89999",
+    "lng": "106.32077"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bắc Ninh",
+    "lat": "21.18608",
+    "lng": "106.07631"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành phố Bạc Liêu",
+    "lat": "9.29414",
+    "lng": "105.72776"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bắc Hà",
+    "lat": "22.53911",
+    "lng": "104.29305"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bắc Giang",
+    "lat": "21.27307",
+    "lng": "106.1946"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bắc Kạn",
+    "lat": "22.14701",
+    "lng": "105.83481"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Trụ",
+    "lat": "10.51271",
+    "lng": "106.50762"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ấp Tân Ngãi",
+    "lat": "10.23333",
+    "lng": "106.28333"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Hòa",
+    "lat": "10.29693",
+    "lng": "105.74435"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Nhơn",
+    "lat": "13.88579",
+    "lng": "109.10823"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Lão",
+    "lat": "14.61241",
+    "lng": "108.8899"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Dương",
+    "lat": "20.86382",
+    "lng": "106.6133"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Châu",
+    "lat": "21.33465",
+    "lng": "106.84934"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Biên",
+    "lat": "9.81532",
+    "lng": "105.06366"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "A Lưới",
+    "lat": "16.27228",
+    "lng": "107.23385"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Bảy",
+    "lat": "10.7118",
+    "lng": "106.73643"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tam Điệp",
+    "lat": "20.15635",
+    "lng": "105.91737"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Châu Thành",
+    "lat": "9.86989",
+    "lng": "106.34939"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Uyen Hung",
+    "lat": "11.08416",
+    "lng": "106.78834"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Lập",
+    "lat": "21.34705",
+    "lng": "105.05739"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Ba",
+    "lat": "21.49881",
+    "lng": "105.14104"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sông Thao",
+    "lat": "21.4213",
+    "lng": "105.13374"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hưng Hóa",
+    "lat": "21.25487",
+    "lng": "105.2953"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phong Châu",
+    "lat": "21.4068",
+    "lng": "105.31228"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Tân Yên",
+    "lat": "22.0655",
+    "lng": "105.0345"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Việt",
+    "lat": "22.86407",
+    "lng": "105.45905"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Pác Miầu",
+    "lat": "22.82968",
+    "lng": "105.49334"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lập Thạch",
+    "lat": "21.41539",
+    "lng": "105.46081"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Châu",
+    "lat": "10.44559",
+    "lng": "105.38622"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Núi Sập",
+    "lat": "10.26478",
+    "lng": "105.26676"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tầm Vu",
+    "lat": "10.44114",
+    "lng": "106.46793"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gia Bình",
+    "lat": "21.05938",
+    "lng": "106.17468"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thứa",
+    "lat": "21.01937",
+    "lng": "106.20044"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chờ",
+    "lat": "21.19491",
+    "lng": "105.95471"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phố Mới",
+    "lat": "21.15328",
+    "lng": "106.15164"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hồ",
+    "lat": "21.06308",
+    "lng": "106.0857"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lim",
+    "lat": "21.14388",
+    "lng": "106.02018"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cung Kiệm",
+    "lat": "21.18697",
+    "lng": "106.16076"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Gành Hào",
+    "lat": "9.03183",
+    "lng": "105.42115"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Ngan Dừa",
+    "lat": "9.56703",
+    "lng": "105.45019"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Phước Long",
+    "lat": "9.43753",
+    "lng": "105.46217"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Giá Rai",
+    "lat": "9.23789",
+    "lng": "105.45524"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Hòa Bình",
+    "lat": "9.28471",
+    "lng": "105.62916"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cái Dầu",
+    "lat": "10.57428",
+    "lng": "105.24005"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cầu Gồ",
+    "lat": "21.47679",
+    "lng": "106.12653"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đồi Ngô",
+    "lat": "21.30626",
+    "lng": "106.38673"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Neo",
+    "lat": "21.20048",
+    "lng": "106.24739"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bích Động",
+    "lat": "21.27421",
+    "lng": "106.10069"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thắng",
+    "lat": "21.35505",
+    "lng": "105.98344"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bộc Bố",
+    "lat": "22.61206",
+    "lng": "105.66707"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bằng Lũng",
+    "lat": "22.15777",
+    "lng": "105.59559"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Long Điền",
+    "lat": "10.48557",
+    "lng": "107.21226"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Chà",
+    "lat": "21.76172",
+    "lng": "103.09783"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Tủa Chùa",
+    "lat": "21.85771",
+    "lng": "103.3426"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Điện Biên Đông",
+    "lat": "21.29673",
+    "lng": "103.22009"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Điện Biên",
+    "lat": "21.2596",
+    "lng": "103.0344"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tam Đường",
+    "lat": "22.31812",
+    "lng": "103.62619"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lai Châu",
+    "lat": "22.39644",
+    "lng": "103.45824"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Mường Tè",
+    "lat": "22.38067",
+    "lng": "102.82011"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Tam Sơn",
+    "lat": "23.0674",
+    "lng": "104.98926"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Vị Xuyên",
+    "lat": "22.66762",
+    "lng": "104.98191"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Việt Lâm",
+    "lat": "22.62486",
+    "lng": "104.95988"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Việt Quang",
+    "lat": "22.41509",
+    "lng": "104.80682"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Phú",
+    "lat": "22.73223",
+    "lng": "105.37145"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Vinh Quang",
+    "lat": "22.74085",
+    "lng": "104.67956"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Bình",
+    "lat": "22.40989",
+    "lng": "104.57949"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Thông Nông",
+    "lat": "22.7841",
+    "lng": "105.9832"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Xuân Hoà",
+    "lat": "22.90243",
+    "lng": "106.07737"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Hùng Quốc",
+    "lat": "22.82898",
+    "lng": "106.32335"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Cao Lộc",
+    "lat": "21.8665",
+    "lng": "106.76833"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Vĩnh Lộc",
+    "lat": "22.1436",
+    "lng": "105.27192"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn Thịnh",
+    "lat": "21.56252",
+    "lng": "104.5948"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cổ Phúc",
+    "lat": "21.75585",
+    "lng": "104.82768"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Yên Thế",
+    "lat": "22.11075",
+    "lng": "104.76748"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Na Hang",
+    "lat": "22.34917",
+    "lng": "105.38241"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Minh",
+    "lat": "10.06821",
+    "lng": "105.82221"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Phú",
+    "lat": "10.81591",
+    "lng": "105.09038"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Mỹ",
+    "lat": "10.59236",
+    "lng": "105.35573"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Phú Mỹ",
+    "lat": "10.6036",
+    "lng": "107.054"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bát Xát",
+    "lat": "22.54311",
+    "lng": "103.88989"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hát Lót",
+    "lat": "21.19733",
+    "lng": "104.10595"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quảng Xương",
+    "lat": "19.72948",
+    "lng": "105.78273"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nông Cống",
+    "lat": "19.62403",
+    "lng": "105.64941"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quan Sơn",
+    "lat": "20.25909",
+    "lng": "104.94521"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Cát",
+    "lat": "19.66327",
+    "lng": "105.42854"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bút Sơn",
+    "lat": "19.85797",
+    "lng": "105.85482"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cành Nàng",
+    "lat": "20.34803",
+    "lng": "105.22881"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hậu Lộc",
+    "lat": "19.91444",
+    "lng": "105.88615"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Triệu Sơn",
+    "lat": "19.81913",
+    "lng": "105.60392"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quán Lào",
+    "lat": "19.97153",
+    "lng": "105.65106"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hà Trung",
+    "lat": "20.01285",
+    "lng": "105.85322"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Rừng Thông",
+    "lat": "19.81906",
+    "lng": "105.73279"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vạn Hà",
+    "lat": "19.88659",
+    "lng": "105.67879"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đà Bắc",
+    "lat": "20.87714",
+    "lng": "105.25417"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Khến",
+    "lat": "20.61441",
+    "lng": "105.27948"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hàng Trạm",
+    "lat": "20.39472",
+    "lng": "105.6224"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bo",
+    "lat": "20.67264",
+    "lng": "105.53625"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lương Sơn",
+    "lat": "20.87148",
+    "lng": "105.52568"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kỳ Sơn",
+    "lat": "20.88668",
+    "lng": "105.35244"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cao Phong",
+    "lat": "20.70446",
+    "lng": "105.32063"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Me",
+    "lat": "20.34697",
+    "lng": "105.83615"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thiên Tồn",
+    "lat": "20.29905",
+    "lng": "105.95198"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Thịnh",
+    "lat": "20.16245",
+    "lng": "106.00697"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Xuân Trường",
+    "lat": "20.29227",
+    "lng": "106.33275"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Định",
+    "lat": "20.20145",
+    "lng": "106.29578"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lâm",
+    "lat": "20.32773",
+    "lng": "106.01208"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gôi",
+    "lat": "20.33335",
+    "lng": "106.07826"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nam Giang",
+    "lat": "20.33322",
+    "lng": "106.17754"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cổ Lễ",
+    "lat": "20.32336",
+    "lng": "106.26584"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quế",
+    "lat": "20.58064",
+    "lng": "105.87266"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Trụ",
+    "lat": "20.5602",
+    "lng": "106.02812"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bình Mỹ",
+    "lat": "20.49121",
+    "lng": "106.00955"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Lưu",
+    "lat": "20.47398",
+    "lng": "105.95268"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hưng Hà",
+    "lat": "20.5904",
+    "lng": "106.22445"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vũ Thư",
+    "lat": "20.43671",
+    "lng": "106.29116"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đông Hưng",
+    "lat": "20.55651",
+    "lng": "106.35532"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thành Phố Bà Rịa",
+    "lat": "10.49629",
+    "lng": "107.16841"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thị Trấn Tuần Giáo",
+    "lat": "21.58992",
+    "lng": "103.42179"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mường Ảng",
+    "lat": "21.51993",
+    "lng": "103.22294"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "An Lão",
+    "lat": "20.82294",
+    "lng": "106.55575"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tiên Lãng",
+    "lat": "20.72464",
+    "lng": "106.55391"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Núi Đối",
+    "lat": "20.75078",
+    "lng": "106.66894"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quảng Hà",
+    "lat": "21.4506",
+    "lng": "107.75592"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trới",
+    "lat": "21.03141",
+    "lng": "106.99101"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cô Tô",
+    "lat": "20.97268",
+    "lng": "107.76578"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Miện",
+    "lat": "20.78714",
+    "lng": "106.24623"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nam Sách",
+    "lat": "20.99205",
+    "lng": "106.33613"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gia Lộc",
+    "lat": "20.86783",
+    "lng": "106.3"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tứ Kỳ",
+    "lat": "20.81914",
+    "lng": "106.40661"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Hà",
+    "lat": "20.89816",
+    "lng": "106.42612"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Thái",
+    "lat": "20.96278",
+    "lng": "106.5095"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đu",
+    "lat": "21.73847",
+    "lng": "105.70388"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hương Sơn",
+    "lat": "21.46014",
+    "lng": "105.97814"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chùa Hang",
+    "lat": "21.62384",
+    "lng": "105.84168"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Thủy",
+    "lat": "21.17548",
+    "lng": "105.28388"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lâm Thao",
+    "lat": "21.3201",
+    "lng": "105.29156"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mê Linh",
+    "lat": "21.1831",
+    "lng": "105.72041"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Tường",
+    "lat": "21.2165",
+    "lng": "105.51249"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hợp Hòa",
+    "lat": "21.37525",
+    "lng": "105.54256"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Văn Giang",
+    "lat": "20.94301",
+    "lng": "105.93119"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Yên Mỹ",
+    "lat": "20.88557",
+    "lng": "106.0356"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Khoái Châu",
+    "lat": "20.83912",
+    "lng": "105.97755"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lương Bằng",
+    "lat": "20.74003",
+    "lng": "106.05998"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ân Thi",
+    "lat": "20.81835",
+    "lng": "106.09118"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trần Cao",
+    "lat": "20.72952",
+    "lng": "106.17971"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vương",
+    "lat": "20.7011",
+    "lng": "106.11751"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Liên Quan",
+    "lat": "21.05723",
+    "lng": "105.57919"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phúc Thọ",
+    "lat": "21.10345",
+    "lng": "105.54551"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phùng",
+    "lat": "21.08902",
+    "lng": "105.65901"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trôi",
+    "lat": "21.06953",
+    "lng": "105.70646"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quốc Oai",
+    "lat": "20.99019",
+    "lng": "105.64088"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thường Tín",
+    "lat": "20.86874",
+    "lng": "105.86125"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Xuyên",
+    "lat": "20.74549",
+    "lng": "105.91363"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đại Nghĩa",
+    "lat": "20.68667",
+    "lng": "105.74471"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sóc Sơn",
+    "lat": "21.25782",
+    "lng": "105.84894"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đông Anh",
+    "lat": "21.13962",
+    "lng": "105.84926"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cầu Diễn",
+    "lat": "21.03929",
+    "lng": "105.76659"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trâu Quỳ",
+    "lat": "21.01951",
+    "lng": "105.93694"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cầu Giấy",
+    "lat": "21.03228",
+    "lng": "105.80073"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Xuân",
+    "lat": "20.99472",
+    "lng": "105.79977"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đống Đa",
+    "lat": "21.02009",
+    "lng": "105.83097"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hoàn Kiếm",
+    "lat": "21.02857",
+    "lng": "105.85064"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hai BàTrưng",
+    "lat": "21.01341",
+    "lng": "105.84772"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hưng Nguyên",
+    "lat": "18.67165",
+    "lng": "105.62882"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vũ Quang",
+    "lat": "18.38385",
+    "lng": "105.5059"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nghèn",
+    "lat": "18.45119",
+    "lng": "105.77969"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đồng Lê",
+    "lat": "17.88389",
+    "lng": "106.02536"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Krông Klang",
+    "lat": "16.68906",
+    "lng": "106.8874"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Khe Tre",
+    "lat": "16.1691",
+    "lng": "107.71793"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sịa",
+    "lat": "16.57452",
+    "lng": "107.51066"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thanh Khê",
+    "lat": "16.0706",
+    "lng": "108.19102"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cẩm Lệ",
+    "lat": "16.01771",
+    "lng": "108.20381"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sơn Trà",
+    "lat": "16.06068",
+    "lng": "108.23256"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Liên Chiểu",
+    "lat": "16.07272",
+    "lng": "108.15815"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngũ Hành Sơn",
+    "lat": "16.01618",
+    "lng": "108.25335"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Prao",
+    "lat": "15.92438",
+    "lng": "107.64814"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Khâm Đức",
+    "lat": "15.44508",
+    "lng": "107.79337"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Núi Thành",
+    "lat": "15.43194",
+    "lng": "108.65946"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Ninh",
+    "lat": "15.55473",
+    "lng": "108.41142"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tây Trà",
+    "lat": "15.16948",
+    "lng": "108.35998"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lý Sơn",
+    "lat": "15.37198",
+    "lng": "109.11891"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đắk Glei",
+    "lat": "15.08642",
+    "lng": "107.73577"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sa Thầy",
+    "lat": "14.41377",
+    "lng": "107.79339"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đắk Hà",
+    "lat": "14.51345",
+    "lng": "107.92102"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đắk Rve",
+    "lat": "14.50717",
+    "lng": "108.2473"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Măng Đen",
+    "lat": "14.60064",
+    "lng": "108.29088"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đăk Đoa",
+    "lat": "13.99501",
+    "lng": "108.11207"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "K Bang",
+    "lat": "14.14453",
+    "lng": "108.59908"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kông Chro",
+    "lat": "13.77532",
+    "lng": "108.52558"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ia Pa",
+    "lat": "13.53361",
+    "lng": "108.45529"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "A Yun Pa",
+    "lat": "13.40025",
+    "lng": "108.43503"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chư Sê",
+    "lat": "13.69153",
+    "lng": "108.08023"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chư Prông",
+    "lat": "13.75684",
+    "lng": "107.88624"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chư Ty",
+    "lat": "13.80507",
+    "lng": "107.6961"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ia Kha",
+    "lat": "13.96242",
+    "lng": "107.84484"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Hòa",
+    "lat": "14.10005",
+    "lng": "107.96896"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Kon Dơng",
+    "lat": "14.03886",
+    "lng": "108.25011"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hai Riêng",
+    "lat": "12.97908",
+    "lng": "108.89732"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ea Súp",
+    "lat": "13.06616",
+    "lng": "107.88546"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ea Drăng",
+    "lat": "13.2045",
+    "lng": "108.21029"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Krông Năng",
+    "lat": "12.9517",
+    "lng": "108.34425"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quảng Phú",
+    "lat": "12.81965",
+    "lng": "108.07738"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ea Kar",
+    "lat": "12.80816",
+    "lng": "108.44901"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Krông Kmar",
+    "lat": "12.5045",
+    "lng": "108.33288"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "M’Đrăk",
+    "lat": "12.74624",
+    "lng": "108.74281"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Khánh Vĩnh",
+    "lat": "12.28355",
+    "lng": "108.9047"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tô Hạp",
+    "lat": "12.00582",
+    "lng": "108.94868"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cam Lâm",
+    "lat": "12.05398",
+    "lng": "109.16004"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ea T’ling",
+    "lat": "12.58904",
+    "lng": "107.89578"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đắk Mâm",
+    "lat": "12.45789",
+    "lng": "107.86246"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đinh Văn",
+    "lat": "11.78624",
+    "lng": "108.24282"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thạnh Mỹ",
+    "lat": "11.76165",
+    "lng": "108.49473"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Lộc Thắng",
+    "lat": "11.62836",
+    "lng": "107.83508"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đồng Nai",
+    "lat": "11.57981",
+    "lng": "107.36518"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đạ Tẻh",
+    "lat": "11.51148",
+    "lng": "107.49092"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Bác Ái",
+    "lat": "11.84104",
+    "lng": "108.90316"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Sơn",
+    "lat": "11.77521",
+    "lng": "108.7848"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phước Dân",
+    "lat": "11.52696",
+    "lng": "108.92996"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Khánh Hải",
+    "lat": "11.59105",
+    "lng": "109.04052"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Chợ Lầu",
+    "lat": "11.22158",
+    "lng": "108.50707"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ma Lâm",
+    "lat": "11.07297",
+    "lng": "108.12997"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thuận Nam",
+    "lat": "10.85004",
+    "lng": "107.87864"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Phú Quý",
+    "lat": "10.5166",
+    "lng": "108.93292"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Phú",
+    "lat": "11.27221",
+    "lng": "107.43655"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh An",
+    "lat": "11.08901",
+    "lng": "107.03516"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thống Nhất",
+    "lat": "10.95055",
+    "lng": "107.14571"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Long Khánh",
+    "lat": "10.92655",
+    "lng": "107.24783"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Phú",
+    "lat": "11.45119",
+    "lng": "106.86811"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Châu",
+    "lat": "11.55202",
+    "lng": "106.17245"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Biên",
+    "lat": "11.54441",
+    "lng": "106.01161"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Châu Thành",
+    "lat": "11.31167",
+    "lng": "106.0295"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hòa Thành",
+    "lat": "11.28696",
+    "lng": "106.12936"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Gò Dầu",
+    "lat": "11.0885",
+    "lng": "106.26346"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Dương Minh Châu",
+    "lat": "11.38414",
+    "lng": "106.23078"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Hưng",
+    "lat": "10.83476",
+    "lng": "105.66135"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Hưng",
+    "lat": "10.89067",
+    "lng": "105.78495"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Thạnh",
+    "lat": "10.60666",
+    "lng": "106.04714"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thạnh Hóa",
+    "lat": "10.65744",
+    "lng": "106.18081"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Đông Thành",
+    "lat": "10.89221",
+    "lng": "106.30614"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hậu Nghĩa",
+    "lat": "10.89434",
+    "lng": "106.39695"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Mỹ Phước",
+    "lat": "10.47711",
+    "lng": "106.19256"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Tân Hòa",
+    "lat": "10.31906",
+    "lng": "106.71128"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Thứ Mười Một",
+    "lat": "9.61144",
+    "lng": "104.9465"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Sa Rài",
+    "lat": "10.87016",
+    "lng": "105.46583"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Long Hồ",
+    "lat": "10.19281",
+    "lng": "106.01229"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Duyên Hải",
+    "lat": "9.63497",
+    "lng": "106.49237"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Châu Thành",
+    "lat": "10.30122",
+    "lng": "106.35701"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Vĩnh Thạnh",
+    "lat": "10.22263",
+    "lng": "105.39841"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Nàng Mau",
+    "lat": "9.75129",
+    "lng": "105.53448"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngã Bảy",
+    "lat": "9.81371",
+    "lng": "105.82096"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngã Sáu",
+    "lat": "9.92303",
+    "lng": "105.80542"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Một Ngàn",
+    "lat": "9.92402",
+    "lng": "105.62964"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Cù Lao Dung",
+    "lat": "9.67314",
+    "lng": "106.14874"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Châu Thành",
+    "lat": "9.7007",
+    "lng": "105.90202"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Huỳnh Hữu Nghĩa",
+    "lat": "9.63537",
+    "lng": "105.81165"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "U Minh",
+    "lat": "9.41286",
+    "lng": "104.97353"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Trần Văn Thời",
+    "lat": "9.07713",
+    "lng": "104.97914"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Ngọc Hiển",
+    "lat": "8.65724",
+    "lng": "105.06021"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Hai",
+    "lat": "10.79156",
+    "lng": "106.74948"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Chín",
+    "lat": "10.8397",
+    "lng": "106.77093"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Bốn",
+    "lat": "10.76684",
+    "lng": "106.70574"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Sáu",
+    "lat": "10.7468",
+    "lng": "106.64903"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Năm",
+    "lat": "10.75567",
+    "lng": "106.66745"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Một",
+    "lat": "10.78069",
+    "lng": "106.69944"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Phú Nhuận",
+    "lat": "10.79475",
+    "lng": "106.6763"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Tân Phú",
+    "lat": "10.78379",
+    "lng": "106.63704"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Mười Một",
+    "lat": "10.76383",
+    "lng": "106.64355"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Mười",
+    "lat": "10.76823",
+    "lng": "106.66632"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Ba",
+    "lat": "10.77494",
+    "lng": "106.68628"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Quận Bình Thạnh",
+    "lat": "10.80325",
+    "lng": "106.69666"
+  },
+  {
+    "country": "Việt Nam",
+    "name": "Hoàng Sa",
+    "lat": "16.66657",
+    "lng": "112.72541"
+  }
+]

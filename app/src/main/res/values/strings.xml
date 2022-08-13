@@ -1,0 +1,148 @@
+<resources>
+    <string name="app_name">Today Weather</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rcv_detail_title">Chi tiết</string>
+
+    <!--  String detail description  -->
+
+    <!-- hard value-->
+    <string name="home_status_description">Hôm nay - Mây đen u ám, Cao 32°C, thấp 20°C. Gió đông nam, tốc độ 20km/h. Khả năng mưa 70%.</string>
+    <string name="home_status">Mây đen u ám</string>
+    <string name="home_location">Hà Nội</string>
+    <string name="home_date">TH 5, 05 THÁNG 5</string>
+    <string name="home_temp">22°C</string>
+    <string name="home_temp_max">32°</string>
+    <string name="home_temp_slash">/</string>
+    <string name="home_temp_min">20°</string>
+    <string name="todo">TODO</string>
+    <string name="today">HÔM NAY</string>
+    <string name="title_daily_nav">7 Ngày tiếp</string>
+    <string name="title_hourly_nav">48 Giờ tiếp</string>
+    <string name="feels_like_string">Cảm Giác Như</string>
+    <string name="humidity_string">Độ Ẩm</string>
+    <string name="uvi_string">Chỉ số UV</string>
+    <string name="visibility_string">Tầm Nhìn</string>
+    <string name="dew_point_string">Điểm Sương</string>
+    <string name="pressure_string">Áp Suất</string>
+    <string name="rcv_everyday_title">Hàng giờ</string>
+
+    <!-- time-date-->
+    <string name="fm_time">HH:mm</string>
+    <string name="fm_day_of_week">EEE</string>
+    <string name="fm_date">dd \'THÁNG\' M</string>
+
+    <!-- value-->
+    <string name="humidity">%d%%</string>
+    <string name="visibility">%d km</string>
+    <string name="visibility_mile">%d dặm</string>
+
+    <string name="dew_point">%.0f°C</string>
+    <string name="dew_point_fah">%.0f°C</string>
+
+    <string name="pressure">%d mb</string>
+    <string name="uvi">%.1f</string>
+
+    <string name="time">%s</string>
+    <string name="fm_string">%s</string>
+
+    <string name="fm_pop">%.0f%%</string>
+    <string name="fm_temp">%.0f</string>
+
+    <string name="fm_temp_celsius">%.0f°C</string>
+    <string name="fm_temp_fah">%.0f°F</string>
+
+    <string name="fm_wind_status">Gió: %.0fkm/h • %s</string>
+    <string name="fm_wind_status_mile">Gió: %.0fmil/h • %s</string>
+
+    <string name="fm_wind_speed">%.0f km/h</string>
+    <string name="fm_wind_speed_mile">%.0f mil/h</string>
+
+    <string name="fm_temp_feels_like">%s°C - Cảm Giác Như: %s°C</string>
+    <string name="fm_temp_feels_like_fah">%s°F - Cảm Giác Như: %s°F</string>
+
+    <string name="fm_temp_max_min">%s° / %s°</string>
+    <string name="fm_temp_max_min_fah">%s°F / %s°F</string>
+
+    <string name="fm_day_date">%s, %s</string>
+    <string name="fm_status_home">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
+    <string name="fm_status_home_fah">Hôm nay - %s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
+
+    <string name="fm_status_daily_nav">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
+    <string name="fm_status_daily_nav_fah">%s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
+
+    <string name="string_empty" />
+
+    <!-- string hard -->
+    <string name="notification_waiting_get_weather_information">Đang lấy thông tin thời tiết</string>
+    <string name="id_channel_push_notification">AlarmId</string>
+    <string name="name_notification_channel">Alarm</string>
+    <string name="description_notification_channel">Alarm details</string>
+    <string name="search_menu">Search</string>
+    <string name="offline">Bạn đang ngoại tuyến</string>
+    <string name="online">Đã kết nối Internet</string>
+    <string name="searching">Searching</string>
+    <string name="fm_show_location">%s, %s</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="settings_menu">settings</string>
+    <string name="celsius">Độ C</string>
+    <string name="fahrenheit">Độ F</string>
+    <string name="dialog_settings">Convert Mode</string>
+
+    <string-array name="days_of_week">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+    <string-array name="fm_days_of_week">
+        <item>CHỦ NHẬT</item>
+        <item>THỨ HAI</item>
+        <item>THỨ BA</item>
+        <item>THỨ TƯ</item>
+        <item>THỨ NĂM</item>
+        <item>THỨ SÁU</item>
+        <item>THỨ BẢY</item>
+    </string-array>
+    <!--    <string-array name="wind_deg">-->
+    <!--        <item>N</item>-->
+    <!--        <item>NNE</item>-->
+    <!--        <item>NE</item>-->
+    <!--        <item>ENE</item>-->
+    <!--        <item>E</item>-->
+    <!--        <item>ESE</item>-->
+    <!--        <item>SE</item>-->
+    <!--        <item>SSE</item>-->
+    <!--        <item>S</item>-->
+    <!--        <item>SSW</item>-->
+    <!--        <item>SW</item>-->
+    <!--        <item>WSW</item>-->
+    <!--        <item>W</item>-->
+    <!--        <item>WNW</item>-->
+    <!--        <item>NW</item>-->
+    <!--        <item>NNW</item>-->
+    <!--        <item>N</item>-->
+    <!--    </string-array>-->
+    <string-array name="wind_deg">
+        <item>Bắc</item>
+        <item>Bắc - Đông Bắc</item>
+        <item>Đông Bắc</item>
+        <item>Đông - Đông Bắc</item>
+        <item>Đông</item>
+        <item>Đông - Đông Nam</item>
+        <item>Đông Nam</item>
+        <item>Nam - Đông Nam</item>
+        <item>Nam</item>
+        <item>Nam - Tây Nam</item>
+        <item>Tây Nam</item>
+        <item>Tây - Tây Nam</item>
+        <item>Tây</item>
+        <item>Tây - Tây Bắc</item>
+        <item>Tây Bắc</item>
+        <item>Bắc - Tây Bắc</item>
+        <item>Bắc</item>
+    </string-array>
+</resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.todayweather.ui.home.model.Hourly" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/corner_layout"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:weightSum="6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            app:setTemp="@{item.temp}" />
+
+        <TextView
+            style="@style/txt_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            app:setPop="@{item.pop}" />
+
+        <ImageView
+            android:id="@+id/rcv_hourly_imgView_ic_status"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/todo"
+            android:gravity="center"
+            app:setIcon="@{item.weather[0].icon}"
+            tools:srcCompat="@mipmap/ic_cloud" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            app:setWindSpeed="@{item.wind_speed}" />
+
+        <ImageView
+            android:id="@+id/rcv_hourly_imgView_ic_windSpeed"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/white"
+            android:layout_weight="1"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="@string/todo"
+            android:gravity="center_vertical"
+            app:srcCompat="@mipmap/ic_cursor"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            app:setTime="@{item.dt}" />
+    </LinearLayout>
+</layout>
