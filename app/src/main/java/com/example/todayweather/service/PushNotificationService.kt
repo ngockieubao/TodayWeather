@@ -12,7 +12,6 @@ import android.location.Location
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.example.todayweather.R
 import com.example.todayweather.ui.home.model.WeatherGetApi
