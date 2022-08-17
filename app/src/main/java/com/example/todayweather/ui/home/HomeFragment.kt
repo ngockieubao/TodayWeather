@@ -1,9 +1,11 @@
 package com.example.todayweather.ui.home
 
+import android.content.Context
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var hourlyAdapter: HourlyAdapter
 
     // Init var location
-    private var fusedLocationClient: FusedLocationProviderClient? = null
     private var getPosition: String = ""
+    private var fusedLocationClient: FusedLocationProviderClient? = null
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
 
@@ -41,31 +43,18 @@ class HomeFragment : Fragment() {
     ): View {
         bindingHome = FragmentHomeBinding.inflate(inflater)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        initLocationRequest()
-        initLocationCallback()
+        Log.d(TAG, "onCreateView: HomeFragment")
 
-        // Handle key bundle
-        getBundle = arguments?.getParcelable(Constants.KEY_BUNDLE_SELECT_CITY)
-        if (getBundle != null) {
-            weatherViewModel.showLocation(getBundle!!.name)
-
-            // Pass lat-lon args after allow position
-            weatherViewModel.getWeatherProperties(getBundle!!.lat, getBundle!!.lon)
-        } else {
-            getLastLocation()
-        }
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         weatherViewModel.showLocation.observe(this.viewLifecycleOwner) {
             if (it != null && it != "") {
                 bindingHome.tvHomeLocation.text = it
             }
         }
-
         weatherViewModel.listCurrent.observe(this.viewLifecycleOwner) {
-            if (it != null) {
-                bindingHome.item = it
-            }
+            if (it == null) return@observe
+            else bindingHome.item = it
         }
 
         detailAdapter = DetailAdapter()
@@ -83,15 +72,16 @@ class HomeFragment : Fragment() {
             hourlyAdapter.dataList = it
         }
 
-        // Navigate Search Fragment
+        // Handle key bundle
+        searchCity()
+
+        // Navigate
         bindingHome.imageBtnSearch.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
-
         bindingHome.tvHomeStatusDescription.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_dailyFragment)
         }
-
         bindingHome.recyclerViewHourlyContainerElement.constraintHeaderHourly.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_hourlyFragment)
         }
@@ -99,30 +89,13 @@ class HomeFragment : Fragment() {
         return bindingHome.root
     }
 
-    // Init locationRequest
-    private fun initLocationRequest() {
-        locationRequest = LocationRequest.create().apply {
-            interval = Constants.INTERVAL
-            fastestInterval = Constants.FASTEST_INTERVAL
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-    }
-
-    // Init locationCallback
-    private fun initLocationCallback() {
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                locationResult ?: return
-                for (location in locationResult.locations) {
-                    // Update UI with location data
-                    // Get lat-lon
-                    val latUpdate = location.latitude
-                    val lonUpdate = location.longitude
-
-                    // Get location
-                    getLocation(latUpdate, lonUpdate)
-                }
-            }
+    private fun searchCity() {
+        getBundle = arguments?.getParcelable(Constants.KEY_BUNDLE_SELECT_CITY)
+        if (getBundle == null) return
+        else {
+            weatherViewModel.showLocation(getBundle!!.name)
+            // Pass lat-lon args after allow position
+            weatherViewModel.getWeatherProperties(getBundle!!.lat, getBundle!!.lon)
         }
     }
 
@@ -136,12 +109,14 @@ class HomeFragment : Fragment() {
                         if (location != null) {
                             val latUpdate = location.latitude
                             val lonUpdate = location.longitude
+
                             getLocation(latUpdate, lonUpdate)
                         } else {
                             startLocationUpdates()
                         }
-                    }.addOnFailureListener {
-                    }.addOnCompleteListener {}
+                    }
+                    .addOnFailureListener {}
+                    .addOnCompleteListener {}
             } catch (ex: SecurityException) {
                 ex.printStackTrace()
             }
@@ -156,12 +131,13 @@ class HomeFragment : Fragment() {
             val geocoder = Geocoder(requireContext())
             val position = geocoder.getFromLocation(lat, lon, 1)
 
-            // Display location
+            // Assign location
             getPosition = position[0].getAddressLine(0)
-            weatherViewModel.showLocation(Utils.formatLocation(requireContext(), getPosition))
-
             // Pass lat-lon args after allow position
             weatherViewModel.getWeatherProperties(lat, lon)
+            // Display location
+            weatherViewModel.showLocation(Utils.formatLocation(requireContext(), getPosition))
+//            weatherViewModel.showLocation(getPosition)
         } catch (ex: IOException) {
             ex.printStackTrace()
         }
@@ -178,5 +154,59 @@ class HomeFragment : Fragment() {
         } catch (ex: SecurityException) {
             ex.printStackTrace()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d(TAG, "onAttach: HomeFragment")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate: HomeFragment")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: HomeFragment")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart: HomeFragment")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: HomeFragment")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause: HomeFragment")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop: HomeFragment")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView: HomeFragment")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: HomeFragment")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d(TAG, "onDetach: HomeFragment")
+    }
+
+    companion object {
+        private const val TAG = "Home"
     }
 }
