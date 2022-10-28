@@ -2,6 +2,9 @@ package com.example.todayweather.network
 
 import com.example.todayweather.ui.home.model.WeatherGetApi
 import com.example.todayweather.util.Constants
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,4 +18,16 @@ interface WeatherApiService {
         @Query(Constants.URL_LANG) lang: String = Constants.URL_LANG_VALUE,
         @Query(Constants.URL_UNITS) units: String = Constants.URL_UNITS_VALUE
     ): WeatherGetApi
+}
+
+private val retrofit: Retrofit =
+    Retrofit.Builder()
+        .baseUrl(Constants.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+object WeatherApi {
+    val retrofitService: WeatherApiService by lazy {
+        retrofit.create(WeatherApiService::class.java)
+    }
 }

@@ -14,17 +14,16 @@ import android.os.IBinder
 import android.os.Looper
 import androidx.core.app.NotificationCompat
 import com.example.todayweather.R
+import com.example.todayweather.network.WeatherApi
 import com.example.todayweather.ui.home.model.WeatherGetApi
-import com.example.todayweather.network.WeatherApiService
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
-import org.koin.android.ext.android.inject
 import java.io.IOException
 
+@Suppress("DEPRECATION")
 class PushNotificationService : Service() {
-    private val weatherApiService: WeatherApiService by inject()
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
@@ -53,7 +52,11 @@ class PushNotificationService : Service() {
             val name = getString(R.string.name_notification_channel)
             val descriptionText = getString(R.string.description_notification_channel)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val mChannel = NotificationChannel(getString(R.string.id_channel_push_notification), name, importance)
+            val mChannel = NotificationChannel(
+                getString(R.string.id_channel_push_notification),
+                name,
+                importance
+            )
             mChannel.description = descriptionText
             val notificationManager =
                 this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -65,7 +68,8 @@ class PushNotificationService : Service() {
          * Todo: call weather API with Database' latitude and longitude
          * then push notification with weather information
          */
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@PushNotificationService)
+        fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(this@PushNotificationService)
         try {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
@@ -86,8 +90,7 @@ class PushNotificationService : Service() {
         if (location != null) {
             lat = location.latitude
             lon = location.longitude
-            val weatherData = weatherApiService.getProperties(lat, lon)
-
+            val weatherData = WeatherApi.retrofitService.getProperties(lat, lon)
             // Get location
             getLocation(lat, lon)
 
@@ -103,9 +106,17 @@ class PushNotificationService : Service() {
     private fun startPushNotification(startId: Int) {
         // Create the notification to be shown
         val mBuilder: Notification =
-            NotificationCompat.Builder(this@PushNotificationService, getString(R.string.id_channel_push_notification))
+            NotificationCompat.Builder(
+                this@PushNotificationService,
+                getString(R.string.id_channel_push_notification)
+            )
                 .setSmallIcon(R.mipmap.ic_todayweather_removebg)
-                .setLargeIcon(Utils.convertToBitMap(this@PushNotificationService, R.mipmap.ic_weather_news))
+                .setLargeIcon(
+                    Utils.convertToBitMap(
+                        this@PushNotificationService,
+                        R.mipmap.ic_weather_news
+                    )
+                )
                 .setAutoCancel(true)
                 .setContentText(getString(R.string.notification_waiting_get_weather_information))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -116,9 +127,17 @@ class PushNotificationService : Service() {
     @SuppressLint("StringFormatMatches")
     private fun startPushNotificationShowInfo(weatherGetApi: WeatherGetApi, location: String) {
         // Create the notification to be shown
-        val mBuilder = NotificationCompat.Builder(this@PushNotificationService, getString(R.string.id_channel_push_notification))
+        val mBuilder = NotificationCompat.Builder(
+            this@PushNotificationService,
+            getString(R.string.id_channel_push_notification)
+        )
             .setSmallIcon(R.mipmap.ic_todayweather_removebg)
-            .setLargeIcon(Utils.convertToBitMap(this@PushNotificationService, R.mipmap.ic_weather_news))
+            .setLargeIcon(
+                Utils.convertToBitMap(
+                    this@PushNotificationService,
+                    R.mipmap.ic_weather_news
+                )
+            )
             .setAutoCancel(true)
             .setContentTitle(Utils.formatLocation(this@PushNotificationService, location))
             .setContentText(Utils.upCaseFirstLetter(weatherGetApi.current.weather[0].description))
@@ -132,9 +151,15 @@ class PushNotificationService : Service() {
                             Utils.upCaseFirstLetter(weatherGetApi.current.weather[0].description),
                             weatherGetApi.daily[0].temp.max,
                             weatherGetApi.daily[0].temp.min,
-                            Utils.formatWindDeg(this@PushNotificationService, weatherGetApi.daily[0].wind_deg),
+                            Utils.formatWindDeg(
+                                this@PushNotificationService,
+                                weatherGetApi.daily[0].wind_deg
+                            ),
                             weatherGetApi.daily[0].wind_speed,
-                            Utils.formatPop(this@PushNotificationService, weatherGetApi.daily[0].pop)
+                            Utils.formatPop(
+                                this@PushNotificationService,
+                                weatherGetApi.daily[0].pop
+                            )
                         )
                     )
             )

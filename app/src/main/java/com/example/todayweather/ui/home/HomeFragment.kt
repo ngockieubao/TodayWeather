@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.ui.hourly.HourlyAdapter
@@ -24,7 +25,13 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.IOException
 
 class HomeFragment : Fragment() {
-    private val weatherViewModel: WeatherViewModel by sharedViewModel()
+    private val weatherViewModel: WeatherViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            WeatherViewModel.WeatherViewModelFactory(requireActivity().application)
+        )[WeatherViewModel::class.java]
+    }
+
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var hourlyAdapter: HourlyAdapter
@@ -95,7 +102,7 @@ class HomeFragment : Fragment() {
         else {
             weatherViewModel.showLocation(getBundle!!.name)
             // Pass lat-lon args after allow position
-            weatherViewModel.getWeatherProperties(getBundle!!.lat, getBundle!!.lon)
+            weatherViewModel.refreshData(getBundle!!.lat, getBundle!!.lon)
         }
     }
 
@@ -134,7 +141,7 @@ class HomeFragment : Fragment() {
             // Assign location
             getPosition = position[0].getAddressLine(0)
             // Pass lat-lon args after allow position
-            weatherViewModel.getWeatherProperties(lat, lon)
+            weatherViewModel.refreshData(lat, lon)
             // Display location
             weatherViewModel.showLocation(Utils.formatLocation(requireContext(), getPosition))
 //            weatherViewModel.showLocation(getPosition)

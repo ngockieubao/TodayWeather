@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.todayweather.broadcast.NotificationReceiver
 import com.example.todayweather.broadcast.WeatherReceiver
@@ -28,14 +29,18 @@ import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
 import com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val weatherViewModel: WeatherViewModel by viewModel()
+    private val weatherViewModel: WeatherViewModel by lazy {
+        ViewModelProvider(
+            this,
+            WeatherViewModel.WeatherViewModelFactory(this.application)
+        )[WeatherViewModel::class.java]
+    }
 
     // Init variable location
     private var fusedLocationClient: FusedLocationProviderClient? = null
@@ -70,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         if (permission == true) {
             getLastLocation()
             startBroadcast()
+//            checkPermissionLocation()
         } else {
             Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
             setupPermission()
@@ -133,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             weatherViewModel.showLocation(Utils.formatLocation(this, getPosition))
 
             // Pass lat-lon args after allow position
-            weatherViewModel.getWeatherProperties(lat, lon)
+            weatherViewModel.refreshData(lat, lon)
         } catch (ex: IOException) {
             ex.printStackTrace()
         }
@@ -153,16 +159,17 @@ class MainActivity : AppCompatActivity() {
                         val lat = location.latitude
                         val lon = location.longitude
                         try {
-                            val geocoder = Geocoder(this)
-                            val position = geocoder.getFromLocation(lat, lon, 1)
-
-                            // Assign location
-                            getPosition = position[0].getAddressLine(0)
-                            // Pass lat-lon args after allow position
-                            weatherViewModel.getWeatherProperties(lat, lon)
-                            // Display location
-                            weatherViewModel.showLocation(Utils.formatLocation(this, getPosition))
-//                            weatherViewModel.showLocation(getPosition)
+//                            val geocoder = Geocoder(this)
+//                            val position = geocoder.getFromLocation(lat, lon, 1)
+//
+//                            // Assign location
+//                            getPosition = position[0].getAddressLine(0)
+//                            // Pass lat-lon args after allow position
+//                            weatherViewModel.refreshData(lat, lon)
+//                            // Display location
+//                            weatherViewModel.showLocation(Utils.formatLocation(this, getPosition))
+                            getLocation(lat, lon)
+//                            weatherViewModel.refreshData(lat, lon)
                         } catch (e: Exception) {
                             Log.w("bugLocation", e)
                         }
@@ -223,7 +230,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startBroadcast() {
         startBroadcastNetwork()
-        startBroadcastWeatherNotifications()
+//        startBroadcastWeatherNotifications()
     }
 
     // Broadcast
@@ -242,7 +249,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         val pendingIntentRequestCode = 0
-        val pendingIntent = PendingIntent.getBroadcast(this, pendingIntentRequestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this,
+            pendingIntentRequestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val isPermission = alarmManager.canScheduleExactAlarms()
             if (isPermission) {

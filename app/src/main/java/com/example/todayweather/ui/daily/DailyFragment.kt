@@ -5,18 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.databinding.FragmentNavDailyBinding
 import com.example.todayweather.ui.WeatherViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DailyFragment : Fragment() {
     private lateinit var bindingDailyNavBinding: FragmentNavDailyBinding
     private lateinit var dailyNavAdapter: DailyNavAdapter
 
     // ShareViewModel
-    private val sharedViewModel: WeatherViewModel by sharedViewModel()
+
+    private val sharedViewModel: WeatherViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            WeatherViewModel.WeatherViewModelFactory(requireActivity().application)
+        )[WeatherViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
