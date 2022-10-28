@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.todayweather">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,6 +13,19 @@
         android:roundIcon="@mipmap/ic_todayweather"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <receiver
+            android:name=".broadcast.WeatherReceiver"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedReceiver,Instantiatable">
+            <intent-filter tools:ignore="ExtraText">
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".activity.SplashActivity"
@@ -22,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.MainActivity"
             android:exported="false" />

@@ -38,13 +38,12 @@ class WeatherViewModel(
     private val _showLocation = MutableLiveData<String>()
     val showLocation = _showLocation
 
-    private val _isOnline = MutableLiveData(0)
-    val isOnline = _isOnline
+    var isOnline = 0
 
     fun loadAPI(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
-                if (_isOnline.value == 0) {
+                if (isOnline == 1) {
                     val weatherData = WeatherApi.retrofitService.getProperties(lat, lon)
                     populateDailyHourlyData(weatherData)
                 } else {

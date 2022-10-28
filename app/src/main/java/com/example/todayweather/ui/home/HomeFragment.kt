@@ -5,25 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
-import com.example.todayweather.ui.hourly.HourlyAdapter
+import com.example.todayweather.data.model.City
 import com.example.todayweather.databinding.FragmentHomeBinding
 import com.example.todayweather.ui.WeatherViewModel
-import com.example.todayweather.data.model.City
+import com.example.todayweather.ui.hourly.HourlyAdapter
 import com.example.todayweather.util.Constants
 
 class HomeFragment : Fragment() {
 
     private lateinit var bindingHome: FragmentHomeBinding
 
-    private val weatherViewModel: WeatherViewModel by lazy {
-        ViewModelProvider(
-            requireActivity(),
-            WeatherViewModel.WeatherViewModelFactory(requireActivity().application)
-        )[WeatherViewModel::class.java]
-    }
+    private val weatherViewModel: WeatherViewModel by activityViewModels()
+//    lazy {
+//        ViewModelProvider(
+//            requireActivity(),
+//            WeatherViewModel.WeatherViewModelFactory(requireActivity().application)
+//        )[WeatherViewModel::class.java]
+//    }
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var hourlyAdapter: HourlyAdapter
 

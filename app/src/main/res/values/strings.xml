@@ -79,8 +79,9 @@
     <string name="name_notification_channel">Alarm</string>
     <string name="description_notification_channel">Alarm details</string>
     <string name="search_menu">Search</string>
-    <string name="offline">Bạn đang ngoại tuyến</string>
-    <string name="online">Đã kết nối Internet</string>
+    <string name="string_offline">Bạn đang ngoại tuyến</string>
+    <string name="string_online_internet">Đã kết nối Internet</string>
+    <string name="string_online_wifi">Đã kết nối Wifi</string>
     <string name="searching">Searching</string>
     <string name="fm_show_location">%s, %s</string>
     <string name="permission_denied">Permission denied</string>
