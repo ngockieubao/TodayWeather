@@ -1,4 +1,4 @@
-package com.example.todayweather.ui.home.model
+package com.example.todayweather.data.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

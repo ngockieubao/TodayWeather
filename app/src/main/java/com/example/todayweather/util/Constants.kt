@@ -22,7 +22,7 @@ object Constants {
     const val ONGOING_NOTIFICATION_ID = 2
 
     // Database key
-    const val DATABASE = "database"
+    const val DATABASE = "weather_database"
 
     // Webservice API
     const val BASE_URL = "https://api.openweathermap.org/"

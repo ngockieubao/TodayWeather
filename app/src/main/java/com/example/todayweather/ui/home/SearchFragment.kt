@@ -10,7 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.databinding.FragmentSearchBinding
-import com.example.todayweather.ui.home.model.City
+import com.example.todayweather.data.model.City
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.example.todayweather.util.Utils.fromJsonToLocation

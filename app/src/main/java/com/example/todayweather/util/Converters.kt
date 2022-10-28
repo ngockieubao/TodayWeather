@@ -1,7 +1,9 @@
 package com.example.todayweather.util
 
 import androidx.room.TypeConverter
-import com.example.todayweather.ui.home.model.*
+import com.example.todayweather.data.model.Current
+import com.example.todayweather.data.model.Daily
+import com.example.todayweather.data.model.Hourly
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

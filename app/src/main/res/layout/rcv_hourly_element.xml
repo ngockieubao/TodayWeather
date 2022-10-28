@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.todayweather.ui.home.model.Hourly" />
+            type="com.example.todayweather.data.model.Hourly" />
     </data>
 
     <LinearLayout
@@ -26,7 +26,8 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:padding="5dp"
-            app:setTemp="@{item.temp}" />
+            app:setTemp="@{item.temp}"
+            tools:text="30°" />
 
         <TextView
             style="@style/txt_blue"
@@ -36,7 +37,8 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:padding="5dp"
-            app:setPop="@{item.pop}" />
+            app:setPop="@{item.pop}"
+            tools:text="12%" />
 
         <ImageView
             android:id="@+id/rcv_hourly_imgView_ic_status"
@@ -54,17 +56,18 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:padding="5dp"
-            app:setWindSpeed="@{item.wind_speed}" />
+            app:setWindSpeed="@{item.wind_speed}"
+            tools:text="15 km/h" />
 
         <ImageView
             android:id="@+id/rcv_hourly_imgView_ic_windSpeed"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:tint="@color/white"
-            android:layout_weight="1"
             android:layout_marginVertical="8dp"
+            android:layout_weight="1"
             android:contentDescription="@string/todo"
             android:gravity="center_vertical"
+            android:tint="@color/white"
             app:srcCompat="@mipmap/ic_cursor"
             tools:ignore="UseAppTint" />
 
@@ -74,6 +77,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:padding="5dp"
-            app:setTime="@{item.dt}" />
+            app:setTime="@{item.dt}"
+            tools:text="16:00" />
     </LinearLayout>
 </layout>

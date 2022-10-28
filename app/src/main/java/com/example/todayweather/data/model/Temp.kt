@@ -1,4 +1,4 @@
-package com.example.todayweather.ui.home.model
+package com.example.todayweather.data.model
 
 data class Temp(
     val day: Double,

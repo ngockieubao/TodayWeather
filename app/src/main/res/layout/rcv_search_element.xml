@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.example.todayweather.ui.home.model.City" />
+            type="com.example.todayweather.data.model.City" />
     </data>
 
     <LinearLayout

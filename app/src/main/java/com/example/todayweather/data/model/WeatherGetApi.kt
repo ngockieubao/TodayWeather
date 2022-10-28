@@ -1,9 +1,9 @@
-package com.example.todayweather.ui.home.model
+package com.example.todayweather.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "get_api_table")
+@Entity(tableName = "weather_get_api_table")
 data class WeatherGetApi(
     val current: Current,
     val daily: MutableList<Daily>,

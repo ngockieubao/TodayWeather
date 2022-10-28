@@ -1,6 +1,6 @@
-package com.example.todayweather.ui
+package com.example.todayweather.data.model
 
-data class HomeModel(
+data class DetailHomeModel(
     // Detail
     val icon: Int,
     val description: String,

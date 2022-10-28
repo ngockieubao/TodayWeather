@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todayweather.databinding.RcvHourlyElementBinding
-import com.example.todayweather.ui.home.model.Hourly
+import com.example.todayweather.data.model.Hourly
 
 class HourlyAdapter : RecyclerView.Adapter<HourlyAdapter.HourlyViewHolder>() {
 

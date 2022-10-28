@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todayweather.R
 import com.example.todayweather.databinding.RcvDetailElementBinding
-import com.example.todayweather.ui.HomeModel
+import com.example.todayweather.data.model.DetailHomeModel
 
 class DetailAdapter : RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
 
     // init list data
-    var dataList = listOf<HomeModel>()
+    var dataList = listOf<DetailHomeModel>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -21,7 +21,7 @@ class DetailAdapter : RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
     // create ViewHolder with args are binding layout
     class DetailViewHolder(private val rcvDetailElementBinding: RcvDetailElementBinding) :
         RecyclerView.ViewHolder(rcvDetailElementBinding.root) {
-        fun bind(item: HomeModel?) {
+        fun bind(item: DetailHomeModel?) {
             if (item == null) return
 
             rcvDetailElementBinding.imgViewIcHomeDetail.setImageResource(

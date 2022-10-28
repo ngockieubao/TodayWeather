@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todayweather.databinding.RcvSearchElementBinding
-import com.example.todayweather.ui.home.model.City
+import com.example.todayweather.data.model.City
 
 class SearchAdapter(
     private val context: Context,

@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.todayweather.R
-import com.example.todayweather.ui.home.model.City
-import com.example.todayweather.ui.home.model.Daily
+import com.example.todayweather.data.model.City
+import com.example.todayweather.data.model.Daily
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.InputStream

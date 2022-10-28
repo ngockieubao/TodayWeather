@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todayweather.databinding.RcvDailyNavBinding
-import com.example.todayweather.ui.home.model.Daily
+import com.example.todayweather.data.model.Daily
 
 class DailyNavAdapter : RecyclerView.Adapter<DailyNavAdapter.DailyNavViewHolder>() {
 

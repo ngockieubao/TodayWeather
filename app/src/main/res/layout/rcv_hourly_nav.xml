@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.todayweather.ui.home.model.Hourly" />
+            type="com.example.todayweather.data.model.Hourly" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

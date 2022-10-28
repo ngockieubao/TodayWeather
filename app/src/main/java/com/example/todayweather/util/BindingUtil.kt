@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.example.todayweather.ui.home.model.Daily
+import com.example.todayweather.data.model.Daily
 
 @BindingAdapter("setIcon")
 fun ImageView.setIcon(url: String?) {

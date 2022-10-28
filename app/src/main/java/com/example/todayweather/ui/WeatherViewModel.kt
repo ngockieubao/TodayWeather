@@ -1,65 +1,61 @@
 package com.example.todayweather.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.annotation.SuppressLint
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.todayweather.R
-import com.example.todayweather.database.WeatherDao
-import com.example.todayweather.ui.home.model.Daily
-import com.example.todayweather.ui.home.model.Hourly
-import com.example.todayweather.ui.home.model.WeatherGetApi
-import com.example.todayweather.network.WeatherApiService
-import com.example.todayweather.util.WeatherApplication
+import com.example.todayweather.data.WeatherRepository
+import com.example.todayweather.data.model.Daily
+import com.example.todayweather.data.model.DetailHomeModel
+import com.example.todayweather.data.model.Hourly
+import com.example.todayweather.data.model.WeatherGetApi
+import com.example.todayweather.network.WeatherApi
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(
-    // init var database
-    private val database: WeatherDao,
-    private val weatherApiService: WeatherApiService
-) : ViewModel() {
-    // The external LiveData interface to the property is immutable, so only this class can modify
-    // list current
+    application: Application
+) : AndroidViewModel(application) {
+
+    @SuppressLint("StaticFieldLeak")
+    private val context = getApplication<Application>().applicationContext
+
+    private val weatherRepository: WeatherRepository = WeatherRepository(application)
+
     private val _listCurrent = MutableLiveData<Daily>()
     val listCurrent: LiveData<Daily>
         get() = _listCurrent
 
-    // list data detail
-    var listDataDetail = MutableLiveData<MutableList<HomeModel>>()
+    var listDataDetail = MutableLiveData<MutableList<DetailHomeModel>>()
 
-    // daily nav
     private val _listDailyNav = MutableLiveData<MutableList<Daily>>()
     val listDataDaily: LiveData<MutableList<Daily>>
         get() = _listDailyNav
 
-    // hourly nav
     private val _listHourlyNav = MutableLiveData<MutableList<Hourly>>()
     val listDataHourly: LiveData<MutableList<Hourly>>
         get() = _listHourlyNav
 
-    // var using for set data to list data detail
-    private val res = WeatherApplication.instant.resources
+    private val _showLocation = MutableLiveData<String>()
+    val showLocation = _showLocation
 
-    // init var get location to show in MainActivity
-    val showLocation = MutableLiveData<String>()
+    private val _isOnline = MutableLiveData(0)
+    val isOnline = _isOnline
 
-    fun getWeatherProperties(lat: Double, lon: Double) {
+    fun loadAPI(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
-                // get data from API
-                val weatherData = weatherApiService.getProperties(lat, lon)
-                // create and save db after get from API
-                database.insert(weatherData)
-                getDataFromDatabase()
+                if (_isOnline.value == 0) {
+                    val weatherData = WeatherApi.retrofitService.getProperties(lat, lon)
+                    populateDailyHourlyData(weatherData)
+                } else {
+                    weatherRepository.load(lat, lon)
+                    val weatherData = weatherRepository.getWeatherApi()
+                    populateDailyHourlyData(weatherData)
+                }
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
         }
-    }
-
-    private suspend fun getDataFromDatabase() {
-        val weatherData = loadDataFromDB().lastOrNull() ?: return
-        populateDailyHourlyData(weatherData)
     }
 
     private fun populateDailyHourlyData(weatherData: WeatherGetApi) {
@@ -78,34 +74,66 @@ class WeatherViewModel(
         _listHourlyNav.value = listHourly
     }
 
-    // set data to list data detail
     private fun addDataDetail(weatherData: WeatherGetApi) {
-        val listDetail = mutableListOf<HomeModel>()
-
+        val listDetail = mutableListOf<DetailHomeModel>()
         val listCurrent = weatherData.current
 
-        val index1 = HomeModel(1, res.getString(R.string.feels_like_string), res.getString(R.string.fm_temp_celsius, listCurrent.temp))
+        val index1 = DetailHomeModel(
+            1,
+            context.getString(R.string.feels_like_string),
+            context.getString(R.string.fm_temp_celsius, listCurrent.temp)
+        )
         listDetail.add(index1)
-        val index2 = HomeModel(2, res.getString(R.string.humidity_string), res.getString(R.string.humidity, listCurrent.humidity))
+
+        val index2 = DetailHomeModel(
+            2,
+            context.getString(R.string.humidity_string),
+            context.getString(R.string.humidity, listCurrent.humidity)
+        )
         listDetail.add(index2)
-        val index3 = HomeModel(3, res.getString(R.string.uvi_string), res.getString(R.string.uvi, listCurrent.uvi))
+
+        val index3 = DetailHomeModel(
+            3,
+            context.getString(R.string.uvi_string),
+            context.getString(R.string.uvi, listCurrent.uvi)
+        )
         listDetail.add(index3)
-        val index4 = HomeModel(
-            4, res.getString(R.string.visibility_string), res.getString(R.string.visibility, (listCurrent.visibility.div(1000)))
+
+        val index4 = DetailHomeModel(
+            4,
+            context.getString(R.string.visibility_string),
+            context.getString(R.string.visibility, (listCurrent.visibility.div(1000)))
         )
         listDetail.add(index4)
-        val index5 = HomeModel(5, res.getString(R.string.dew_point_string), res.getString(R.string.dew_point, listCurrent.dew_point))
+
+        val index5 = DetailHomeModel(
+            5,
+            context.getString(R.string.dew_point_string),
+            context.getString(R.string.dew_point, listCurrent.dew_point)
+        )
         listDetail.add(index5)
-        val index6 = HomeModel(6, res.getString(R.string.pressure_string), res.getString(R.string.pressure, listCurrent.pressure))
+
+        val index6 = DetailHomeModel(
+            6,
+            context.getString(R.string.pressure_string),
+            context.getString(R.string.pressure, listCurrent.pressure)
+        )
         listDetail.add(index6)
 
-        // set data to observe
         listDataDetail.value = listDetail
     }
 
     fun showLocation(location: String) {
-        showLocation.value = location
+        _showLocation.value = location
     }
 
-    private suspend fun loadDataFromDB() = database.loadAPI()
+    class WeatherViewModelFactory(private val application: Application) :
+        ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST") return WeatherViewModel(application) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
 }
