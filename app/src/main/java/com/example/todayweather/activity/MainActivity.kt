@@ -1,24 +1,41 @@
 package com.example.todayweather.activity
 
+import android.Manifest
 import android.content.BroadcastReceiver
+import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.broadcast.WeatherReceiver
 import com.example.todayweather.databinding.ActivityMainBinding
 import com.example.todayweather.ui.WeatherViewModel
+import com.example.todayweather.util.Utils
+import com.google.android.gms.location.*
 
 @Suppress("DEPRECATION")
-open class MainActivity : AppCompatActivity() {
+@RequiresApi(Build.VERSION_CODES.Q)
+class MainActivity : AppCompatActivity() {
 
+    private val REQUEST_PERMISSON_CODE = 10
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNetworkReceiver: BroadcastReceiver
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var getPosition: String = ""
 
     private val weatherViewModel: WeatherViewModel by lazy {
         ViewModelProvider(
@@ -27,20 +44,92 @@ open class MainActivity : AppCompatActivity() {
         )[WeatherViewModel::class.java]
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        checkPermissions()
+
         mNetworkReceiver = WeatherReceiver()
         registerNetworkBroadcastForNougat()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.actNavHost)
-        return navController.navigateUp()
+    private fun checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                REQUEST_PERMISSON_CODE
+            )
+        } else {
+            getLastLocation()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == REQUEST_PERMISSON_CODE) {
+            if (grantResults.isNotEmpty()
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
+//                && grantResults[1] == PackageManager.PERMISSION_GRANTED
+            ) {
+                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
+                getLastLocation()
+            } else {
+                Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
+                openSettingPermissions()
+                Toast.makeText(this, "Location must allow", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun openSettingPermissions() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivity(intent)
+    }
+
+    private fun getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    val lat = location.latitude
+                    val lon = location.longitude
+                    getLocation(lat, lon)
+                }
+            }
+            return
+        }
+    }
+
+    private fun getLocation(lat: Double, lon: Double) {
+        try {
+            val geocoder = Geocoder(this)
+            val position = geocoder.getFromLocation(lat, lon, 1)
+
+            weatherViewModel.loadAPI(lat, lon)
+            getPosition = position[0].getAddressLine(0)
+            weatherViewModel.showLocation(Utils.formatLocation(this, getPosition))
+
+        } catch (e: Exception) {
+            Log.d(TAG, "getLastLocation: failed - $e")
+        }
     }
 
     private fun registerNetworkBroadcastForNougat() {
@@ -58,6 +147,11 @@ open class MainActivity : AppCompatActivity() {
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.actNavHost)
+        return navController.navigateUp()
     }
 
     override fun onDestroy() {

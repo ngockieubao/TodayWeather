@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.data.model.City
@@ -18,24 +17,17 @@ import com.example.todayweather.util.Constants
 class HomeFragment : Fragment() {
 
     private lateinit var bindingHome: FragmentHomeBinding
-
     private val weatherViewModel: WeatherViewModel by activityViewModels()
-//    lazy {
-//        ViewModelProvider(
-//            requireActivity(),
-//            WeatherViewModel.WeatherViewModelFactory(requireActivity().application)
-//        )[WeatherViewModel::class.java]
-//    }
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var hourlyAdapter: HourlyAdapter
-
     private var getBundle: City? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        bindingHome = FragmentHomeBinding.inflate(inflater)
+
+        bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
 
         weatherViewModel.showLocation.observe(this.viewLifecycleOwner) {
             if (it != null && it != "") {

@@ -1,14 +1,12 @@
 package com.example.todayweather.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
+import androidx.room.*
 import com.example.todayweather.data.model.WeatherGetApi
 
 @Dao
 interface WeatherDao {
-    @Insert(onConflict = REPLACE)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(weatherGetApi: WeatherGetApi)
 
     @Query("SELECT * FROM weather_get_api_table")
@@ -16,4 +14,7 @@ interface WeatherDao {
 
     @Query("DELETE FROM weather_get_api_table")
     suspend fun clear()
+
+    @Update
+    suspend fun update(weatherGetApi: WeatherGetApi)
 }

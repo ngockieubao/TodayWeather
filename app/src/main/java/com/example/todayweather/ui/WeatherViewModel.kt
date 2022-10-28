@@ -2,6 +2,7 @@ package com.example.todayweather.ui
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.todayweather.R
 import com.example.todayweather.data.WeatherRepository
@@ -9,8 +10,8 @@ import com.example.todayweather.data.model.Daily
 import com.example.todayweather.data.model.DetailHomeModel
 import com.example.todayweather.data.model.Hourly
 import com.example.todayweather.data.model.WeatherGetApi
-import com.example.todayweather.network.WeatherApi
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class WeatherViewModel(
     application: Application
@@ -38,37 +39,36 @@ class WeatherViewModel(
     private val _showLocation = MutableLiveData<String>()
     val showLocation = _showLocation
 
-    var isOnline = 0
-
     fun loadAPI(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
-                if (isOnline == 1) {
-                    val weatherData = WeatherApi.retrofitService.getProperties(lat, lon)
-                    populateDailyHourlyData(weatherData)
-                } else {
-                    weatherRepository.load(lat, lon)
-                    val weatherData = weatherRepository.getWeatherApi()
-                    populateDailyHourlyData(weatherData)
-                }
-            } catch (ex: Exception) {
-                ex.printStackTrace()
+                weatherRepository.load(lat, lon)
+                getWeatherDatabase()
+            } catch (ex: IOException) {
+                getWeatherDatabase()
+                Log.d(TAG, "loadAPI: network err - $ex")
             }
         }
     }
 
+    // Read data from database
+    private suspend fun getWeatherDatabase() {
+        val weatherData = weatherRepository.getWeatherApi()
+        populateDailyHourlyData(weatherData)
+    }
+
     private fun populateDailyHourlyData(weatherData: WeatherGetApi) {
-        // display detail home fragment
+        // display data detail HomeFragment
         addDataDetail(weatherData)
 
-        // get data Daily & set to ListDaily
+        // display data DailyFragment
         val listDaily = weatherData.daily
         _listDailyNav.value = listDaily
 
         // get first element of daily List
         _listCurrent.value = listDaily.first()
 
-        // get data Hourly & set to ListHourly
+        // display data HourlyFragment
         val listHourly = weatherData.hourly
         _listHourlyNav.value = listHourly
     }
@@ -134,5 +134,9 @@ class WeatherViewModel(
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
+    }
+
+    companion object {
+        private const val TAG = "WeatherViewModel"
     }
 }
