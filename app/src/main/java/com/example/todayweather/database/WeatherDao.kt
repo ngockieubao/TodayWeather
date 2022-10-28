@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.todayweather.ui.home.model.WeatherGetApi
 
 @Dao
-interface WeatherDAO {
+interface WeatherDao {
     @Insert(onConflict = REPLACE)
     suspend fun insert(weatherGetApi: WeatherGetApi)
 

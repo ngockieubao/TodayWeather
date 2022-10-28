@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todayweather.R
-import com.example.todayweather.database.WeatherDAO
+import com.example.todayweather.database.WeatherDao
 import com.example.todayweather.ui.home.model.Daily
 import com.example.todayweather.ui.home.model.Hourly
 import com.example.todayweather.ui.home.model.WeatherGetApi
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel(
     // init var database
-    private val database: WeatherDAO,
+    private val database: WeatherDao,
     private val weatherApiService: WeatherApiService
 ) : ViewModel() {
     // The external LiveData interface to the property is immutable, so only this class can modify

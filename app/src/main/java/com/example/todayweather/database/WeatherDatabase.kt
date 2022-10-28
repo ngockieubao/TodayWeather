@@ -9,5 +9,5 @@ import com.example.todayweather.util.Converters
 @Database(entities = [WeatherGetApi::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class WeatherDatabase : RoomDatabase() {
-    abstract val weatherDAO: WeatherDAO
+    abstract val weatherDAO: WeatherDao
 }

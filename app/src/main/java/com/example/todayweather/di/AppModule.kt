@@ -2,7 +2,7 @@ package com.example.todayweather.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.todayweather.database.WeatherDAO
+import com.example.todayweather.database.WeatherDao
 import com.example.todayweather.database.WeatherDatabase
 import com.example.todayweather.network.WeatherApiService
 import com.example.todayweather.util.Constants
@@ -40,6 +40,6 @@ private fun provideDatabase(application: Application): WeatherDatabase {
         .build()
 }
 
-private fun provideWeatherDao(database: WeatherDatabase): WeatherDAO {
+private fun provideWeatherDao(database: WeatherDatabase): WeatherDao {
     return database.weatherDAO
 }
