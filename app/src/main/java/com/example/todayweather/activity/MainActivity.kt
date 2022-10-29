@@ -11,6 +11,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
@@ -23,6 +24,7 @@ import com.example.todayweather.R
 import com.example.todayweather.broadcast.WeatherReceiver
 import com.example.todayweather.databinding.ActivityMainBinding
 import com.example.todayweather.ui.WeatherViewModel
+import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
 
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var getPosition: String = ""
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
     private val weatherViewModel: WeatherViewModel by lazy {
         ViewModelProvider(
@@ -52,6 +56,8 @@ class MainActivity : AppCompatActivity() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         checkPermissions()
+        createLocationRequest()
+        createLocationCallback()
 
         mNetworkReceiver = WeatherReceiver()
         registerNetworkBroadcastForNougat()
@@ -112,9 +118,14 @@ class MainActivity : AppCompatActivity() {
                     val lat = location.latitude
                     val lon = location.longitude
                     getLocation(lat, lon)
+                } else {
+                    Toast.makeText(this, "Location can be off", Toast.LENGTH_SHORT).show()
+                    startLocationUpdates()
                 }
             }
             return
+        } else {
+            Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -130,6 +141,56 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.d(TAG, "getLastLocation: failed - $e")
         }
+    }
+
+    private fun createLocationRequest() {
+        locationRequest = LocationRequest.create().apply {
+            interval = Constants.INTERVAL
+            fastestInterval = Constants.FASTEST_INTERVAL
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+    }
+
+    private fun createLocationCallback() {
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                locationResult ?: return
+                for (location in locationResult.locations) {
+                    // Update UI with location data
+                    // Get lat-lon
+                    val latUpdate = location.latitude
+                    val lonUpdate = location.longitude
+
+                    getLocation(latUpdate, lonUpdate)
+                }
+            }
+        }
+    }
+
+    private fun startLocationUpdates() {
+        try {
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
+        } catch (e: SecurityException) {
+            Log.e("SecurityException", "$e")
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        if (requestingLocationUpdates) startLocationUpdates()
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
     }
 
     private fun registerNetworkBroadcastForNougat() {
