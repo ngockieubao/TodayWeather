@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -28,6 +29,14 @@ class HomeFragment : Fragment() {
     ): View {
 
         bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
+
+        weatherViewModel.networkError.observe(this.viewLifecycleOwner) {
+            if (it == null) return@observe
+            if (weatherViewModel.networkError.value == false)
+                bindingHome.constraintStatusNetwork.visibility = View.GONE
+            if (weatherViewModel.networkError.value == true)
+                bindingHome.constraintStatusNetwork.visibility = View.VISIBLE
+        }
 
         weatherViewModel.showLocation.observe(this.viewLifecycleOwner) {
             if (it != null && it != "") {
@@ -63,6 +72,9 @@ class HomeFragment : Fragment() {
             }
             recyclerViewHourlyContainerElement.constraintHeaderHourly.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_hourlyFragment)
+            }
+            imageBtnRefresh.setOnClickListener {
+                Toast.makeText(requireActivity(), "Update UI", Toast.LENGTH_SHORT).show()
             }
         }
 

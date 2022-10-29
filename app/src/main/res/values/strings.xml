@@ -89,6 +89,8 @@
     <string name="celsius">Độ C</string>
     <string name="fahrenheit">Độ F</string>
     <string name="dialog_settings">Convert Mode</string>
+    <string name="string_mode_offiline">CHẾ ĐỘ OFFILINE</string>
+    <string name="string_mode_offline_status">Cập nhật lần cuối 45 mins ago</string>
 
     <string-array name="days_of_week">
         <item>Sun</item>

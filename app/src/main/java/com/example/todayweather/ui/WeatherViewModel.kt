@@ -39,12 +39,17 @@ class WeatherViewModel(
     private val _showLocation = MutableLiveData<String>()
     val showLocation = _showLocation
 
+    private val _networkError = MutableLiveData<Boolean>()
+    val networkError: LiveData<Boolean> = _networkError
+
     fun loadAPI(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
+                _networkError.value = false
                 weatherRepository.load(lat, lon)
                 getWeatherDatabase()
             } catch (ex: IOException) {
+                _networkError.value = true
                 getWeatherDatabase()
                 Log.d(TAG, "loadAPI: network err - $ex")
             }
