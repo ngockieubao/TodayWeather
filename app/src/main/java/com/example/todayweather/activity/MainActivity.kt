@@ -1,7 +1,11 @@
 package com.example.todayweather.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
@@ -21,18 +25,19 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.todayweather.R
+import com.example.todayweather.broadcast.NotificationReceiver
 import com.example.todayweather.broadcast.WeatherReceiver
 import com.example.todayweather.databinding.ActivityMainBinding
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
+import java.util.concurrent.TimeUnit
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
 class MainActivity : AppCompatActivity() {
 
-    private val REQUEST_PERMISSON_CODE = 10
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNetworkReceiver: BroadcastReceiver
 
@@ -71,10 +76,11 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                REQUEST_PERMISSON_CODE
+                Constants.REQUEST_PERMISSION_CODE
             )
         } else {
             getLastLocation()
+            startBroadcastWeatherNotifications()
         }
     }
 
@@ -85,13 +91,14 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode == REQUEST_PERMISSON_CODE) {
+        if (requestCode == Constants.REQUEST_PERMISSION_CODE) {
             if (grantResults.isNotEmpty()
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
 //                && grantResults[1] == PackageManager.PERMISSION_GRANTED
             ) {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
                 getLastLocation()
+                startBroadcastWeatherNotifications()
             } else {
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
                 openSettingPermissions()
@@ -102,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openSettingPermissions() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", packageName, null)
+        val uri = Uri.fromParts(Constants.PACKAGE, packageName, null)
         intent.data = uri
         startActivity(intent)
     }
@@ -137,7 +144,6 @@ class MainActivity : AppCompatActivity() {
             weatherViewModel.loadAPI(lat, lon)
             getPosition = position[0].getAddressLine(0)
             weatherViewModel.showLocation(Utils.formatLocation(this, getPosition))
-
         } catch (e: Exception) {
             Log.d(TAG, "getLastLocation: failed - $e")
         }
@@ -160,7 +166,6 @@ class MainActivity : AppCompatActivity() {
                     // Get lat-lon
                     val latUpdate = location.latitude
                     val lonUpdate = location.longitude
-
                     getLocation(latUpdate, lonUpdate)
                 }
             }
@@ -207,6 +212,47 @@ class MainActivity : AppCompatActivity() {
             unregisterReceiver(mNetworkReceiver)
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
+        }
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun startBroadcastWeatherNotifications() {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, NotificationReceiver::class.java).apply {
+            action = Constants.BROADCAST_RECEIVER_PUSH_NOTIFICATIONS
+        }
+
+        val pendingIntentRequestCode = 0
+        val pendingIntent = PendingIntent.getBroadcast(
+            this,
+            pendingIntentRequestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val isPermission = alarmManager.canScheduleExactAlarms()
+            if (isPermission) {
+                alarmManager.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 1_000,
+                    TimeUnit.SECONDS.toMillis(10),
+                    pendingIntent
+                )
+            } else {
+                alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 60_000,
+                    TimeUnit.SECONDS.toMillis(10),
+                    pendingIntent
+                )
+            }
+        } else {
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + 60_000,
+                TimeUnit.SECONDS.toMillis(10),
+                pendingIntent
+            )
         }
     }
 

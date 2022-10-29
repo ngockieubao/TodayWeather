@@ -8,12 +8,7 @@ object Constants {
     const val PACKAGE = "package"
 
     // Broadcast Receiver
-    const val BROADCAST_RECEIVER_NETWORK_STATUS = "com.example.todayweather.NetworkReceiver"
     const val BROADCAST_RECEIVER_PUSH_NOTIFICATIONS = "com.example.todayweather.AlarmManager"
-
-    // Shared preference keys
-    const val CELSIUS = "celsius"
-    const val FAHRENHEIT = "fahrenheit"
 
     // Bundle keys
     const val KEY_BUNDLE_SELECT_CITY = "myKey"
@@ -47,4 +42,7 @@ object Constants {
     // Utils format
     const val LOCALE_LANG = "vi"
     const val READ_JSON_FROM_ASSETS = "Cities.json"
+
+    //
+    const val REQUEST_PERMISSION_CODE = 10
 }

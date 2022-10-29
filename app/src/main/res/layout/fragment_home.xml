@@ -83,6 +83,7 @@
                     android:elevation="4dp"
                     android:paddingVertical="5dp"
                     android:paddingEnd="15dp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry">
