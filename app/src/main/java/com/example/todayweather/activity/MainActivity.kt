@@ -3,21 +3,16 @@ package com.example.todayweather.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.location.Geocoder
-import android.location.Location
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -25,33 +20,20 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.todayweather.R
-import com.example.todayweather.broadcast.NotificationReceiver
-import com.example.todayweather.broadcast.WeatherReceiver
+import com.example.todayweather.base.WeatherViewModelFactory
+import com.example.todayweather.receiver.NotificationReceiver
+import com.example.todayweather.receiver.WeatherReceiver
 import com.example.todayweather.databinding.ActivityMainBinding
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
-import com.example.todayweather.util.Utils
-import com.google.android.gms.location.*
-import java.util.concurrent.TimeUnit
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var mNetworkReceiver: BroadcastReceiver
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var getPosition: String = ""
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
-
-    private val weatherViewModel: WeatherViewModel by lazy {
-        ViewModelProvider(
-            this,
-            WeatherViewModel.WeatherViewModelFactory(this.application)
-        )[WeatherViewModel::class.java]
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,10 +41,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        weatherViewModel = ViewModelProvider(
+            this,
+            WeatherViewModelFactory(this.application)
+        )[WeatherViewModel::class.java]
+
         checkPermissions()
-        createLocationRequest()
-        createLocationCallback()
+        weatherViewModel.createLocationRequest()
+        weatherViewModel.createLocationCallback()
 
         mNetworkReceiver = WeatherReceiver()
         registerNetworkBroadcastForNougat()
@@ -79,8 +65,8 @@ class MainActivity : AppCompatActivity() {
                 Constants.REQUEST_PERMISSION_CODE
             )
         } else {
-            getLastLocation()
-            startBroadcastWeatherNotifications()
+            weatherViewModel.getLastLocation()
+            startPushNotifications()
         }
     }
 
@@ -97,8 +83,8 @@ class MainActivity : AppCompatActivity() {
 //                && grantResults[1] == PackageManager.PERMISSION_GRANTED
             ) {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
-                getLastLocation()
-                startBroadcastWeatherNotifications()
+                weatherViewModel.getLastLocation()
+                startPushNotifications()
             } else {
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
                 openSettingPermissions()
@@ -114,83 +100,13 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-                if (location != null) {
-                    val lat = location.latitude
-                    val lon = location.longitude
-                    getLocation(lat, lon)
-                } else {
-                    Toast.makeText(this, "Location can be off", Toast.LENGTH_SHORT).show()
-                    startLocationUpdates()
-                }
-            }
-            return
-        } else {
-            Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun getLocation(lat: Double, lon: Double) {
-        try {
-            val geocoder = Geocoder(this)
-            val position = geocoder.getFromLocation(lat, lon, 1)
-
-            weatherViewModel.loadAPI(lat, lon)
-            getPosition = position[0].getAddressLine(0)
-            weatherViewModel.showLocation(Utils.formatLocation(this, getPosition))
-        } catch (e: Exception) {
-            Log.d(TAG, "getLastLocation: failed - $e")
-        }
-    }
-
-    private fun createLocationRequest() {
-        locationRequest = LocationRequest.create().apply {
-            interval = Constants.INTERVAL
-            fastestInterval = Constants.FASTEST_INTERVAL
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-    }
-
-    private fun createLocationCallback() {
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                locationResult ?: return
-                for (location in locationResult.locations) {
-                    // Update UI with location data
-                    // Get lat-lon
-                    val latUpdate = location.latitude
-                    val lonUpdate = location.longitude
-                    getLocation(latUpdate, lonUpdate)
-                }
-            }
-        }
-    }
-
-    private fun startLocationUpdates() {
-        try {
-            fusedLocationClient.requestLocationUpdates(
-                locationRequest,
-                locationCallback,
-                Looper.getMainLooper()
-            )
-        } catch (e: SecurityException) {
-            Log.e("SecurityException", "$e")
-        }
-    }
-
     override fun onResume() {
         super.onResume()
 //        if (requestingLocationUpdates) startLocationUpdates()
     }
 
     private fun stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+        weatherViewModel.fusedLocationClient.removeLocationUpdates(weatherViewModel.locationCallback)
     }
 
     override fun onPause() {
@@ -216,44 +132,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun startBroadcastWeatherNotifications() {
+    private fun startPushNotifications() {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, NotificationReceiver::class.java).apply {
             action = Constants.BROADCAST_RECEIVER_PUSH_NOTIFICATIONS
         }
-
-        val pendingIntentRequestCode = 0
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            pendingIntentRequestCode,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val isPermission = alarmManager.canScheduleExactAlarms()
-            if (isPermission) {
-                alarmManager.setInexactRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + 1_000,
-                    TimeUnit.SECONDS.toMillis(10),
-                    pendingIntent
-                )
-            } else {
-                alarmManager.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + 60_000,
-                    TimeUnit.SECONDS.toMillis(10),
-                    pendingIntent
-                )
-            }
-        } else {
-            alarmManager.setRepeating(
-                AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + 60_000,
-                TimeUnit.SECONDS.toMillis(10),
-                pendingIntent
-            )
-        }
+        weatherViewModel.pushNotifications(this, intent, alarmManager)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -268,5 +152,5 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
-    }
+}
 }

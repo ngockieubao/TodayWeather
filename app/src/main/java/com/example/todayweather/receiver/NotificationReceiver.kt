@@ -1,4 +1,4 @@
-package com.example.todayweather.broadcast
+package com.example.todayweather.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context

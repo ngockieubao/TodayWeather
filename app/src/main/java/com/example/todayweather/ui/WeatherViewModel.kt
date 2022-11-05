@@ -1,8 +1,20 @@
 package com.example.todayweather.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.Application
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.os.Build
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.*
 import com.example.todayweather.R
 import com.example.todayweather.data.WeatherRepository
@@ -10,9 +22,14 @@ import com.example.todayweather.data.model.Daily
 import com.example.todayweather.data.model.DetailHomeModel
 import com.example.todayweather.data.model.Hourly
 import com.example.todayweather.data.model.WeatherGetApi
+import com.example.todayweather.util.Constants
+import com.example.todayweather.util.Utils
+import com.google.android.gms.location.*
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
+@Suppress("DEPRECATION")
 class WeatherViewModel(
     application: Application
 ) : AndroidViewModel(application) {
@@ -41,6 +58,11 @@ class WeatherViewModel(
 
     private val _networkError = MutableLiveData<Boolean>()
     val networkError: LiveData<Boolean> = _networkError
+
+    val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    private var getPosition: String = ""
+    lateinit var locationRequest: LocationRequest
+    lateinit var locationCallback: LocationCallback
 
     fun loadAPI(lat: Double, lon: Double) {
         viewModelScope.launch {
@@ -127,17 +149,112 @@ class WeatherViewModel(
         listDataDetail.value = listDetail
     }
 
+    fun getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    val lat = location.latitude
+                    val lon = location.longitude
+                    getLocation(lat, lon, context)
+                } else {
+                    startLocationUpdates()
+                }
+            }
+            return
+        } else {
+            Toast.makeText(context, "Permissions denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getLocation(lat: Double, lon: Double, context: Context) {
+        try {
+            val geocoder = Geocoder(context)
+            val position = geocoder.getFromLocation(lat, lon, 1)
+
+            loadAPI(lat, lon)
+            getPosition = position[0].getAddressLine(0)
+            showLocation(Utils.formatLocation(context, getPosition))
+        } catch (e: Exception) {
+            Log.d(TAG, "getLastLocation: failed - $e")
+        }
+    }
+
     fun showLocation(location: String) {
         _showLocation.value = location
     }
 
-    class WeatherViewModelFactory(private val application: Application) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST") return WeatherViewModel(application) as T
+    fun createLocationRequest() {
+        locationRequest = LocationRequest.create().apply {
+            interval = Constants.INTERVAL
+            fastestInterval = Constants.FASTEST_INTERVAL
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+    }
+
+    fun createLocationCallback() {
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                locationResult ?: return
+                for (location in locationResult.locations) {
+                    // Update UI with location data
+                    // Get lat-lon
+                    val latUpdate = location.latitude
+                    val lonUpdate = location.longitude
+                    getLocation(latUpdate, lonUpdate, context)
+                }
             }
-            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
+
+    private fun startLocationUpdates() {
+        try {
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
+        } catch (e: SecurityException) {
+            Log.e("SecurityException", "$e")
+        }
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    fun pushNotifications(context: Context, intent: Intent, alarmManager: AlarmManager) {
+        val pendingIntentRequestCode = 0
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            pendingIntentRequestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val isPermission = alarmManager.canScheduleExactAlarms()
+            if (isPermission) {
+                alarmManager.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 1_000,
+                    TimeUnit.SECONDS.toMillis(10),
+                    pendingIntent
+                )
+            } else {
+                alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 60_000,
+                    TimeUnit.SECONDS.toMillis(10),
+                    pendingIntent
+                )
+            }
+        } else {
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + 60_000,
+                TimeUnit.SECONDS.toMillis(10),
+                pendingIntent
+            )
         }
     }
 
