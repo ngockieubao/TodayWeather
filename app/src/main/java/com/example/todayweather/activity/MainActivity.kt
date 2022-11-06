@@ -8,11 +8,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -22,18 +24,22 @@ import androidx.navigation.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.base.WeatherViewModelFactory
 import com.example.todayweather.receiver.NotificationReceiver
-import com.example.todayweather.receiver.WeatherReceiver
+import com.example.todayweather.receiver.NetworkReceiver
 import com.example.todayweather.databinding.ActivityMainBinding
+import com.example.todayweather.receiver.LocationImpl
+import com.example.todayweather.receiver.LocationReceiver
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
+import com.google.android.material.snackbar.Snackbar
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LocationImpl {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var mNetworkReceiver: BroadcastReceiver
+    private lateinit var mLocationReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +56,8 @@ class MainActivity : AppCompatActivity() {
         weatherViewModel.createLocationRequest()
         weatherViewModel.createLocationCallback()
 
-        mNetworkReceiver = WeatherReceiver()
+        mNetworkReceiver = NetworkReceiver()
+        mLocationReceiver = LocationReceiver(this)
         registerNetworkBroadcastForNougat()
     }
 
@@ -120,12 +127,17 @@ class MainActivity : AppCompatActivity() {
                 mNetworkReceiver,
                 IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
             )
+            registerReceiver(
+                mLocationReceiver,
+                IntentFilter(LocationManager.MODE_CHANGED_ACTION)
+            )
         }
     }
 
     private fun unregisterNetworkChanges() {
         try {
             unregisterReceiver(mNetworkReceiver)
+            unregisterReceiver(mLocationReceiver)
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
         }
@@ -150,7 +162,15 @@ class MainActivity : AppCompatActivity() {
         unregisterNetworkChanges()
     }
 
+    override fun onLocationChange(status: String) {
+        when (status) {
+            "off" -> Snackbar.make(binding.root, "Định vị đang tắt. Vui lòng bật để sử dụng!", Snackbar.LENGTH_INDEFINITE).show()
+            "on" -> Snackbar.make(binding.root, "Định vị đã bật.", Snackbar.LENGTH_SHORT).show()
+            else -> Log.d(TAG, "onLocationChange: status is null")
+        }
+    }
+
     companion object {
         private const val TAG = "MainActivity"
-}
+    }
 }

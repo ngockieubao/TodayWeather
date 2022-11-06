@@ -12,12 +12,13 @@ import androidx.annotation.RequiresApi
 import com.example.todayweather.R
 
 @RequiresApi(Build.VERSION_CODES.M)
-class WeatherReceiver : BroadcastReceiver() {
+class NetworkReceiver() : BroadcastReceiver() {
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
         isOnline(context)
     }
+
     private fun isOnline(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

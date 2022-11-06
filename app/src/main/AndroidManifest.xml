@@ -34,7 +34,7 @@
         </receiver>
 
         <receiver
-            android:name=".receiver.WeatherReceiver"
+            android:name=".receiver.NetworkReceiver"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedReceiver,Instantiatable">
