@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/todo"
                 android:padding="10dp"
-                android:src="@mipmap/ic_arrow_left"
+                android:src="@drawable/ic_arrow_left"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@mipmap/ic_temperature" />
+            tools:src="@drawable/ic_temperature" />
 
         <TextView
             android:id="@+id/tv_title_home_detail"

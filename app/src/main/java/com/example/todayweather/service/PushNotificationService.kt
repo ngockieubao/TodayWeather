@@ -109,11 +109,11 @@ class PushNotificationService : Service() {
                 this@PushNotificationService,
                 getString(R.string.id_channel_push_notification)
             )
-                .setSmallIcon(R.mipmap.ic_todayweather_removebg)
+                .setSmallIcon(R.drawable.ic_todayweather_removebg)
                 .setLargeIcon(
                     Utils.convertToBitMap(
                         this@PushNotificationService,
-                        R.mipmap.ic_weather_news
+                        R.drawable.ic_weather_news
                     )
                 )
                 .setAutoCancel(true)
@@ -130,11 +130,11 @@ class PushNotificationService : Service() {
             this@PushNotificationService,
             getString(R.string.id_channel_push_notification)
         )
-            .setSmallIcon(R.mipmap.ic_todayweather_removebg)
+            .setSmallIcon(R.drawable.ic_todayweather_removebg)
             .setLargeIcon(
                 Utils.convertToBitMap(
                     this@PushNotificationService,
-                    R.mipmap.ic_weather_news
+                    R.drawable.ic_weather_news
                 )
             )
             .setAutoCancel(true)

@@ -15,13 +15,15 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.base.WeatherViewModelFactory
@@ -32,16 +34,19 @@ import com.example.todayweather.receiver.LocationImpl
 import com.example.todayweather.receiver.LocationReceiver
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
-class MainActivity : AppCompatActivity(), LocationImpl {
+class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var mNetworkReceiver: BroadcastReceiver
     private lateinit var mLocationReceiver: BroadcastReceiver
+    private lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,14 @@ class MainActivity : AppCompatActivity(), LocationImpl {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // DrawerLayout
+        mDrawerLayout = binding.drawerLayout
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
+        val navigationView: NavigationView = binding.navigationView
+        navigationView.setNavigationItemSelectedListener(this)
 
         weatherViewModel = ViewModelProvider(
             this,
@@ -65,6 +78,54 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         mNetworkReceiver = NetworkReceiver()
         mLocationReceiver = LocationReceiver(this)
         registerNetworkBroadcastForNougat()
+
+        lifecycle.coroutineScope.launch {
+            weatherViewModel.getCurrentTime()
+        }
+        weatherViewModel.mCurrentTime.observe(this) {
+            binding.toolbarTvTitle.text = it
+        }
+
+//        binding.imageBtnSearch.setOnClickListener {
+//            this.findNavController(R.id.action_homeFragment_to_searchFragment)
+//        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.menu_toolbar) {
+            mDrawerLayout.openDrawer(GravityCompat.END)
+        }
+        return true
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_setting -> {
+                Toast.makeText(this, "drawer_setting", Toast.LENGTH_SHORT).show()
+            }
+            R.id.menu_add -> {
+                Toast.makeText(this, "drawer_add", Toast.LENGTH_SHORT).show()
+            }
+            R.id.menu_back -> {
+                Toast.makeText(this, "drawer_back", Toast.LENGTH_SHORT).show()
+                mDrawerLayout.closeDrawer(GravityCompat.END)
+            }
+        }
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+            mDrawerLayout.closeDrawer(GravityCompat.END)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     private fun checkPermissions() {

@@ -48,7 +48,7 @@
             android:contentDescription="@string/todo"
             android:gravity="center"
             app:setIcon="@{item.weather[0].icon}"
-            tools:srcCompat="@mipmap/ic_cloud" />
+            tools:srcCompat="@drawable/ic_cloud" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
             android:contentDescription="@string/todo"
             android:gravity="center_vertical"
             android:tint="@color/white"
-            app:srcCompat="@mipmap/ic_cursor"
+            app:srcCompat="@drawable/ic_cursor"
             tools:ignore="UseAppTint" />
 
         <TextView

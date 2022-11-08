@@ -92,6 +92,10 @@
     <string name="dialog_settings">Convert Mode</string>
     <string name="string_mode_offline">CHẾ ĐỘ OFFILINE</string>
     <string name="string_mode_offline_status">Cập nhật lần cuối 45 mins ago</string>
+    <string name="string_toolbar_drawer">Toolbar drawer</string>
+    <string name="string_back">Back</string>
+    <string name="string_add">Add</string>
+    <string name="string_setting">Setting</string>
 
     <string-array name="days_of_week">
         <item>Sun</item>

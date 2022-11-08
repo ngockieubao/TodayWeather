@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:setIcon="@{item.weather[0].icon}"
                 app:shapeAppearanceOverlay="@style/RoundImage"
-                app:srcCompat="@mipmap/ic_cloud" />
+                app:srcCompat="@drawable/ic_cloud" />
 
             <TextView
                 android:id="@+id/tv_hourly_nav_humidity"

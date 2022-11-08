@@ -273,7 +273,6 @@ class WeatherViewModel(
             while (true) {
                 val currentTime = Calendar.getInstance().time
                 _mCurrentTime.postValue(Utils.formatCurrentTime(context, currentTime))
-                Log.d(TAG, "getCurrentTime: ${_mCurrentTime.value}")
                 delay(1000)
             }
         }
