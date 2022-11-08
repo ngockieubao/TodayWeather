@@ -102,8 +102,7 @@ object Utils {
             daily.temp.max,
             daily.temp.min,
             formatWindDeg(context, daily.wind_deg),
-            daily.wind_speed,
-            formatPop(context, daily.pop)
+            daily.wind_speed
         )
     }
 

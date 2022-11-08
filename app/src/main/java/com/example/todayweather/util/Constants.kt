@@ -2,8 +2,8 @@ package com.example.todayweather.util
 
 object Constants {
     // Location
-    const val INTERVAL = 50000L
-    const val FASTEST_INTERVAL = 10000L
+    const val INTERVAL = 10000L
+    const val FASTEST_INTERVAL = 5000L
     const val DELAY = 2000L
     const val PACKAGE = "package"
 

@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="com.example.todayweather.data.model.Daily" />
+
+        <variable
+            name="viewModel"
+            type="com.example.todayweather.ui.WeatherViewModel" />
     </data>
 
     <LinearLayout
@@ -220,10 +224,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="3dp"
-                    android:text="@string/home_location"
                     android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_home_date" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_home_date"
+                    tools:text="@string/home_location" />
 
                 <TextView
                     android:id="@+id/tv_home_status"

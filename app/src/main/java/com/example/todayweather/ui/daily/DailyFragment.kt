@@ -23,9 +23,17 @@ class DailyFragment : Fragment() {
     ): View {
         bindingDailyNavBinding = FragmentNavDailyBinding.inflate(inflater, container, false)
 
-        bindingDailyNavBinding.imageViewBackDailyNav.setOnClickListener {
-            findNavController().navigate(R.id.action_dailyFragment_to_homeFragment)
+        bindingDailyNavBinding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = sharedViewModel
         }
+
+        dailyNavAdapter = DailyNavAdapter()
+        sharedViewModel.listDataDaily.observe(this.viewLifecycleOwner) {
+            if (it == null) return@observe
+            else dailyNavAdapter.dataList = it
+        }
+        bindingDailyNavBinding.rcvNavDaily.adapter = dailyNavAdapter
 
         return bindingDailyNavBinding.root
     }
@@ -33,17 +41,8 @@ class DailyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindingDailyNavBinding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = sharedViewModel
+        bindingDailyNavBinding.imageViewBackDailyNav.setOnClickListener {
+            findNavController().navigate(R.id.action_dailyFragment_to_homeFragment)
         }
-
-        dailyNavAdapter = DailyNavAdapter()
-
-        sharedViewModel.listDataDaily.observe(this.viewLifecycleOwner) {
-            dailyNavAdapter.dataList = it
-        }
-
-        bindingDailyNavBinding.rcvNavDaily.adapter = dailyNavAdapter
     }
 }

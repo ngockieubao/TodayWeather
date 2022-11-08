@@ -65,7 +65,7 @@
     <string name="fm_temp_max_min_fah">%s°F / %s°F</string>
 
     <string name="fm_day_date">%s, %s</string>
-    <string name="fm_status_home">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
+    <string name="fm_status_home">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h.</string>
     <string name="fm_status_home_fah">Hôm nay - %s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
 
     <string name="fm_status_daily_nav">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>

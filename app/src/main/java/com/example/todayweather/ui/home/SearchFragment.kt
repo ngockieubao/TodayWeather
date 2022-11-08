@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
@@ -33,7 +34,7 @@ class SearchFragment : Fragment(), SelectCity {
 
         var cityFilterList: List<City>
 
-        binding.citySearch.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.citySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(requireContext(), getString(R.string.searching), Toast.LENGTH_SHORT).show()
                 return true
@@ -49,15 +50,12 @@ class SearchFragment : Fragment(), SelectCity {
                 return true
             }
         })
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         searchAdapter = SearchAdapter(requireContext(), this)
         searchAdapter.listCities = listCity
         binding.rcvFragmentSearch.adapter = searchAdapter
+
+        return binding.root
     }
 
     override fun selectItem(city: City?) {

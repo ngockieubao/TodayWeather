@@ -23,16 +23,6 @@ class HourlyFragment : Fragment() {
     ): View {
         bindingHourlyNavBinding = FragmentNavHourlyBinding.inflate(inflater, container, false)
 
-        bindingHourlyNavBinding.imageViewBackHourlyNav.setOnClickListener {
-            findNavController().navigate(R.id.action_hourlyFragment_to_homeFragment)
-        }
-
-        return bindingHourlyNavBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         bindingHourlyNavBinding.apply {
             // Specify the fragment as the lifecycle owner
             lifecycleOwner = viewLifecycleOwner
@@ -42,11 +32,20 @@ class HourlyFragment : Fragment() {
         }
 
         hourlyNavAdapter = HourlyNavAdapter()
-
         sharedViewModel.listDataHourly.observe(this.viewLifecycleOwner) {
-            hourlyNavAdapter.dataList = it
+            if (it == null) return@observe
+            else hourlyNavAdapter.dataList = it
         }
-
         bindingHourlyNavBinding.rcvNavHourly.adapter = hourlyNavAdapter
+
+        return bindingHourlyNavBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        bindingHourlyNavBinding.imageViewBackHourlyNav.setOnClickListener {
+            findNavController().navigate(R.id.action_hourlyFragment_to_homeFragment)
+        }
     }
 }

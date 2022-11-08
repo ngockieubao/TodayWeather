@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
             )
         } else {
             weatherViewModel.getLastLocation()
-            startPushNotifications()
+//            startPushNotifications()
         }
     }
 
@@ -89,11 +89,13 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
 //                && grantResults[1] == PackageManager.PERMISSION_GRANTED
             ) {
-                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Permissions granted.", Snackbar.LENGTH_SHORT).show()
                 weatherViewModel.getLastLocation()
-                startPushNotifications()
+//                startPushNotifications()
             } else {
-                Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Permissions denied.", Snackbar.LENGTH_SHORT).show()
                 openSettingPermissions()
                 Toast.makeText(this, "Location must allow", Toast.LENGTH_SHORT).show()
             }
@@ -113,7 +115,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
     }
 
     private fun stopLocationUpdates() {
-        weatherViewModel.fusedLocationClient.removeLocationUpdates(weatherViewModel.locationCallback)
+        weatherViewModel.stopLocationUpdates()
     }
 
     override fun onPause() {
@@ -165,7 +167,10 @@ class MainActivity : AppCompatActivity(), LocationImpl {
     override fun onLocationChange(status: String) {
         when (status) {
             "off" -> Snackbar.make(binding.root, "Định vị đang tắt. Vui lòng bật để sử dụng!", Snackbar.LENGTH_INDEFINITE).show()
-            "on" -> Snackbar.make(binding.root, "Định vị đã bật.", Snackbar.LENGTH_SHORT).show()
+            "on" -> {
+                weatherViewModel.locationChange()
+                Snackbar.make(binding.root, "Định vị đã bật.", Snackbar.LENGTH_SHORT).show()
+            }
             else -> Log.d(TAG, "onLocationChange: status is null")
         }
     }

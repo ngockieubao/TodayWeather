@@ -22,14 +22,15 @@ class LocationReceiver(
             if (lm.isLocationEnabled) {
                 locationImpl.onLocationChange("on")
             } else {
-                // This was deprecated in API 28
                 locationImpl.onLocationChange("off")
-                val mode: Int = Settings.Secure.getInt(
-                    context.contentResolver, Settings.Secure.LOCATION_MODE,
-                    Settings.Secure.LOCATION_MODE_OFF
-                )
-                mode != Settings.Secure.LOCATION_MODE_OFF
             }
+        } else {
+            // This was deprecated in API 28
+            val mode: Int = Settings.Secure.getInt(
+                context.contentResolver, Settings.Secure.LOCATION_MODE,
+                Settings.Secure.LOCATION_MODE_OFF
+            )
+            mode != Settings.Secure.LOCATION_MODE_OFF
         }
         return false
     }

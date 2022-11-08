@@ -27,15 +27,17 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        // Inflate the layout for this fragment
         bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
 
         weatherViewModel.networkError.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
-            if (weatherViewModel.networkError.value == false)
-                bindingHome.constraintStatusNetwork.visibility = View.GONE
-            if (weatherViewModel.networkError.value == true)
-                bindingHome.constraintStatusNetwork.visibility = View.VISIBLE
+            else {
+                if (weatherViewModel.networkError.value == false)
+                    bindingHome.constraintStatusNetwork.visibility = View.GONE
+                else if (weatherViewModel.networkError.value == true)
+                    bindingHome.constraintStatusNetwork.visibility = View.VISIBLE
+            }
         }
 
         weatherViewModel.showLocation.observe(this.viewLifecycleOwner) {
@@ -55,11 +57,19 @@ class HomeFragment : Fragment() {
         bindingHome.recyclerViewHourlyContainerElement.recyclerViewHourly.adapter = hourlyAdapter
 
         weatherViewModel.listDataDetail.observe(this.viewLifecycleOwner) {
-            detailAdapter.dataList = it
+            if (it == null) return@observe
+            else detailAdapter.dataList = it
         }
         weatherViewModel.listDataHourly.observe(this.viewLifecycleOwner) {
-            hourlyAdapter.dataList = it
+            if (it == null) return@observe
+            else hourlyAdapter.dataList = it
         }
+
+        return bindingHome.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         searchCity()
 
@@ -77,8 +87,6 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireActivity(), "Update UI", Toast.LENGTH_SHORT).show()
             }
         }
-
-        return bindingHome.root
     }
 
     private fun searchCity() {
@@ -87,7 +95,7 @@ class HomeFragment : Fragment() {
         else {
             weatherViewModel.showLocation(getBundle!!.name)
             // Pass lat-lon args after allow position
-            weatherViewModel.loadAPI(getBundle!!.lat, getBundle!!.lon)
+            weatherViewModel.loadApi(getBundle!!.lat, getBundle!!.lon)
         }
     }
 

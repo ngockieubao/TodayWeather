@@ -1,20 +1,17 @@
 package com.example.todayweather.ui
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.Application
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.*
 import com.example.todayweather.R
 import com.example.todayweather.data.WeatherRepository
@@ -45,26 +42,26 @@ class WeatherViewModel(
 
     var listDataDetail = MutableLiveData<MutableList<DetailHomeModel>>()
 
-    private val _listDailyNav = MutableLiveData<MutableList<Daily>>()
-    val listDataDaily: LiveData<MutableList<Daily>>
+    private val _listDailyNav = MutableLiveData<MutableList<Daily>?>()
+    val listDataDaily: MutableLiveData<MutableList<Daily>?>
         get() = _listDailyNav
 
-    private val _listHourlyNav = MutableLiveData<MutableList<Hourly>>()
-    val listDataHourly: LiveData<MutableList<Hourly>>
+    private val _listHourlyNav = MutableLiveData<MutableList<Hourly>?>()
+    val listDataHourly: MutableLiveData<MutableList<Hourly>?>
         get() = _listHourlyNav
 
-    private val _showLocation = MutableLiveData<String>()
+    private val _showLocation = MutableLiveData<String?>()
     val showLocation = _showLocation
 
     private val _networkError = MutableLiveData<Boolean>()
     val networkError: LiveData<Boolean> = _networkError
 
-    val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     private var getPosition: String = ""
-    lateinit var locationRequest: LocationRequest
-    lateinit var locationCallback: LocationCallback
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
-    fun loadAPI(lat: Double, lon: Double) {
+    fun loadApi(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
                 _networkError.value = false
@@ -90,14 +87,14 @@ class WeatherViewModel(
 
         // display data DailyFragment
         val listDaily = weatherData.daily
-        _listDailyNav.value = listDaily
+        _listDailyNav.postValue(listDaily)
 
         // get first element of daily List
-        _listCurrent.value = listDaily.first()
+        _listCurrent.postValue(listDaily.first())
 
         // display data HourlyFragment
         val listHourly = weatherData.hourly
-        _listHourlyNav.value = listHourly
+        _listHourlyNav.postValue(listHourly)
     }
 
     private fun addDataDetail(weatherData: WeatherGetApi) {
@@ -146,15 +143,11 @@ class WeatherViewModel(
         )
         listDetail.add(index6)
 
-        listDataDetail.value = listDetail
+        listDataDetail.postValue(listDetail)
     }
 
     fun getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        try {
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     val lat = location.latitude
@@ -165,7 +158,8 @@ class WeatherViewModel(
                 }
             }
             return
-        } else {
+        } catch (ex: SecurityException) {
+            Log.d(TAG, "getLastLocation: $ex")
             Toast.makeText(context, "Permissions denied", Toast.LENGTH_SHORT).show()
         }
     }
@@ -175,7 +169,7 @@ class WeatherViewModel(
             val geocoder = Geocoder(context)
             val position = geocoder.getFromLocation(lat, lon, 1)
 
-            loadAPI(lat, lon)
+            loadApi(lat, lon)
             getPosition = position[0].getAddressLine(0)
             showLocation(Utils.formatLocation(context, getPosition))
         } catch (e: Exception) {
@@ -198,7 +192,6 @@ class WeatherViewModel(
     fun createLocationCallback() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                locationResult ?: return
                 for (location in locationResult.locations) {
                     // Update UI with location data
                     // Get lat-lon
@@ -220,6 +213,10 @@ class WeatherViewModel(
         } catch (e: SecurityException) {
             Log.e("SecurityException", "$e")
         }
+    }
+
+    fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
@@ -256,6 +253,12 @@ class WeatherViewModel(
                 pendingIntent
             )
         }
+    }
+
+    fun locationChange() {
+        createLocationRequest()
+        createLocationCallback()
+        startLocationUpdates()
     }
 
     companion object {

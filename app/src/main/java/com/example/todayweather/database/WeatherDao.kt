@@ -12,8 +12,8 @@ interface WeatherDao {
     @Query("SELECT * FROM weather_get_api_table")
     suspend fun getWeatherData(): WeatherGetApi
 
-    @Query("DELETE FROM weather_get_api_table")
-    suspend fun clear()
+    @Delete
+    suspend fun clear(weatherGetApi: WeatherGetApi)
 
     @Update
     suspend fun update(weatherGetApi: WeatherGetApi)
