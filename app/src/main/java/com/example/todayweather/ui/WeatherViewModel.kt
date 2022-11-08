@@ -22,8 +22,12 @@ import com.example.todayweather.data.model.WeatherGetApi
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.IOException
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 @Suppress("DEPRECATION")
@@ -60,6 +64,9 @@ class WeatherViewModel(
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
+
+    private val _mCurrentTime = MutableLiveData<String?>()
+    val mCurrentTime = _mCurrentTime
 
     fun loadApi(lat: Double, lon: Double) {
         viewModelScope.launch {
@@ -259,6 +266,17 @@ class WeatherViewModel(
         createLocationRequest()
         createLocationCallback()
         startLocationUpdates()
+    }
+
+    suspend fun getCurrentTime() {
+        withContext(Dispatchers.Main) {
+            while (true) {
+                val currentTime = Calendar.getInstance().time
+                _mCurrentTime.postValue(Utils.formatCurrentTime(context, currentTime))
+                Log.d(TAG, "getCurrentTime: ${_mCurrentTime.value}")
+                delay(1000)
+            }
+        }
     }
 
     companion object {

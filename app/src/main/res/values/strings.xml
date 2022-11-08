@@ -29,6 +29,7 @@
 
     <!-- time-date-->
     <string name="fm_time">HH:mm</string>
+    <string name="fm_full_time">HH:mm:ss</string>
     <string name="fm_day_of_week">EEE</string>
     <string name="fm_date">dd \'THÁNG\' M</string>
 
@@ -89,7 +90,7 @@
     <string name="celsius">Độ C</string>
     <string name="fahrenheit">Độ F</string>
     <string name="dialog_settings">Convert Mode</string>
-    <string name="string_mode_offiline">CHẾ ĐỘ OFFILINE</string>
+    <string name="string_mode_offline">CHẾ ĐỘ OFFILINE</string>
     <string name="string_mode_offline_status">Cập nhật lần cuối 45 mins ago</string>
 
     <string-array name="days_of_week">

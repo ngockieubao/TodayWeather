@@ -14,6 +14,11 @@ import java.util.*
 import kotlin.math.roundToInt
 
 object Utils {
+    fun formatCurrentTime(context: Context, time: Date): String {
+        val timeFormat = SimpleDateFormat(context.getString(R.string.fm_time), Locale.getDefault())
+        return timeFormat.format(time)
+    }
+
     fun formatTime(context: Context, time: Long): String {
         val getTime = Date(time.times(1000))
         val timeFormat = SimpleDateFormat(context.getString(R.string.fm_time), Locale.getDefault())
@@ -74,7 +79,10 @@ object Utils {
     }
 
     fun formatWindSpeedMile(context: Context, windSpeed: Double): String {
-        return String.format(context.getString(R.string.fm_wind_speed_mile), convertKilometerToMile(windSpeed.times(3600).div(1000)))
+        return String.format(
+            context.getString(R.string.fm_wind_speed_mile),
+            convertKilometerToMile(windSpeed.times(3600).div(1000))
+        )
     }
 
     fun formatWind(context: Context, wind: Double, windDeg: Int): String {
