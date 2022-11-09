@@ -96,6 +96,8 @@
     <string name="string_back">Back</string>
     <string name="string_add">Add</string>
     <string name="string_setting">Setting</string>
+    <string name="string_location_off">Định vị đang tắt.\nVui lòng bật để sử dụng dịch vụ!</string>
+    <string name="string_location_on">Định vị đã bật.</string>
 
     <string-array name="days_of_week">
         <item>Sun</item>

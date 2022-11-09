@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigat
     private lateinit var mLocationReceiver: BroadcastReceiver
     private lateinit var mDrawerLayout: DrawerLayout
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -86,9 +87,20 @@ class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigat
             binding.toolbarTvTitle.text = it
         }
 
-//        binding.imageBtnSearch.setOnClickListener {
-//            this.findNavController(R.id.action_homeFragment_to_searchFragment)
-//        }
+        weatherViewModel.hasLocationChange.observe(this) {
+            if (it == null) return@observe
+            else if (it == false) {
+                val snackbar = createSnackbar(
+                    this.getString(R.string.string_location_off),
+                    Constants.TIME_IMMORTAL
+                )
+                snackbar.view.setBackgroundResource(R.color.red)
+                snackbar.setActionTextColor(R.color.black).setAction("Bật") {
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(intent)
+                }.show()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -231,15 +243,37 @@ class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigat
         unregisterNetworkChanges()
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onLocationChange(status: String) {
         when (status) {
-            "off" -> Snackbar.make(binding.root, "Định vị đang tắt. Vui lòng bật để sử dụng!", Snackbar.LENGTH_INDEFINITE).show()
+            "off" -> {
+                val snackbar = createSnackbar(
+                    this.getString(R.string.string_location_off),
+                    Constants.TIME_IMMORTAL
+                )
+                snackbar.view.setBackgroundResource(R.color.red)
+                snackbar.setActionTextColor(R.color.black).setAction("Bật") {
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(intent)
+                }.show()
+            }
             "on" -> {
                 weatherViewModel.locationChange()
-                Snackbar.make(binding.root, "Định vị đã bật.", Snackbar.LENGTH_SHORT).show()
+                val snackbar = createSnackbar(
+                    this.getString(R.string.string_location_on),
+                    Constants.TIME_SHORT
+                )
+                snackbar.view.setBackgroundResource(R.color.green)
+                snackbar.show()
             }
             else -> Log.d(TAG, "onLocationChange: status is null")
         }
+    }
+
+    private fun createSnackbar(message: String, TIME: Int): Snackbar {
+        val snackbar = Snackbar.make(binding.root, message, TIME)
+        snackbar.setText(message)
+        return snackbar
     }
 
     companion object {

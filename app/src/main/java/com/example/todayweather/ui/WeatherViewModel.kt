@@ -60,6 +60,9 @@ class WeatherViewModel(
     private val _networkError = MutableLiveData<Boolean>()
     val networkError: LiveData<Boolean> = _networkError
 
+    private val _hasLocationChange = MutableLiveData<Boolean>()
+    val hasLocationChange: LiveData<Boolean> = _hasLocationChange
+
     private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
@@ -162,6 +165,7 @@ class WeatherViewModel(
                     getLocation(lat, lon, context)
                 } else {
                     startLocationUpdates()
+                    onLocationChange()
                 }
             }
             return
@@ -266,6 +270,12 @@ class WeatherViewModel(
         createLocationRequest()
         createLocationCallback()
         startLocationUpdates()
+        _hasLocationChange.postValue(true)
+    }
+
+    // flag to check location status
+    private fun onLocationChange() {
+        _hasLocationChange.postValue(false)
     }
 
     suspend fun getCurrentTime() {

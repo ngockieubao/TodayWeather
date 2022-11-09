@@ -6,6 +6,8 @@ object Constants {
     const val FASTEST_INTERVAL = 5000L
     const val DELAY = 2000L
     const val PACKAGE = "package"
+    const val TIME_IMMORTAL = -2
+    const val TIME_SHORT = -1
 
     // Broadcast Receiver
     const val BROADCAST_RECEIVER_PUSH_NOTIFICATIONS = "com.example.todayweather.AlarmManager"
