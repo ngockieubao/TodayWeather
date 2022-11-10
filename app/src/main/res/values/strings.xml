@@ -93,8 +93,8 @@
     <string name="string_mode_offline">CHẾ ĐỘ OFFILINE</string>
     <string name="string_mode_offline_status">Cập nhật lần cuối 45 mins ago</string>
     <string name="string_toolbar_drawer">Toolbar drawer</string>
-    <string name="string_back">Back</string>
-    <string name="string_add">Add</string>
+    <string name="string_question">Help</string>
+    <string name="string_search">Search</string>
     <string name="string_setting">Setting</string>
     <string name="string_location_off">Định vị đang tắt.\nVui lòng bật để sử dụng dịch vụ!</string>
     <string name="string_location_on">Định vị đã bật.</string>

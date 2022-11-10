@@ -34,13 +34,12 @@ import com.example.todayweather.receiver.LocationImpl
 import com.example.todayweather.receiver.LocationReceiver
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
-class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), LocationImpl {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var weatherViewModel: WeatherViewModel
@@ -59,14 +58,6 @@ class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigat
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // DrawerLayout
-        mDrawerLayout = binding.drawerLayout
-        val toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
-
-        val navigationView: NavigationView = binding.navigationView
-        navigationView.setNavigationItemSelectedListener(this)
-
         weatherViewModel = ViewModelProvider(
             this,
             WeatherViewModelFactory(this.application)
@@ -84,7 +75,7 @@ class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigat
             weatherViewModel.getCurrentTime()
         }
         weatherViewModel.mCurrentTime.observe(this) {
-            binding.toolbarTvTitle.text = it
+            binding.tvCurrentTime.text = it
         }
 
         weatherViewModel.hasLocationChange.observe(this) {
@@ -112,22 +103,6 @@ class MainActivity : AppCompatActivity(), LocationImpl, NavigationView.OnNavigat
         val id = item.itemId
         if (id == R.id.menu_toolbar) {
             mDrawerLayout.openDrawer(GravityCompat.END)
-        }
-        return true
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_setting -> {
-                Toast.makeText(this, "drawer_setting", Toast.LENGTH_SHORT).show()
-            }
-            R.id.menu_add -> {
-                Toast.makeText(this, "drawer_add", Toast.LENGTH_SHORT).show()
-            }
-            R.id.menu_back -> {
-                Toast.makeText(this, "drawer_back", Toast.LENGTH_SHORT).show()
-                mDrawerLayout.closeDrawer(GravityCompat.END)
-            }
         }
         return true
     }

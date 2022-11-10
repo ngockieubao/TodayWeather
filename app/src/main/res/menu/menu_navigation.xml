@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_back"
-        android:icon="@drawable/ic_back_button"
-        android:title="@string/string_back"
+        android:id="@+id/menu_question"
+        android:icon="@drawable/ic_question"
+        android:title="@string/string_question"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_add"
-        android:icon="@drawable/ic_plus"
-        android:title="@string/string_add"
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_loupe"
+        android:title="@string/string_search"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
     <item
