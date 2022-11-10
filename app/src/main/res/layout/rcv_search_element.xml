@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,22 +10,40 @@
             type="com.example.todayweather.data.model.City" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="5dp"
         android:id="@+id/select_city_container"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke_searchview_result"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/select_city_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:layout_marginStart="24dp"
             android:text="@{item.name}"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            tools:text="Thành phố Hà Nội" />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="132/16/8 Xuân Thủy" />
+
+        <TextView
+            android:id="@+id/tv_recyclerView_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#BCBCBC"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/select_city_text"
+            app:layout_constraintTop_toBottomOf="@+id/select_city_text"
+            tools:text="Đường Xuân Thủy, Phường Dịch Vọng Hậu, TP Hà Nội" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

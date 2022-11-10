@@ -21,6 +21,7 @@ import com.example.todayweather.data.model.Hourly
 import com.example.todayweather.data.model.WeatherGetApi
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
+import com.example.todayweather.util.Utils.fromJsonToLocation
 import com.google.android.gms.location.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -63,6 +64,9 @@ class WeatherViewModel(
     private val _hasLocationChange = MutableLiveData<Boolean>()
     val hasLocationChange: LiveData<Boolean> = _hasLocationChange
 
+    private val _isLoaded = MutableLiveData<Boolean>()
+    val isLoaded: LiveData<Boolean> = _isLoaded
+
     private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
@@ -71,15 +75,21 @@ class WeatherViewModel(
     private val _mCurrentTime = MutableLiveData<String?>()
     val mCurrentTime = _mCurrentTime
 
+    private lateinit var currentTime: Date
+
+    val listCity = Utils.readJSONFromAsset(context)?.fromJsonToLocation()!!
+
     fun loadApi(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
                 _networkError.value = false
                 weatherRepository.load(lat, lon)
                 getWeatherDatabase()
+                _isLoaded.value = true
             } catch (ex: IOException) {
                 _networkError.value = true
                 getWeatherDatabase()
+                _isLoaded.value = true
                 Log.d(TAG, "loadAPI: network err - $ex")
             }
         }
@@ -281,11 +291,15 @@ class WeatherViewModel(
     suspend fun getCurrentTime() {
         withContext(Dispatchers.Main) {
             while (true) {
-                val currentTime = Calendar.getInstance().time
+                currentTime = Calendar.getInstance().time
                 _mCurrentTime.postValue(Utils.formatCurrentTime(context, currentTime))
                 delay(1000)
             }
         }
+    }
+
+    fun onLoadingChange() {
+        _isLoaded.value = false
     }
 
     companion object {

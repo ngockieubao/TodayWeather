@@ -16,26 +16,31 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.*
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.todayweather.R
 import com.example.todayweather.base.WeatherViewModelFactory
-import com.example.todayweather.receiver.NotificationReceiver
-import com.example.todayweather.receiver.NetworkReceiver
 import com.example.todayweather.databinding.ActivityMainBinding
 import com.example.todayweather.receiver.LocationImpl
 import com.example.todayweather.receiver.LocationReceiver
+import com.example.todayweather.receiver.NetworkReceiver
+import com.example.todayweather.receiver.NotificationReceiver
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.DoubleBounce
+import com.github.ybq.android.spinkit.style.WanderingCubes
+import com.github.ybq.android.spinkit.style.Wave
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -45,7 +50,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var mNetworkReceiver: BroadcastReceiver
     private lateinit var mLocationReceiver: BroadcastReceiver
-    private lateinit var mDrawerLayout: DrawerLayout
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +61,8 @@ class MainActivity : AppCompatActivity(), LocationImpl {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.progressCircular.indeterminateDrawable = WanderingCubes()
 
         weatherViewModel = ViewModelProvider(
             this,
@@ -71,6 +77,23 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         mLocationReceiver = LocationReceiver(this)
         registerNetworkBroadcastForNougat()
 
+        // Init navigation host
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.actNavHost) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        // Hide header when navigate to other fragment
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> {
+                    binding.constraintHeader.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.constraintHeader.visibility = View.GONE
+                }
+            }
+        }
+
         lifecycle.coroutineScope.launch {
             weatherViewModel.getCurrentTime()
         }
@@ -80,38 +103,25 @@ class MainActivity : AppCompatActivity(), LocationImpl {
 
         weatherViewModel.hasLocationChange.observe(this) {
             if (it == null) return@observe
-            else if (it == false) {
-                val snackbar = createSnackbar(
-                    this.getString(R.string.string_location_off),
-                    Constants.TIME_IMMORTAL
-                )
-                snackbar.view.setBackgroundResource(R.color.red)
-                snackbar.setActionTextColor(R.color.black).setAction("Bật") {
-                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                    startActivity(intent)
-                }.show()
-            }
+            else
+                if (it == false) {
+                    val snackbar = createSnackbar(
+                        this.getString(R.string.string_location_off),
+                        Constants.TIME_IMMORTAL
+                    )
+                    snackbar.view.setBackgroundResource(R.color.red)
+                    snackbar.setActionTextColor(R.color.black).setAction("Bật") {
+                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                        startActivity(intent)
+                    }.show()
+                }
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.menu_toolbar) {
-            mDrawerLayout.openDrawer(GravityCompat.END)
+        binding.imageButtonSearch.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_searchFragment)
         }
-        return true
-    }
-
-    override fun onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
-            mDrawerLayout.closeDrawer(GravityCompat.END)
-        } else {
-            super.onBackPressed()
+        binding.imageButtonSetting.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_settingFragment)
         }
     }
 
@@ -143,12 +153,10 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
 //                && grantResults[1] == PackageManager.PERMISSION_GRANTED
             ) {
-//                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
                 Snackbar.make(binding.root, "Permissions granted.", Snackbar.LENGTH_SHORT).show()
                 weatherViewModel.getLastLocation()
 //                startPushNotifications()
             } else {
-//                Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
                 Snackbar.make(binding.root, "Permissions denied.", Snackbar.LENGTH_SHORT).show()
                 openSettingPermissions()
                 Toast.makeText(this, "Location must allow", Toast.LENGTH_SHORT).show()

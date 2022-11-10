@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.data.model.City
@@ -13,6 +14,9 @@ import com.example.todayweather.databinding.FragmentHomeBinding
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.ui.hourly.HourlyAdapter
 import com.example.todayweather.util.Constants
+import com.github.ybq.android.spinkit.style.WanderingCubes
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -28,6 +32,7 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
+        bindingHome.progressLoading.indeterminateDrawable = WanderingCubes()
 
         weatherViewModel.networkError.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
@@ -64,6 +69,13 @@ class HomeFragment : Fragment() {
             else hourlyAdapter.dataList = it
         }
 
+        weatherViewModel.isLoaded.observe(this.viewLifecycleOwner) {
+            if (it == null) return@observe
+            else {
+                onCompleteLoading(1000)
+            }
+        }
+
         return bindingHome.root
     }
 
@@ -93,6 +105,15 @@ class HomeFragment : Fragment() {
             // Pass lat-lon args after allow position
             weatherViewModel.loadApi(getBundle!!.lat, getBundle!!.lon)
         }
+    }
+
+    private fun onCompleteLoading(time: Long) {
+        lifecycle.coroutineScope.launch {
+            bindingHome.progressLoading.visibility = View.VISIBLE
+            delay(time)
+            bindingHome.progressLoading.visibility = View.GONE
+        }
+//        weatherViewModel.onLoadingChange()
     }
 
     companion object {

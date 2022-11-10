@@ -14,11 +14,26 @@
             type="com.example.todayweather.ui.WeatherViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:theme="@style/Theme.TodayWeather">
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/corner_layout_loading"
+            android:elevation="4dp"
+            android:indeterminateTint="@color/white"
+            android:padding="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll_view"
@@ -27,7 +42,11 @@
             android:background="@color/black"
             android:fillViewport="true"
             android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_header_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:context=".ui.home.HomeFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +64,7 @@
                     android:elevation="4dp"
                     android:paddingVertical="5dp"
                     android:paddingEnd="15dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry">
@@ -255,6 +274,6 @@
                     app:layout_constraintTop_toBottomOf="@id/recyclerView_detail_container_element" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
