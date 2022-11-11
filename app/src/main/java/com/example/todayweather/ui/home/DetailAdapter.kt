@@ -27,9 +27,9 @@ class DetailAdapter : RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
             rcvDetailElementBinding.imgViewIcHomeDetail.setImageResource(
                 when (item.icon) {
                     1 -> R.drawable.ic_temperature
-                    2 -> R.drawable.ic_water
-                    3 -> R.drawable.ic_sun
-                    4 -> R.drawable.ic_uchiha_eyes_24
+                    2 -> R.drawable.ic_humidity
+                    3 -> R.drawable.ic_uv_protection
+                    4 -> R.drawable.ic_uchiha_eyes
                     5 -> R.drawable.ic_dew_point
                     6 -> R.drawable.ic_pressure
                     else -> R.drawable.ic_temperature

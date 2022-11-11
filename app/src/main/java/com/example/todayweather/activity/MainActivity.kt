@@ -16,15 +16,15 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.*
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.coroutineScope
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.todayweather.R
 import com.example.todayweather.base.WeatherViewModelFactory
 import com.example.todayweather.databinding.ActivityMainBinding
@@ -34,13 +34,7 @@ import com.example.todayweather.receiver.NetworkReceiver
 import com.example.todayweather.receiver.NotificationReceiver
 import com.example.todayweather.ui.WeatherViewModel
 import com.example.todayweather.util.Constants
-import com.github.ybq.android.spinkit.sprite.Sprite
-import com.github.ybq.android.spinkit.style.DoubleBounce
-import com.github.ybq.android.spinkit.style.WanderingCubes
-import com.github.ybq.android.spinkit.style.Wave
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
-
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -62,7 +56,61 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.progressCircular.indeterminateDrawable = WanderingCubes()
+        // NavHost Activity
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.actNavHost) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.bottomNav.setupWithNavController(navController)
+
+        // Hide header & bottom navigation when navigate to conversation
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> {
+                    binding.bottomNav.visibility = View.VISIBLE
+                }
+                R.id.searchFragment -> {
+                    binding.bottomNav.visibility = View.GONE
+                }
+                R.id.settingFragment -> {
+                    binding.bottomNav.visibility = View.GONE
+                }
+                else -> {
+                    binding.bottomNav.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        val options = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.from_right)
+            .setExitAnim(R.anim.to_left)
+            .setPopEnterAnim(R.anim.from_left)
+            .setPopExitAnim(R.anim.to_right)
+            .build()
+
+        val optionsBack = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.from_left)
+            .setExitAnim(R.anim.to_right)
+            .setPopEnterAnim(R.anim.from_right)
+            .setPopExitAnim(R.anim.to_left)
+            .build()
+
+        binding.bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.homeFragment, null, optionsBack)
+                }
+                R.id.dailyFragment -> {
+                    navController.navigate(R.id.dailyFragment, null, options)
+                }
+                R.id.hourlyFragment -> {
+                    navController.navigate(R.id.hourlyFragment, null, options)
+                }
+            }
+            true
+        }
+
+//        binding.progressCircular.indeterminateDrawable = WanderingCubes()
 
         weatherViewModel = ViewModelProvider(
             this,
@@ -76,30 +124,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         mNetworkReceiver = NetworkReceiver()
         mLocationReceiver = LocationReceiver(this)
         registerNetworkBroadcastForNougat()
-
-        // Init navigation host
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.actNavHost) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        // Hide header when navigate to other fragment
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.homeFragment -> {
-                    binding.constraintHeader.visibility = View.VISIBLE
-                }
-                else -> {
-                    binding.constraintHeader.visibility = View.GONE
-                }
-            }
-        }
-
-        lifecycle.coroutineScope.launch {
-            weatherViewModel.getCurrentTime()
-        }
-        weatherViewModel.mCurrentTime.observe(this) {
-            binding.tvCurrentTime.text = it
-        }
 
         weatherViewModel.hasLocationChange.observe(this) {
             if (it == null) return@observe
@@ -115,13 +139,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                         startActivity(intent)
                     }.show()
                 }
-        }
-
-        binding.imageButtonSearch.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_searchFragment)
-        }
-        binding.imageButtonSetting.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_settingFragment)
         }
     }
 

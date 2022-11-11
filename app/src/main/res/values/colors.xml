@@ -9,4 +9,9 @@
     <color name="white">#FFFFFF</color>
     <color name="red">#AA0003</color>
     <color name="green">#01AA01</color>
+
+    <color name="bottom_nav_bg">#000000</color>
+    <color name="bottom_nav_item">#BA7A7A7A</color>
+    <color name="bottom_nav_selected_item">#FFFFFF</color>
+    <color name="fragment_bg_color">#FDF8F4</color>
 </resources>

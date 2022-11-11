@@ -27,11 +27,11 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgView_hourly_nav_icon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="#4E4E4E"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="#73FFFFFF"
                 android:foregroundGravity="center_horizontal"
-                android:scaleType="centerInside"
+                android:scaleType="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

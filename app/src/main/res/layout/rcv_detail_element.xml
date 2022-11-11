@@ -19,14 +19,15 @@
 
         <ImageView
             android:id="@+id/imgView_ic_home_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="10dp"
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toTopOf="@+id/tv_title_home_detail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white"
             tools:src="@drawable/ic_temperature" />
 
         <TextView

@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_question"
-        android:icon="@drawable/ic_question"
-        android:title="@string/string_question"
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/string_home"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_search"
-        android:icon="@drawable/ic_loupe"
-        android:title="@string/string_search"
+        android:id="@+id/hourlyFragment"
+        android:icon="@drawable/ic_clock"
+        android:title="@string/string_hourly"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_setting"
-        android:icon="@drawable/ic_setting"
-        android:title="@string/string_setting"
+        android:id="@+id/dailyFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/string_daily"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
 </menu>

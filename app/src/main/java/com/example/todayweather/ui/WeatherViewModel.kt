@@ -41,11 +41,11 @@ class WeatherViewModel(
 
     private val weatherRepository: WeatherRepository = WeatherRepository(application)
 
-    private val _listCurrent = MutableLiveData<Daily>()
-    val listCurrent: LiveData<Daily>
+    private val _listCurrent = MutableLiveData<Daily?>()
+    val listCurrent: LiveData<Daily?>
         get() = _listCurrent
 
-    var listDataDetail = MutableLiveData<MutableList<DetailHomeModel>>()
+    var listDataDetail = MutableLiveData<MutableList<DetailHomeModel>?>()
 
     private val _listDailyNav = MutableLiveData<MutableList<Daily>?>()
     val listDataDaily: MutableLiveData<MutableList<Daily>?>
@@ -58,14 +58,14 @@ class WeatherViewModel(
     private val _showLocation = MutableLiveData<String?>()
     val showLocation = _showLocation
 
-    private val _networkError = MutableLiveData<Boolean>()
-    val networkError: LiveData<Boolean> = _networkError
+    private val _networkError = MutableLiveData<Boolean?>()
+    val networkError: LiveData<Boolean?> = _networkError
 
-    private val _hasLocationChange = MutableLiveData<Boolean>()
-    val hasLocationChange: LiveData<Boolean> = _hasLocationChange
+    private val _hasLocationChange = MutableLiveData<Boolean?>()
+    val hasLocationChange: LiveData<Boolean?> = _hasLocationChange
 
-    private val _isLoaded = MutableLiveData<Boolean>()
-    val isLoaded: LiveData<Boolean> = _isLoaded
+    private val _isLoaded = MutableLiveData<Boolean?>()
+    val isLoaded: LiveData<Boolean?> = _isLoaded
 
     private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     private var getPosition: String = ""
@@ -175,7 +175,7 @@ class WeatherViewModel(
                     getLocation(lat, lon, context)
                 } else {
                     startLocationUpdates()
-                    onLocationChange()
+//                    onLocationChange()
                 }
             }
             return
@@ -280,7 +280,7 @@ class WeatherViewModel(
         createLocationRequest()
         createLocationCallback()
         startLocationUpdates()
-        _hasLocationChange.postValue(true)
+//        _hasLocationChange.postValue(true)
     }
 
     // flag to check location status
@@ -300,6 +300,20 @@ class WeatherViewModel(
 
     fun onLoadingChange() {
         _isLoaded.value = false
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+
+        _listCurrent.value = null
+        listDataDetail.value = null
+        _listDailyNav.value = null
+        _listHourlyNav.value = null
+        _showLocation.value = null
+        _networkError.value = null
+        _hasLocationChange.value = null
+        _isLoaded.value = null
+        _mCurrentTime.value = null
     }
 
     companion object {

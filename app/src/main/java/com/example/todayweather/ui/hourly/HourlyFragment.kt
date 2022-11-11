@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import com.example.todayweather.R
 import com.example.todayweather.databinding.FragmentNavHourlyBinding
 import com.example.todayweather.ui.WeatherViewModel
 
@@ -39,13 +37,5 @@ class HourlyFragment : Fragment() {
         bindingHourlyNavBinding.rcvNavHourly.adapter = hourlyNavAdapter
 
         return bindingHourlyNavBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        bindingHourlyNavBinding.imageViewBackHourlyNav.setOnClickListener {
-            findNavController().navigate(R.id.action_hourlyFragment_to_homeFragment)
-        }
     }
 }

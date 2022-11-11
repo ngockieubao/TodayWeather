@@ -41,8 +41,8 @@ class DailyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindingDailyNavBinding.imageViewBackDailyNav.setOnClickListener {
-            findNavController().navigate(R.id.action_dailyFragment_to_homeFragment)
-        }
+//        bindingDailyNavBinding.imageViewBackDailyNav.setOnClickListener {
+//            findNavController().navigate(R.id.action_dailyFragment_to_homeFragment)
+//        }
     }
 }

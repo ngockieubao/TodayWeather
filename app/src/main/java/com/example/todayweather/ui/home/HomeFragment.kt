@@ -18,6 +18,7 @@ import com.github.ybq.android.spinkit.style.WanderingCubes
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
     private lateinit var bindingHome: FragmentHomeBinding
@@ -32,15 +33,24 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
+
+        lifecycle.coroutineScope.launch {
+            weatherViewModel.getCurrentTime()
+        }
+        weatherViewModel.mCurrentTime.observe(this.viewLifecycleOwner) {
+            bindingHome.tvCurrentTime.text = it
+        }
+
         bindingHome.progressLoading.indeterminateDrawable = WanderingCubes()
 
         weatherViewModel.networkError.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
             else {
-                if (weatherViewModel.networkError.value == false)
+                if (weatherViewModel.networkError.value == false) {
                     bindingHome.constraintStatusNetwork.visibility = View.GONE
-                else if (weatherViewModel.networkError.value == true)
+                } else if (weatherViewModel.networkError.value == true) {
                     bindingHome.constraintStatusNetwork.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -72,7 +82,7 @@ class HomeFragment : Fragment() {
         weatherViewModel.isLoaded.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
             else {
-                onCompleteLoading(1000)
+                onCompleteLoading()
             }
         }
 
@@ -85,6 +95,12 @@ class HomeFragment : Fragment() {
         searchCity()
 
         bindingHome.apply {
+            imageButtonSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            }
+            imageButtonSetting.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
+            }
             tvHomeStatusDescription.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_dailyFragment)
             }
@@ -107,10 +123,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun onCompleteLoading(time: Long) {
+    private fun onCompleteLoading() {
         lifecycle.coroutineScope.launch {
             bindingHome.progressLoading.visibility = View.VISIBLE
-            delay(time)
+            delay(1000)
             bindingHome.progressLoading.visibility = View.GONE
         }
 //        weatherViewModel.onLoadingChange()
