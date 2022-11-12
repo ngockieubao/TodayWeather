@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="current"
+            type="com.example.todayweather.data.model.Current" />
+
+        <variable
             name="item"
             type="com.example.todayweather.data.model.Daily" />
     </data>
@@ -188,12 +192,11 @@
                         style="@style/txt_title_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/corner_radius"
                         android:textSize="55sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:setTemp="@{item.temp.day}"
+                        app:setTemp="@{current.temp}"
                         tools:text="@string/home_temp" />
 
                     <TextView

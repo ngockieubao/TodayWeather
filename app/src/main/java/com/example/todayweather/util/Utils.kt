@@ -187,5 +187,9 @@ object Utils {
     fun convertKilometerToMile(input: Double): Double {
         return input.times(1.609344)
     }
+
+    fun divThousand(input: Int): Int {
+        return input.div(1000)
+    }
 }
 

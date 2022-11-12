@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:background="@drawable/corner_layout_click"
+            android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

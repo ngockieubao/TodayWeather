@@ -59,7 +59,12 @@ class HomeFragment : Fragment() {
                 bindingHome.tvHomeLocation.text = it
             }
         }
+
         weatherViewModel.listCurrent.observe(this.viewLifecycleOwner) {
+            if (it == null) return@observe
+            else bindingHome.current = it
+        }
+        weatherViewModel.listDaily.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
             else bindingHome.item = it
         }

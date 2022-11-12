@@ -15,10 +15,7 @@ import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.todayweather.R
 import com.example.todayweather.data.WeatherRepository
-import com.example.todayweather.data.model.Daily
-import com.example.todayweather.data.model.DetailHomeModel
-import com.example.todayweather.data.model.Hourly
-import com.example.todayweather.data.model.WeatherGetApi
+import com.example.todayweather.data.model.*
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.example.todayweather.util.Utils.fromJsonToLocation
@@ -41,11 +38,13 @@ class WeatherViewModel(
 
     private val weatherRepository: WeatherRepository = WeatherRepository(application)
 
-    private val _listCurrent = MutableLiveData<Daily?>()
-    val listCurrent: LiveData<Daily?>
-        get() = _listCurrent
+    private val _listCurrent = MutableLiveData<Current?>()
+    val listCurrent: LiveData<Current?> get() = _listCurrent
+    val listDataDetail = MutableLiveData<MutableList<DetailHomeModel>?>()
 
-    var listDataDetail = MutableLiveData<MutableList<DetailHomeModel>?>()
+    private val _listDaily = MutableLiveData<Daily?>()
+    val listDaily: LiveData<Daily?>
+        get() = _listDaily
 
     private val _listDailyNav = MutableLiveData<MutableList<Daily>?>()
     val listDataDaily: MutableLiveData<MutableList<Daily>?>
@@ -110,7 +109,7 @@ class WeatherViewModel(
         _listDailyNav.postValue(listDaily)
 
         // get first element of daily List
-        _listCurrent.postValue(listDaily.first())
+        _listDaily.postValue(listDaily.first())
 
         // display data HourlyFragment
         val listHourly = weatherData.hourly
@@ -118,48 +117,48 @@ class WeatherViewModel(
     }
 
     private fun addDataDetail(weatherData: WeatherGetApi) {
+        _listCurrent.value = weatherData.current
         val listDetail = mutableListOf<DetailHomeModel>()
-        val listCurrent = weatherData.current
 
         val index1 = DetailHomeModel(
             1,
             context.getString(R.string.feels_like_string),
-            context.getString(R.string.fm_temp_celsius, listCurrent.temp)
+            context.getString(R.string.fm_temp_celsius, _listCurrent.value?.temp)
         )
         listDetail.add(index1)
 
         val index2 = DetailHomeModel(
             2,
             context.getString(R.string.humidity_string),
-            context.getString(R.string.humidity, listCurrent.humidity)
+            context.getString(R.string.humidity, _listCurrent.value?.humidity)
         )
         listDetail.add(index2)
 
         val index3 = DetailHomeModel(
             3,
             context.getString(R.string.uvi_string),
-            context.getString(R.string.uvi, listCurrent.uvi)
+            context.getString(R.string.uvi, _listCurrent.value?.uvi)
         )
         listDetail.add(index3)
 
         val index4 = DetailHomeModel(
             4,
             context.getString(R.string.visibility_string),
-            context.getString(R.string.visibility, (listCurrent.visibility.div(1000)))
+            context.getString(R.string.visibility, _listCurrent.value?.visibility?.let { Utils.divThousand(it) })
         )
         listDetail.add(index4)
 
         val index5 = DetailHomeModel(
             5,
             context.getString(R.string.dew_point_string),
-            context.getString(R.string.dew_point, listCurrent.dew_point)
+            context.getString(R.string.dew_point, _listCurrent.value?.dew_point)
         )
         listDetail.add(index5)
 
         val index6 = DetailHomeModel(
             6,
             context.getString(R.string.pressure_string),
-            context.getString(R.string.pressure, listCurrent.pressure)
+            context.getString(R.string.pressure, _listCurrent.value?.pressure)
         )
         listDetail.add(index6)
 
@@ -306,6 +305,7 @@ class WeatherViewModel(
         super.onCleared()
 
         _listCurrent.value = null
+        _listDaily.value = null
         listDataDetail.value = null
         _listDailyNav.value = null
         _listHourlyNav.value = null

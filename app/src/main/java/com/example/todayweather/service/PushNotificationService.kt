@@ -12,6 +12,7 @@ import android.location.Location
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.example.todayweather.R
 import com.example.todayweather.data.model.WeatherGetApi
@@ -20,6 +21,9 @@ import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.IOException
 
 @Suppress("DEPRECATION")
@@ -29,6 +33,7 @@ class PushNotificationService : Service() {
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
+    private var data: WeatherGetApi? = null
 
     private var job: Job = Job()
     private val coroutineContext = CoroutineScope(Dispatchers.Main + job)
@@ -91,10 +96,23 @@ class PushNotificationService : Service() {
             lat = location.latitude
             lon = location.longitude
 
-            val weatherData = WeatherApi.retrofitService.getProperties(lat, lon)
+            WeatherApi.retrofitService.getProperties(lat, lon).enqueue(object : Callback<WeatherGetApi> {
+                override fun onResponse(call: Call<WeatherGetApi>, response: Response<WeatherGetApi>) {
+                    // HTTP code success
+                    if (response.isSuccessful) {
+                        val body = response.body()
+                        if (body == null) return
+                        else data = body
+                    }
+                }
+
+                override fun onFailure(call: Call<WeatherGetApi>, t: Throwable) {
+                    Toast.makeText(application.applicationContext, "Network error", Toast.LENGTH_SHORT).show()
+                }
+            })
             getLocation(lat, lon)
 
-            startPushNotificationShowInfo(weatherData, getPosition)
+            data?.let { startPushNotificationShowInfo(it, getPosition) }
             delay(Constants.DELAY)
             stopSelf(startId)
         } else {
@@ -118,7 +136,7 @@ class PushNotificationService : Service() {
                 )
                 .setAutoCancel(true)
                 .setContentText(getString(R.string.notification_waiting_get_weather_information))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .build()
         startForeground(startId, mBuilder)
     }
@@ -140,7 +158,7 @@ class PushNotificationService : Service() {
             .setAutoCancel(true)
             .setContentTitle(Utils.formatLocation(this@PushNotificationService, location))
             .setContentText(Utils.upCaseFirstLetter(weatherGetApi.current.weather[0].description))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setStyle(
                 NotificationCompat
                     .BigTextStyle()

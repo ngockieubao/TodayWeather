@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
 import com.example.todayweather.databinding.FragmentSettingBinding
+import com.example.todayweather.ui.WeatherViewModel
 
 class SettingFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingBinding
+    private val weatherViewModel: WeatherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +27,11 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.constraintSettingContent.setOnClickListener {
+            weatherViewModel.locationChange()
+            this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
+        }
 
         binding.imageButtonBack.setOnClickListener {
             this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
