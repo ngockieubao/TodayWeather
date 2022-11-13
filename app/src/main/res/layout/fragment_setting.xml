@@ -35,7 +35,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,14 +88,52 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/tv_convert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="@string/string_convert"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraint_setting_content" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_convert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/radio_btn_selector"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_convert"
+            tools:ignore="UselessParent">
+
+            <RadioButton
+                android:id="@+id/radio_btn_celcius"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/radio_btn_selector"
+                android:button="@null"
+                android:checked="true"
+                android:text="@string/string_convert_celcius"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radio_btn_fahrenheit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/radio_btn_selector"
+                android:button="@null"
+                android:text="@string/string_convert_fahrenheit"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

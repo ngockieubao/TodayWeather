@@ -99,9 +99,11 @@
     <string name="string_location_off">Định vị đang tắt.\nVui lòng bật để sử dụng dịch vụ!</string>
     <string name="string_location_on">Định vị đã bật.</string>
     <string name="string_my_position">Vị trí của tôi</string>
-    <string name="string_convert">Hệ số đơn vị</string>
+    <string name="string_convert">Đơn vị</string>
     <string name="string_settings">Cài đặt</string>
     <string name="string_search_location">Tìm địa điểm</string>
+    <string name="string_convert_celcius">Hệ mét</string>
+    <string name="string_convert_fahrenheit">Hệ đo lường Anh</string>
 
     <string-array name="days_of_week">
         <item>Sun</item>

@@ -123,7 +123,7 @@ class WeatherViewModel(
         val index1 = DetailHomeModel(
             1,
             context.getString(R.string.feels_like_string),
-            context.getString(R.string.fm_temp_celsius, _listCurrent.value?.temp)
+            context.getString(R.string.fm_temp_celsius, _listCurrent.value?.feels_like)
         )
         listDetail.add(index1)
 
