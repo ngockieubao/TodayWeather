@@ -66,7 +66,8 @@ class WeatherViewModel(
     private val _isLoaded = MutableLiveData<Boolean?>()
     val isLoaded: LiveData<Boolean?> = _isLoaded
 
-    private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    private val fusedLocationClient: FusedLocationProviderClient =
+        LocationServices.getFusedLocationProviderClient(context)
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
@@ -101,68 +102,75 @@ class WeatherViewModel(
     }
 
     private fun populateDailyHourlyData(weatherData: WeatherGetApi) {
-        // display data detail HomeFragment
-        addDataDetail(weatherData)
+        try {
+            // display data detail HomeFragment
+            addDataDetail(weatherData)
 
-        // display data DailyFragment
-        val listDaily = weatherData.daily
-        _listDailyNav.postValue(listDaily)
+            // display data DailyFragment
+            val listDaily = weatherData.daily
+            _listDailyNav.postValue(listDaily)
 
-        // get first element of daily List
-        _listDaily.postValue(listDaily.first())
+            // get first element of daily List
+            _listDaily.postValue(listDaily.first())
 
-        // display data HourlyFragment
-        val listHourly = weatherData.hourly
-        _listHourlyNav.postValue(listHourly)
+            // display data HourlyFragment
+            val listHourly = weatherData.hourly
+            _listHourlyNav.postValue(listHourly)
+        }
+        catch (ex: Exception) {
+            Log.d(TAG, "populateDailyHourlyData: failed - $ex")
+        }
     }
 
     private fun addDataDetail(weatherData: WeatherGetApi) {
-        _listCurrent.value = weatherData.current
-        val listDetail = mutableListOf<DetailHomeModel>()
+            _listCurrent.value = weatherData.current
+            val listDetail = mutableListOf<DetailHomeModel>()
 
-        val index1 = DetailHomeModel(
-            1,
-            context.getString(R.string.feels_like_string),
-            context.getString(R.string.fm_temp_celsius, _listCurrent.value?.temp)
-        )
-        listDetail.add(index1)
+            val index1 = DetailHomeModel(
+                1,
+                context.getString(R.string.feels_like_string),
+                context.getString(R.string.fm_temp_celsius, _listCurrent.value!!.temp)
+            )
+            listDetail.add(index1)
 
-        val index2 = DetailHomeModel(
-            2,
-            context.getString(R.string.humidity_string),
-            context.getString(R.string.humidity, _listCurrent.value?.humidity)
-        )
-        listDetail.add(index2)
+            val index2 = DetailHomeModel(
+                2,
+                context.getString(R.string.humidity_string),
+                context.getString(R.string.humidity, _listCurrent.value!!.humidity)
+            )
+            listDetail.add(index2)
 
-        val index3 = DetailHomeModel(
-            3,
-            context.getString(R.string.uvi_string),
-            context.getString(R.string.uvi, _listCurrent.value?.uvi)
-        )
-        listDetail.add(index3)
+            val index3 = DetailHomeModel(
+                3,
+                context.getString(R.string.uvi_string),
+                context.getString(R.string.uvi, _listCurrent.value!!.uvi)
+            )
+            listDetail.add(index3)
 
-        val index4 = DetailHomeModel(
-            4,
-            context.getString(R.string.visibility_string),
-            context.getString(R.string.visibility, _listCurrent.value?.visibility?.let { Utils.divThousand(it) })
-        )
-        listDetail.add(index4)
+            val index4 = DetailHomeModel(
+                4,
+                context.getString(R.string.visibility_string),
+                context.getString(
+                    R.string.visibility,
+                    _listCurrent.value?.visibility?.let { Utils.divThousand(it) })
+            )
+            listDetail.add(index4)
 
-        val index5 = DetailHomeModel(
-            5,
-            context.getString(R.string.dew_point_string),
-            context.getString(R.string.dew_point, _listCurrent.value?.dew_point)
-        )
-        listDetail.add(index5)
+            val index5 = DetailHomeModel(
+                5,
+                context.getString(R.string.dew_point_string),
+                context.getString(R.string.dew_point, _listCurrent.value!!.dew_point)
+            )
+            listDetail.add(index5)
 
-        val index6 = DetailHomeModel(
-            6,
-            context.getString(R.string.pressure_string),
-            context.getString(R.string.pressure, _listCurrent.value?.pressure)
-        )
-        listDetail.add(index6)
+            val index6 = DetailHomeModel(
+                6,
+                context.getString(R.string.pressure_string),
+                context.getString(R.string.pressure, _listCurrent.value!!.pressure)
+            )
+            listDetail.add(index6)
 
-        listDataDetail.postValue(listDetail)
+            listDataDetail.postValue(listDetail)
     }
 
     fun getLastLocation() {
@@ -190,7 +198,7 @@ class WeatherViewModel(
             val position = geocoder.getFromLocation(lat, lon, 1)
 
             loadApi(lat, lon)
-            getPosition = position[0].getAddressLine(0)
+            getPosition = position?.get(0)?.getAddressLine(0) ?: "Null"
             showLocation(Utils.formatLocation(context, getPosition))
         } catch (e: Exception) {
             Log.d(TAG, "getLastLocation: failed - $e")

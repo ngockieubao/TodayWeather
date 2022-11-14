@@ -212,7 +212,7 @@ class PushNotificationService : Service() {
         try {
             val geocoder = Geocoder(this@PushNotificationService)
             val position = geocoder.getFromLocation(latUpdate, lonUpdate, 1)
-            getPosition = position[0].getAddressLine(0)
+            getPosition = position?.get(0)?.getAddressLine(0) ?: "Null"
         } catch (ex: IOException) {
             ex.printStackTrace()
         }
