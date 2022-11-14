@@ -101,19 +101,23 @@ class WeatherViewModel(
     }
 
     private fun populateDailyHourlyData(weatherData: WeatherGetApi) {
-        // display data detail HomeFragment
-        addDataDetail(weatherData)
+        try {
+            // display data detail HomeFragment
+            addDataDetail(weatherData)
 
-        // display data DailyFragment
-        val listDaily = weatherData.daily
-        _listDailyNav.postValue(listDaily)
+            // display data DailyFragment
+            val listDaily = weatherData.daily
+            _listDailyNav.postValue(listDaily)
 
-        // get first element of daily List
-        _listDaily.postValue(listDaily.first())
+            // get first element of daily List
+            _listDaily.postValue(listDaily.first())
 
-        // display data HourlyFragment
-        val listHourly = weatherData.hourly
-        _listHourlyNav.postValue(listHourly)
+            // display data HourlyFragment
+            val listHourly = weatherData.hourly
+            _listHourlyNav.postValue(listHourly)
+        } catch (ex: Exception) {
+            Log.d(TAG, "populateDailyHourlyData: failed - $ex")
+        }
     }
 
     private fun addDataDetail(weatherData: WeatherGetApi) {

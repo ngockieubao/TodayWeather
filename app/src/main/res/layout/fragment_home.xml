@@ -117,6 +117,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/corner_home_element"
                     android:elevation="4dp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry">
