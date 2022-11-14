@@ -1,6 +1,7 @@
 package com.example.todayweather.util
 
 object Constants {
+
     // Location
     const val INTERVAL = 10000L
     const val FASTEST_INTERVAL = 5000L
@@ -24,16 +25,12 @@ object Constants {
     // Webservice API
     const val BASE_URL = "https://api.openweathermap.org/"
     const val URL_PATH = "data/2.5/onecall"
-
-    // Danang_lat-lon
     const val URL_LAT = "lat"
     const val URL_LON = "lon"
     const val URL_EXCLUDE = "exclude"
     const val URL_APPID = "appid"
     const val URL_LANG = "lang"
     const val URL_UNITS = "units"
-    const val URL_LAT_VALUE = 16.047079
-    const val URL_LON_VALUE = 108.206230
     const val URL_EXCLUDE_VALUE = "minutely,alert"
     const val URL_APPID_VALUE = "53fbf527d52d4d773e828243b90c1f8e"
     const val URL_LANG_VALUE = "vi"
@@ -45,6 +42,9 @@ object Constants {
     const val LOCALE_LANG = "vi"
     const val READ_JSON_FROM_ASSETS = "Cities.json"
 
-    //
+    // Unique
     const val REQUEST_PERMISSION_CODE = 10
+
+    // One second
+    const val ONE_SECOND = 1000L
 }

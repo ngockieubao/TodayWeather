@@ -33,6 +33,7 @@ import com.example.todayweather.receiver.LocationReceiver
 import com.example.todayweather.receiver.NetworkReceiver
 import com.example.todayweather.receiver.NotificationReceiver
 import com.example.todayweather.ui.WeatherViewModel
+import com.example.todayweather.ui.home.LocationDialog
 import com.example.todayweather.util.Constants
 import com.google.android.material.snackbar.Snackbar
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var mNetworkReceiver: BroadcastReceiver
     private lateinit var mLocationReceiver: BroadcastReceiver
+    private lateinit var dialog: LocationDialog
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,15 +55,40 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
+        // Init
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // NavHost Activity
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.actNavHost) as NavHostFragment
         val navController = navHostFragment.navController
-        binding.bottomNav.setupWithNavController(navController)
+        weatherViewModel = ViewModelProvider(
+            this,
+            WeatherViewModelFactory(this.application)
+        )[WeatherViewModel::class.java]
+        mNetworkReceiver = NetworkReceiver()
+        mLocationReceiver = LocationReceiver(this)
+        dialog = LocationDialog(this)
+        val options = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.from_right)
+            .setExitAnim(R.anim.to_left)
+            .setPopEnterAnim(R.anim.from_left)
+            .setPopExitAnim(R.anim.to_right)
+            .build()
+        val optionsBack = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.from_left)
+            .setExitAnim(R.anim.to_right)
+            .setPopEnterAnim(R.anim.from_right)
+            .setPopExitAnim(R.anim.to_left)
+            .build()
 
-        // Hide header & bottom navigation when navigate to conversation
+        // Logic
+        registerBroadcastReceiverForNougat()
+        check()
+        checkPermissions()
+
+        binding.bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.homeFragment -> {
@@ -78,23 +105,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                 }
             }
         }
-
-        val options = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-            .setEnterAnim(R.anim.from_right)
-            .setExitAnim(R.anim.to_left)
-            .setPopEnterAnim(R.anim.from_left)
-            .setPopExitAnim(R.anim.to_right)
-            .build()
-
-        val optionsBack = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-            .setEnterAnim(R.anim.from_left)
-            .setExitAnim(R.anim.to_right)
-            .setPopEnterAnim(R.anim.from_right)
-            .setPopExitAnim(R.anim.to_left)
-            .build()
-
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeFragment -> {
@@ -109,36 +119,27 @@ class MainActivity : AppCompatActivity(), LocationImpl {
             }
             true
         }
+    }
 
-//        binding.progressCircular.indeterminateDrawable = WanderingCubes()
-
-        weatherViewModel = ViewModelProvider(
-            this,
-            WeatherViewModelFactory(this.application)
-        )[WeatherViewModel::class.java]
-
-        checkPermissions()
-        weatherViewModel.createLocationRequest()
-        weatherViewModel.createLocationCallback()
-
-        mNetworkReceiver = NetworkReceiver()
-        mLocationReceiver = LocationReceiver(this)
-        registerNetworkBroadcastForNougat()
-
-        weatherViewModel.hasLocationChange.observe(this) {
-            if (it == null) return@observe
-            else
-                if (it == false) {
-                    val snackbar = createSnackbar(
-                        this.getString(R.string.string_location_off),
-                        Constants.TIME_IMMORTAL
-                    )
-                    snackbar.view.setBackgroundResource(R.color.red)
-                    snackbar.setActionTextColor(R.color.black).setAction("Bật") {
-                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                        startActivity(intent)
-                    }.show()
-                }
+    private fun check() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            // This is a new method provided in API 28
+            val lm = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            if (lm.isLocationEnabled) {
+                onLocationChange("on")
+            } else {
+                onLocationChange("off")
+            }
+        } else {
+            val lm = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val isGpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            if (isGpsEnabled) {
+                Toast.makeText(this, "Location is on", Toast.LENGTH_SHORT).show()
+                weatherViewModel.locationChange()
+            } else {
+                Toast.makeText(this, "Location is off", Toast.LENGTH_SHORT).show()
+                dialog.show(supportFragmentManager, "location")
+            }
         }
     }
 
@@ -188,11 +189,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         startActivity(intent)
     }
 
-    override fun onResume() {
-        super.onResume()
-//        if (requestingLocationUpdates) startLocationUpdates()
-    }
-
     private fun stopLocationUpdates() {
         weatherViewModel.stopLocationUpdates()
     }
@@ -202,7 +198,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         stopLocationUpdates()
     }
 
-    private fun registerNetworkBroadcastForNougat() {
+    private fun registerBroadcastReceiverForNougat() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             registerReceiver(
                 mNetworkReceiver,
@@ -251,8 +247,8 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                     this.getString(R.string.string_location_off),
                     Constants.TIME_IMMORTAL
                 )
-                snackbar.view.setBackgroundResource(R.color.red)
-                snackbar.setActionTextColor(R.color.black).setAction("Bật") {
+                snackbar.view.setBackgroundResource(R.color.snackbar_location_off)
+                snackbar.setActionTextColor(R.color.green).setAction("Bật") {
                     val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                     startActivity(intent)
                 }.show()

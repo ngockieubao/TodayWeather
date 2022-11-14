@@ -1,16 +1,17 @@
 package com.example.todayweather.receiver
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
 import android.os.Build
-import android.provider.Settings
+import android.widget.Toast
 
-@Suppress("DEPRECATION")
 class LocationReceiver(
     private val locationImpl: LocationImpl
 ) : BroadcastReceiver() {
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
         isLocationEnabled(context)
     }
@@ -25,12 +26,15 @@ class LocationReceiver(
                 locationImpl.onLocationChange("off")
             }
         } else {
-            // This was deprecated in API 28
-            val mode: Int = Settings.Secure.getInt(
-                context.contentResolver, Settings.Secure.LOCATION_MODE,
-                Settings.Secure.LOCATION_MODE_OFF
-            )
-            mode != Settings.Secure.LOCATION_MODE_OFF
+            val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val isGpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            if (isGpsEnabled) {
+                Toast.makeText(context, "Location is on", Toast.LENGTH_SHORT).show()
+                locationImpl.onLocationChange("on")
+            } else {
+                Toast.makeText(context, "Location is off", Toast.LENGTH_SHORT).show()
+                locationImpl.onLocationChange("off")
+            }
         }
         return false
     }

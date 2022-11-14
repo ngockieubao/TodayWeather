@@ -104,6 +104,9 @@
     <string name="string_search_location">Tìm địa điểm</string>
     <string name="string_convert_celcius">Hệ mét</string>
     <string name="string_convert_fahrenheit">Hệ đo lường Anh</string>
+    <string name="gps_network_not_enabled">Dịch vụ vị trí đang tắt. Vui lòng bật để sử dụng.</string>
+    <string name="open_location_settings">MỞ CÀI ĐẶT VỊ TRÍ</string>
+    <string name="Cancel">HỦY</string>
 
     <string-array name="days_of_week">
         <item>Sun</item>

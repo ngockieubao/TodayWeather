@@ -96,20 +96,7 @@ class PushNotificationService : Service() {
             lat = location.latitude
             lon = location.longitude
 
-            WeatherApi.retrofitService.getProperties(lat, lon).enqueue(object : Callback<WeatherGetApi> {
-                override fun onResponse(call: Call<WeatherGetApi>, response: Response<WeatherGetApi>) {
-                    // HTTP code success
-                    if (response.isSuccessful) {
-                        val body = response.body()
-                        if (body == null) return
-                        else data = body
-                    }
-                }
-
-                override fun onFailure(call: Call<WeatherGetApi>, t: Throwable) {
-                    Toast.makeText(application.applicationContext, "Network error", Toast.LENGTH_SHORT).show()
-                }
-            })
+            data = WeatherApi.retrofitService.getProperties(lat, lon)
             getLocation(lat, lon)
 
             data?.let { startPushNotificationShowInfo(it, getPosition) }

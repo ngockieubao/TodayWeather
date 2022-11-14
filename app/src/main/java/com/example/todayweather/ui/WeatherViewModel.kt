@@ -16,14 +16,12 @@ import androidx.lifecycle.*
 import com.example.todayweather.R
 import com.example.todayweather.data.WeatherRepository
 import com.example.todayweather.data.model.*
+import com.example.todayweather.network.WeatherApi
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.example.todayweather.util.Utils.fromJsonToLocation
 import com.google.android.gms.location.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -40,19 +38,17 @@ class WeatherViewModel(
 
     private val _listCurrent = MutableLiveData<Current?>()
     val listCurrent: LiveData<Current?> get() = _listCurrent
+
     val listDataDetail = MutableLiveData<MutableList<DetailHomeModel>?>()
 
     private val _listDaily = MutableLiveData<Daily?>()
-    val listDaily: LiveData<Daily?>
-        get() = _listDaily
+    val listDaily: LiveData<Daily?> get() = _listDaily
 
     private val _listDailyNav = MutableLiveData<MutableList<Daily>?>()
-    val listDataDaily: MutableLiveData<MutableList<Daily>?>
-        get() = _listDailyNav
+    val listDataDaily: LiveData<MutableList<Daily>?> get() = _listDailyNav
 
     private val _listHourlyNav = MutableLiveData<MutableList<Hourly>?>()
-    val listDataHourly: MutableLiveData<MutableList<Hourly>?>
-        get() = _listHourlyNav
+    val listDataHourly: LiveData<MutableList<Hourly>?> get() = _listHourlyNav
 
     private val _showLocation = MutableLiveData<String?>()
     val showLocation = _showLocation
@@ -60,38 +56,42 @@ class WeatherViewModel(
     private val _networkError = MutableLiveData<Boolean?>()
     val networkError: LiveData<Boolean?> = _networkError
 
-    private val _hasLocationChange = MutableLiveData<Boolean?>()
-    val hasLocationChange: LiveData<Boolean?> = _hasLocationChange
-
-    private val _isLoaded = MutableLiveData<Boolean?>()
-    val isLoaded: LiveData<Boolean?> = _isLoaded
-
     private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     private var getPosition: String = ""
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
 
     private val _mCurrentTime = MutableLiveData<String?>()
-    val mCurrentTime = _mCurrentTime
+    val mCurrentTime: LiveData<String?> get() = _mCurrentTime
 
     private lateinit var currentTime: Date
 
+    private lateinit var data: WeatherGetApi
+
     val listCity = Utils.readJSONFromAsset(context)?.fromJsonToLocation()!!
+
+    init {
+        createLocationRequest()
+        createLocationCallback()
+    }
 
     fun loadApi(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
                 _networkError.value = false
-                weatherRepository.load(lat, lon)
+                callApi(lat, lon)
+                weatherRepository.insertWeather(data)
                 getWeatherDatabase()
-                _isLoaded.value = true
             } catch (ex: IOException) {
                 _networkError.value = true
                 getWeatherDatabase()
-                _isLoaded.value = true
                 Log.d(TAG, "loadAPI: network err - $ex")
             }
         }
+    }
+
+    private suspend fun callApi(lat: Double, lon: Double) {
+        data = WeatherApi.retrofitService.getProperties(lat, lon)
     }
 
     // Read data from database
@@ -171,16 +171,19 @@ class WeatherViewModel(
 
     fun getLastLocation() {
         try {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-                if (location != null) {
-                    val lat = location.latitude
-                    val lon = location.longitude
-                    getLocation(lat, lon, context)
-                } else {
-                    startLocationUpdates()
-//                    onLocationChange()
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    if (location != null) {
+                        val lat = location.latitude
+                        val lon = location.longitude
+                        getLocation(lat, lon, context)
+                    } else {
+                        startLocationUpdates()
+                    }
                 }
-            }
+                .addOnFailureListener {
+                    Log.d(TAG, "getLastLocation: $it")
+                }
             return
         } catch (ex: SecurityException) {
             Log.d(TAG, "getLastLocation: $ex")
@@ -205,7 +208,7 @@ class WeatherViewModel(
         _showLocation.value = location
     }
 
-    fun createLocationRequest() {
+    private fun createLocationRequest() {
         locationRequest = LocationRequest.create().apply {
             interval = Constants.INTERVAL
             fastestInterval = Constants.FASTEST_INTERVAL
@@ -213,7 +216,7 @@ class WeatherViewModel(
         }
     }
 
-    fun createLocationCallback() {
+    private fun createLocationCallback() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
@@ -283,12 +286,6 @@ class WeatherViewModel(
         createLocationRequest()
         createLocationCallback()
         startLocationUpdates()
-//        _hasLocationChange.postValue(true)
-    }
-
-    // flag to check location status
-    private fun onLocationChange() {
-        _hasLocationChange.postValue(false)
     }
 
     suspend fun getCurrentTime() {
@@ -301,10 +298,6 @@ class WeatherViewModel(
         }
     }
 
-    fun onLoadingChange() {
-        _isLoaded.value = false
-    }
-
     override fun onCleared() {
         super.onCleared()
 
@@ -315,8 +308,7 @@ class WeatherViewModel(
         _listHourlyNav.value = null
         _showLocation.value = null
         _networkError.value = null
-        _hasLocationChange.value = null
-        _isLoaded.value = null
+//        _hasLocationChange.value = null
         _mCurrentTime.value = null
     }
 

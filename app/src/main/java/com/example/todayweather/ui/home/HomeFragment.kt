@@ -59,7 +59,6 @@ class HomeFragment : Fragment() {
                 bindingHome.tvHomeLocation.text = it
             }
         }
-
         weatherViewModel.listCurrent.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
             else bindingHome.current = it
@@ -72,8 +71,6 @@ class HomeFragment : Fragment() {
         detailAdapter = DetailAdapter()
         hourlyAdapter = HourlyAdapter()
 
-        bindingHome.recyclerViewDetailContainerElement.recyclerViewDetail.adapter = detailAdapter
-        bindingHome.recyclerViewHourlyContainerElement.recyclerViewHourly.adapter = hourlyAdapter
 
         weatherViewModel.listDataDetail.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
@@ -84,11 +81,12 @@ class HomeFragment : Fragment() {
             else hourlyAdapter.dataList = it
         }
 
-        weatherViewModel.isLoaded.observe(this.viewLifecycleOwner) {
-            if (it == null) return@observe
-            else {
-                onCompleteLoading()
-            }
+        lifecycle.coroutineScope.launch {
+            bindingHome.progressLoading.visibility = View.VISIBLE
+            bindingHome.recyclerViewDetailContainerElement.recyclerViewDetail.adapter = detailAdapter
+            bindingHome.recyclerViewHourlyContainerElement.recyclerViewHourly.adapter = hourlyAdapter
+            delay(1500)
+            bindingHome.progressLoading.visibility = View.GONE
         }
 
         return bindingHome.root
@@ -113,7 +111,12 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_hourlyFragment)
             }
             imageBtnRefresh.setOnClickListener {
-                weatherViewModel.locationChange()
+                lifecycle.coroutineScope.launch {
+                    bindingHome.progressLoading.visibility = View.VISIBLE
+                    weatherViewModel.locationChange()
+                    delay(Constants.ONE_SECOND)
+                    bindingHome.progressLoading.visibility = View.GONE
+                }
             }
         }
     }
@@ -126,15 +129,6 @@ class HomeFragment : Fragment() {
             // Pass lat-lon args after allow position
             weatherViewModel.loadApi(getBundle!!.lat, getBundle!!.lon)
         }
-    }
-
-    private fun onCompleteLoading() {
-        lifecycle.coroutineScope.launch {
-            bindingHome.progressLoading.visibility = View.VISIBLE
-            delay(1000)
-            bindingHome.progressLoading.visibility = View.GONE
-        }
-//        weatherViewModel.onLoadingChange()
     }
 
     companion object {
