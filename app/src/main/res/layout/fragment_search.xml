@@ -35,29 +35,23 @@
                 app:tint="@color/white"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <EditText
-                android:id="@+id/edt_query"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/city_search"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:background="@null"
-                android:hint="@string/string_search_location"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="#CDCDCD"
-                android:textSize="18sp"
+                app:iconifiedByDefault="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageButton_back"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
+                app:queryHint="Tìm địa điểm"
+                app:searchIcon="@null" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_fragment_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="15dp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

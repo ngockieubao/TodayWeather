@@ -33,16 +33,17 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
+        bindingHome.progressLoading.indeterminateDrawable = WanderingCubes()
+        detailAdapter = DetailAdapter()
+        hourlyAdapter = HourlyAdapter()
 
         lifecycle.coroutineScope.launch {
             weatherViewModel.getCurrentTime()
         }
+
         weatherViewModel.mCurrentTime.observe(this.viewLifecycleOwner) {
             bindingHome.tvCurrentTime.text = it
         }
-
-        bindingHome.progressLoading.indeterminateDrawable = WanderingCubes()
-
         weatherViewModel.networkError.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
             else {
@@ -53,7 +54,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
         weatherViewModel.showLocation.observe(this.viewLifecycleOwner) {
             if (it != null && it != "") {
                 bindingHome.tvHomeLocation.text = it
@@ -68,10 +68,6 @@ class HomeFragment : Fragment() {
             else bindingHome.item = it
         }
 
-        detailAdapter = DetailAdapter()
-        hourlyAdapter = HourlyAdapter()
-
-
         weatherViewModel.listDataDetail.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
             else detailAdapter.dataList = it
@@ -85,7 +81,7 @@ class HomeFragment : Fragment() {
             bindingHome.progressLoading.visibility = View.VISIBLE
             bindingHome.recyclerViewDetailContainerElement.recyclerViewDetail.adapter = detailAdapter
             bindingHome.recyclerViewHourlyContainerElement.recyclerViewHourly.adapter = hourlyAdapter
-            delay(1500)
+            delay(Constants.ONE_POINT_FIVE_SECONDS)
             bindingHome.progressLoading.visibility = View.GONE
         }
 
@@ -113,7 +109,7 @@ class HomeFragment : Fragment() {
             imageBtnRefresh.setOnClickListener {
                 lifecycle.coroutineScope.launch {
                     bindingHome.progressLoading.visibility = View.VISIBLE
-                    weatherViewModel.locationChange()
+                    weatherViewModel.getLastLocation()
                     delay(Constants.ONE_SECOND)
                     bindingHome.progressLoading.visibility = View.GONE
                 }

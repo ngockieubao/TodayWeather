@@ -19,7 +19,6 @@ import com.example.todayweather.data.model.*
 import com.example.todayweather.network.WeatherApi
 import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
-import com.example.todayweather.util.Utils.fromJsonToLocation
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
 import java.io.IOException
@@ -67,8 +66,6 @@ class WeatherViewModel(
     private lateinit var currentTime: Date
 
     private lateinit var data: WeatherGetApi
-
-    val listCity = Utils.readJSONFromAsset(context)?.fromJsonToLocation()!!
 
     init {
         createLocationRequest()
@@ -178,7 +175,8 @@ class WeatherViewModel(
                         val lon = location.longitude
                         getLocation(lat, lon, context)
                     } else {
-                        startLocationUpdates()
+                        Toast.makeText(context, "getLastLocation: Location is null", Toast.LENGTH_SHORT).show()
+                        locationChange()
                     }
                 }
                 .addOnFailureListener {
@@ -282,14 +280,14 @@ class WeatherViewModel(
         }
     }
 
-    fun locationChange() {
+    private fun locationChange() {
         createLocationRequest()
         createLocationCallback()
         startLocationUpdates()
     }
 
     suspend fun getCurrentTime() {
-        withContext(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.Main) {
             while (true) {
                 currentTime = Calendar.getInstance().time
                 _mCurrentTime.postValue(Utils.formatCurrentTime(context, currentTime))
@@ -308,7 +306,6 @@ class WeatherViewModel(
         _listHourlyNav.value = null
         _showLocation.value = null
         _networkError.value = null
-//        _hasLocationChange.value = null
         _mCurrentTime.value = null
     }
 

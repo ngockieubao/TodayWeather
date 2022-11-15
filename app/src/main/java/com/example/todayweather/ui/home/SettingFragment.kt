@@ -29,7 +29,7 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.constraintSettingContent.setOnClickListener {
-            weatherViewModel.locationChange()
+            weatherViewModel.getLastLocation()
             this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
         }
 

@@ -1,7 +1,9 @@
 package com.example.todayweather.data.model
 
 import android.os.Parcelable
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,4 +16,8 @@ data class City(
     val lat: Double,
     @SerializedName("lon")
     val lon: Double
-) : Parcelable
+) : Parcelable {
+    @IgnoredOnParcel
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

@@ -61,10 +61,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.actNavHost) as NavHostFragment
         val navController = navHostFragment.navController
-        weatherViewModel = ViewModelProvider(
-            this,
-            WeatherViewModelFactory(this.application)
-        )[WeatherViewModel::class.java]
         mNetworkReceiver = NetworkReceiver()
         mLocationReceiver = LocationReceiver(this)
         dialog = LocationDialog(this)
@@ -82,11 +78,15 @@ class MainActivity : AppCompatActivity(), LocationImpl {
             .setPopEnterAnim(R.anim.from_right)
             .setPopExitAnim(R.anim.to_left)
             .build()
+        weatherViewModel = ViewModelProvider(
+            this,
+            WeatherViewModelFactory(this.application)
+        )[WeatherViewModel::class.java]
 
         // Logic
-        registerBroadcastReceiverForNougat()
-        check()
         checkPermissions()
+        checkGps()
+        registerBroadcastReceiverForNougat()
 
         binding.bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         }
     }
 
-    private fun check() {
+    private fun checkGps() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             // This is a new method provided in API 28
             val lm = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -135,7 +135,6 @@ class MainActivity : AppCompatActivity(), LocationImpl {
             val isGpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
             if (isGpsEnabled) {
                 Toast.makeText(this, "Location is on", Toast.LENGTH_SHORT).show()
-                weatherViewModel.locationChange()
             } else {
                 Toast.makeText(this, "Location is off", Toast.LENGTH_SHORT).show()
                 dialog.show(supportFragmentManager, "location")
@@ -254,7 +253,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                 }.show()
             }
             "on" -> {
-                weatherViewModel.locationChange()
+//                weatherViewModel.locationChange()
                 val snackbar = createSnackbar(
                     this.getString(R.string.string_location_on),
                     Constants.TIME_SHORT

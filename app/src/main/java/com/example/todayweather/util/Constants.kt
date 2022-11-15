@@ -3,8 +3,8 @@ package com.example.todayweather.util
 object Constants {
 
     // Location
-    const val INTERVAL = 10000L
-    const val FASTEST_INTERVAL = 5000L
+    const val INTERVAL = 2000L
+    const val FASTEST_INTERVAL = 1000L
     const val DELAY = 2000L
     const val PACKAGE = "package"
     const val TIME_IMMORTAL = -2
@@ -45,6 +45,7 @@ object Constants {
     // Unique
     const val REQUEST_PERMISSION_CODE = 10
 
-    // One second
+    // Delay second
     const val ONE_SECOND = 1000L
+    const val ONE_POINT_FIVE_SECONDS = 1500L
 }
