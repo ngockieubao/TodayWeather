@@ -10,74 +10,86 @@
             type="com.example.todayweather.data.model.Hourly" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:background="@drawable/corner_layout"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:weightSum="6">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/ln_hourly_detail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            app:setTemp="@{item.temp}"
-            tools:text="30°" />
-
-        <TextView
-            style="@style/txt_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            app:setPop="@{item.pop}"
-            tools:text="12%" />
-
-        <ImageView
-            android:id="@+id/rcv_hourly_imgView_ic_status"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/todo"
+            android:layout_height="match_parent"
             android:gravity="center"
-            app:setIcon="@{item.weather[0].icon}"
-            tools:srcCompat="@drawable/ic_cloud" />
+            android:orientation="vertical"
+            android:paddingHorizontal="5dp"
+            android:weightSum="6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:background="@drawable/corner_layout">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            app:setWindSpeed="@{item.wind_speed}"
-            tools:text="15 km/h" />
+            <TextView
+                style="@style/txt_nav_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                app:setTemp="@{item.temp}"
+                tools:text="30°" />
 
-        <ImageView
-            android:id="@+id/rcv_hourly_imgView_ic_windSpeed"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginVertical="8dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/todo"
-            android:gravity="center_vertical"
-            android:tint="@color/white"
-            app:srcCompat="@drawable/ic_cursor"
-            tools:ignore="UseAppTint" />
+            <TextView
+                style="@style/txt_nav_daily_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                app:setPop="@{item.pop}"
+                tools:text="12%" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            app:setTime="@{item.dt}"
-            tools:text="16:00" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/rcv_hourly_imgView_ic_status"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                android:scaleType="center"
+                app:setIcon="@{item.weather[0].icon}"
+                tools:srcCompat="@drawable/ic_cloud" />
+
+            <TextView
+                style="@style/txt_nav_daily_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                app:setWindSpeed="@{item.wind_speed}"
+                tools:text="15 km/h" />
+
+            <ImageView
+                android:id="@+id/rcv_hourly_imgView_ic_windSpeed"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginVertical="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                android:gravity="center_vertical"
+                android:tint="@color/grey"
+                app:srcCompat="@drawable/ic_cursor"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                style="@style/txt_nav_daily_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                app:setTime="@{item.dt}"
+                tools:text="16:00" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

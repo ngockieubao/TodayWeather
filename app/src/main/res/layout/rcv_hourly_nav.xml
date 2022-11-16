@@ -27,9 +27,9 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgView_hourly_nav_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#73FFFFFF"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/color_bg_icon"
                 android:foregroundGravity="center_horizontal"
                 android:scaleType="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +41,10 @@
 
             <TextView
                 android:id="@+id/tv_hourly_nav_humidity"
+                style="@style/txt_nav_daily_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#2196F3"
-                android:textSize="10sp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgView_hourly_nav_icon"
@@ -64,7 +63,7 @@
 
             <TextView
                 android:id="@+id/tv_hourly_nav_time"
-                style="@style/txt_title_white"
+                style="@style/txt_nav_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +73,7 @@
 
             <TextView
                 android:id="@+id/tv_hourly_nav_temp"
-                style="@style/txt_title_white"
+                style="@style/txt_nav_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,8 +83,8 @@
                 tools:text="24°C - Cảm Giác Như: 24°C" />
 
             <TextView
-                android:id="@+id/tv_hourly_nav_status_above"
-                style="@style/txt_grey"
+                android:id="@+id/tv_hourly_nav_status"
+                style="@style/txt_nav_daily_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,16 +93,36 @@
                 tools:text="Mây đen u ám." />
 
             <TextView
-                android:id="@+id/tv_hourly_nav_status_below"
-                style="@style/txt_grey"
+                android:id="@+id/tv_hourly_nav_status_wind"
+                style="@style/txt_nav_hourly_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_status_above"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_status"
                 app:setWindStatusDescription="@{item.wind_deg}"
                 app:setWindStatusSpeed="@{item.wind_speed}"
                 tools:text="Gió: 7km/h • Bắc - Đông Bắc" />
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_status_humidity"
+                style="@style/txt_nav_hourly_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_status_wind"
+                app:setHumidity="@{item.pop}"
+                tools:text="Độ ẩm: 70%" />
+
+            <TextView
+                android:id="@+id/tv_hourly_nav_status_dew_point"
+                style="@style/txt_nav_hourly_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hourly_nav_status_humidity"
+                app:setDewPoint="@{item.dew_point}"
+                tools:text="Điểm sương: 22°C" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -42,6 +42,27 @@ object Utils {
             String.format(context.getString(R.string.string_empty))
     }
 
+    fun formatUltraviolet(context: Context, input: Double): String {
+        val popFormat = String.format(context.getString(R.string.fm_uv), input)
+        return if (input == 0.0)
+        // String.format(context.getString(R.string.string_zero))
+            "0"
+        else
+            popFormat
+    }
+
+    fun formatHumidity(context: Context, pop: Double): String {
+        val popFormat = String.format(context.getString(R.string.fm_humidity), pop.times(100))
+        return if (pop != 0.0)
+            popFormat
+        else
+            String.format(context.getString(R.string.string_empty))
+    }
+
+    fun formatDewPoint(context: Context, temp: Double): String {
+        return String.format(context.getString(R.string.fm_dew_point), temp)
+    }
+
     fun formatTempFeelsLike(context: Context, temp: Double, tempFeelsLike: Double): String {
         val tempFormat = String.format(context.getString(R.string.fm_temp), temp)
         val tempFeelsLikeFormat = String.format(context.getString(R.string.fm_temp), tempFeelsLike)
@@ -51,7 +72,7 @@ object Utils {
     fun formatTempFeelsLikeFah(context: Context, temp: Double, tempFeelsLike: Double): String {
         val tempFormat = String.format(context.getString(R.string.fm_temp), convertCelsiusToFahrenheit(temp))
         val tempFeelsLikeFormat = String.format(context.getString(R.string.fm_temp), convertCelsiusToFahrenheit(tempFeelsLike))
-        return String.format(context.getString(R.string.fm_temp_feels_like), tempFormat, tempFeelsLikeFormat)
+        return String.format(context.getString(R.string.fm_temp_feels_like_fah), tempFormat, tempFeelsLikeFormat)
     }
 
     fun formatTempMaxMin(context: Context, tempMax: Double, tempMin: Double): String {

@@ -48,6 +48,7 @@
     <string name="fm_string">%s</string>
 
     <string name="fm_pop">%.0f%%</string>
+    <string name="fm_uv">%.0f</string>
     <string name="fm_temp">%.0f</string>
 
     <string name="fm_temp_celsius">%.0f°C</string>
@@ -68,11 +69,14 @@
     <string name="fm_day_date">%s, %s</string>
     <string name="fm_status_home">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h.</string>
     <string name="fm_status_home_fah">Hôm nay - %s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
+    <string name="fm_humidity">Độ ẩm: %.0f%%</string>
+    <string name="fm_dew_point">Điểm sương: %.0f°C</string>
 
     <string name="fm_status_daily_nav">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
     <string name="fm_status_daily_nav_fah">%s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
 
     <string name="string_empty" />
+    <string name="string_zero">0</string>
 
     <!-- string hard -->
     <string name="notification_waiting_get_weather_information">Đang lấy thông tin thời tiết</string>

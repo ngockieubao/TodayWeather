@@ -18,12 +18,25 @@ fun ImageView.setIcon(url: String?) {
 
 @BindingAdapter("setTemp")
 fun TextView.setTemp(temp: Double) {
+//    if (status == "celcius")
     this.text = Utils.formatTemp(context, temp)
+//    if (status == "fah")
+//        this.text = Utils.formatTempFah(context, temp)
+}
+
+@BindingAdapter("setDewPoint")
+fun TextView.setDewPoint(input: Double) {
+    this.text = Utils.formatDewPoint(context, input)
 }
 
 @BindingAdapter("setPop")
 fun TextView.setPop(pop: Double) {
     this.text = Utils.formatPop(context, pop)
+}
+
+@BindingAdapter("setHumidity")
+fun TextView.setHumidity(input: Double) {
+    this.text = Utils.formatHumidity(context, input)
 }
 
 @BindingAdapter("setWindSpeed")

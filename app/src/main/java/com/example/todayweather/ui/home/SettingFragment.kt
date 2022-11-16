@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todayweather.R
@@ -35,6 +36,21 @@ class SettingFragment : Fragment() {
 
         binding.imageButtonBack.setOnClickListener {
             this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
+        }
+
+        binding.radioGroupConvert.setOnCheckedChangeListener { radioGroup, _ ->
+            when (radioGroup.checkedRadioButtonId) {
+                R.id.radio_btn_celcius -> {
+                    weatherViewModel.setStatusConvert("celcius")
+                    Toast.makeText(requireActivity(), "Celcius", Toast.LENGTH_SHORT).show()
+                    this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
+                }
+                R.id.radio_btn_fahrenheit -> {
+                    weatherViewModel.setStatusConvert("fah")
+                    Toast.makeText(requireActivity(), "Fah", Toast.LENGTH_SHORT).show()
+                    this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
+                }
+            }
         }
     }
 }

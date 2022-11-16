@@ -63,6 +63,9 @@ class WeatherViewModel(
     private val _mCurrentTime = MutableLiveData<String?>()
     val mCurrentTime: LiveData<String?> get() = _mCurrentTime
 
+    private val _mConvert = MutableLiveData<String?>()
+    val mConvert: LiveData<String?> get() = _mConvert
+
     private lateinit var currentTime: Date
 
     private lateinit var data: WeatherGetApi
@@ -70,6 +73,10 @@ class WeatherViewModel(
     init {
         createLocationRequest()
         createLocationCallback()
+    }
+
+    fun setStatusConvert(status: String) {
+        _mConvert.value = status
     }
 
     fun loadApi(lat: Double, lon: Double) {
@@ -121,6 +128,16 @@ class WeatherViewModel(
         _listCurrent.value = weatherData.current
         val listDetail = mutableListOf<DetailHomeModel>()
 
+//        if (_mConvert.value == "celcius")
+        addDataDetail(listDetail)
+//        else if (_mConvert.value == "fah")
+//            addDataConvert(listDetail)
+
+        listDataDetail.postValue(listDetail)
+    }
+
+    @SuppressLint("StringFormatMatches")
+    private fun addDataDetail(listDetail: MutableList<DetailHomeModel>) {
         val index1 = DetailHomeModel(
             1,
             context.getString(R.string.feels_like_string),
@@ -162,8 +179,54 @@ class WeatherViewModel(
             context.getString(R.string.pressure, _listCurrent.value?.pressure)
         )
         listDetail.add(index6)
+    }
 
-        listDataDetail.postValue(listDetail)
+    private fun addDataConvert(listDetail: MutableList<DetailHomeModel>) {
+        val index1 = DetailHomeModel(
+            1,
+            context.getString(R.string.feels_like_string),
+            context.getString(R.string.fm_temp_celsius,
+                _listCurrent.value?.feels_like?.let { Utils.convertCelsiusToFahrenheit(it) })
+        )
+        listDetail.add(index1)
+
+        val index2 = DetailHomeModel(
+            2,
+            context.getString(R.string.humidity_string),
+            context.getString(R.string.humidity, _listCurrent.value?.humidity)
+        )
+        listDetail.add(index2)
+
+        val index3 = DetailHomeModel(
+            3,
+            context.getString(R.string.uvi_string),
+            context.getString(R.string.uvi, _listCurrent.value?.uvi)
+        )
+        listDetail.add(index3)
+
+        val index4 = DetailHomeModel(
+            4,
+            context.getString(R.string.visibility_string),
+            context.getString(
+                R.string.visibility,
+                Utils.divThousand(_listCurrent.value?.visibility!!)
+            )
+        )
+        listDetail.add(index4)
+
+        val index5 = DetailHomeModel(
+            5,
+            context.getString(R.string.dew_point_string),
+            context.getString(R.string.dew_point, _listCurrent.value?.dew_point)
+        )
+        listDetail.add(index5)
+
+        val index6 = DetailHomeModel(
+            6,
+            context.getString(R.string.pressure_string),
+            context.getString(R.string.pressure, _listCurrent.value?.pressure)
+        )
+        listDetail.add(index6)
     }
 
     fun getLastLocation() {

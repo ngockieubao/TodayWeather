@@ -230,14 +230,13 @@
                         style="@style/txt_celcius_min_max"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:layout_marginStart="5dp"
                         android:layout_marginTop="33dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_home_celcius_slash"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
                         app:setTemp="@{item.temp.min}"
-                        tools:text="@string/home_temp_min" />
+                        tools:text="20°C" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
