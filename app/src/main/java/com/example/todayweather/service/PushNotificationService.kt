@@ -12,7 +12,6 @@ import android.location.Location
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.example.todayweather.R
 import com.example.todayweather.data.model.WeatherGetApi
@@ -21,9 +20,6 @@ import com.example.todayweather.util.Constants
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.IOException
 
 @Suppress("DEPRECATION")
@@ -68,8 +64,8 @@ class PushNotificationService : Service() {
             notificationManager.createNotificationChannel(mChannel)
         }
         startPushNotification(startId)
-
         getLastLocation(startId)
+
         return START_STICKY
     }
 

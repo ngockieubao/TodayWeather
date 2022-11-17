@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
@@ -26,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var hourlyAdapter: HourlyAdapter
     private var getBundle: City? = null
+    private var bundle: Bundle? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +38,8 @@ class HomeFragment : Fragment() {
         bindingHome.progressLoading.indeterminateDrawable = WanderingCubes()
         detailAdapter = DetailAdapter()
         hourlyAdapter = HourlyAdapter()
+        getBundle = arguments?.getParcelable(Constants.KEY_BUNDLE_SELECT_CITY)
+        bundle = bundleOf("lat_lon" to getBundle)
 
         lifecycle.coroutineScope.launch {
             weatherViewModel.getCurrentTime()
@@ -65,7 +69,7 @@ class HomeFragment : Fragment() {
         }
         weatherViewModel.listDaily.observe(this.viewLifecycleOwner) {
             if (it == null) return@observe
-            else bindingHome.item = it
+            else bindingHome.daily = it
         }
 
         weatherViewModel.listDataDetail.observe(this.viewLifecycleOwner) {
@@ -98,7 +102,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
             imageButtonSetting.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_settingFragment, bundle)
             }
             tvHomeStatusDescription.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_dailyFragment)
@@ -118,12 +122,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun searchCity() {
-        getBundle = arguments?.getParcelable(Constants.KEY_BUNDLE_SELECT_CITY)
         if (getBundle == null) return
         else {
             weatherViewModel.showLocation(getBundle!!.name)
             // Pass lat-lon args after allow position
-            weatherViewModel.loadApi(getBundle!!.lat, getBundle!!.lon)
+            if (weatherViewModel.mFirstInstall)
+                weatherViewModel.loadApiFirst(getBundle!!.lat, getBundle!!.lon)
+            else
+                weatherViewModel.loadApi(getBundle!!.lat, getBundle!!.lon)
         }
     }
 

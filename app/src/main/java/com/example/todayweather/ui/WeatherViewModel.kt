@@ -18,6 +18,7 @@ import com.example.todayweather.data.WeatherRepository
 import com.example.todayweather.data.model.*
 import com.example.todayweather.network.WeatherApi
 import com.example.todayweather.util.Constants
+import com.example.todayweather.util.SharedPrefs
 import com.example.todayweather.util.Utils
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
@@ -63,76 +64,100 @@ class WeatherViewModel(
     private val _mCurrentTime = MutableLiveData<String?>()
     val mCurrentTime: LiveData<String?> get() = _mCurrentTime
 
-    private val _mConvert = MutableLiveData<String?>()
-    val mConvert: LiveData<String?> get() = _mConvert
-
     private lateinit var currentTime: Date
-
     private lateinit var data: WeatherGetApi
+
+    var mStatus = MutableLiveData<String?>(Utils.status)
+    var mFirstInstall = true
 
     init {
         createLocationRequest()
         createLocationCallback()
+        SharedPrefs
     }
 
-    fun setStatusConvert(status: String) {
-        _mConvert.value = status
+    fun loadApiFirst(lat: Double, lon: Double) {
+        viewModelScope.launch {
+            try {
+                _networkError.value = false
+                data = callApi(lat = lat, lon = lon)
+                weatherRepository.insertWeather(data)
+                getWeatherDatabase()
+            } catch (ex: IOException) {
+                _networkError.value = true
+                Toast.makeText(context, "$ex", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     fun loadApi(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
                 _networkError.value = false
-                callApi(lat, lon)
+                mStatus.value = SharedPrefs.instance.getString(Constants.SHARED_PREFS)
+
+                if (mStatus.value == Constants.CELCIUS)
+                    data = callApi(lat = lat, lon = lon)
+                if (mStatus.value == Constants.FAHRENHEIT)
+                    data = callApiImperial(lat = lat, lon = lon, units = Constants.URL_UNITS_VALUE_IMPERIAL)
+
                 weatherRepository.insertWeather(data)
                 getWeatherDatabase()
             } catch (ex: IOException) {
                 _networkError.value = true
                 getWeatherDatabase()
                 Log.d(TAG, "loadAPI: network err - $ex")
+                Toast.makeText(context, "$ex", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private suspend fun callApi(lat: Double, lon: Double) {
-        data = WeatherApi.retrofitService.getProperties(lat, lon)
+    private suspend fun callApi(lat: Double, lon: Double): WeatherGetApi {
+        return WeatherApi.retrofitService.getProperties(lat = lat, lon = lon)
+    }
+
+    private suspend fun callApiImperial(lat: Double, lon: Double, units: String): WeatherGetApi {
+        return WeatherApi.retrofitService.getProperties(lat = lat, lon = lon, units = units)
     }
 
     // Read data from database
     private suspend fun getWeatherDatabase() {
         val weatherData = weatherRepository.getWeatherApi()
-        populateDailyHourlyData(weatherData)
+        populateWeatherData(weatherData)
     }
 
-    private fun populateDailyHourlyData(weatherData: WeatherGetApi) {
+    private fun populateWeatherData(weatherData: WeatherGetApi) {
         try {
             // display data detail HomeFragment
-            addDataDetail(weatherData)
-
-            // display data DailyFragment
-            val listDaily = weatherData.daily
-            _listDailyNav.postValue(listDaily)
-
-            // get first element of daily List
-            _listDaily.postValue(listDaily.first())
-
-            // display data HourlyFragment
-            val listHourly = weatherData.hourly
-            _listHourlyNav.postValue(listHourly)
+            populateDataDetail(weatherData)
+            populateDataDaily(weatherData)
+            populateDataHourly(weatherData)
         } catch (ex: Exception) {
             Log.d(TAG, "populateDailyHourlyData: failed - $ex")
         }
     }
 
-    private fun addDataDetail(weatherData: WeatherGetApi) {
-        _listCurrent.value = weatherData.current
+    private fun populateDataHourly(weatherData: WeatherGetApi) {
+        val listHourly = weatherData.hourly
+        _listHourlyNav.postValue(listHourly)
+    }
+
+    private fun populateDataDaily(weatherData: WeatherGetApi) {
+        val listDaily = weatherData.daily
+
+        _listDailyNav.postValue(listDaily)
+        // get first element of daily List
+        _listDaily.postValue(listDaily.first())
+    }
+
+    private fun populateDataDetail(weatherData: WeatherGetApi) {
         val listDetail = mutableListOf<DetailHomeModel>()
+        _listCurrent.value = weatherData.current
 
-//        if (_mConvert.value == "celcius")
-        addDataDetail(listDetail)
-//        else if (_mConvert.value == "fah")
-//            addDataConvert(listDetail)
-
+        if (mStatus.value == Constants.CELCIUS)
+            addDataDetail(listDetail)
+        if (mStatus.value == Constants.FAHRENHEIT)
+            addDataDetailConvert(listDetail)
         listDataDetail.postValue(listDetail)
     }
 
@@ -181,12 +206,11 @@ class WeatherViewModel(
         listDetail.add(index6)
     }
 
-    private fun addDataConvert(listDetail: MutableList<DetailHomeModel>) {
+    private fun addDataDetailConvert(listDetail: MutableList<DetailHomeModel>) {
         val index1 = DetailHomeModel(
             1,
             context.getString(R.string.feels_like_string),
-            context.getString(R.string.fm_temp_celsius,
-                _listCurrent.value?.feels_like?.let { Utils.convertCelsiusToFahrenheit(it) })
+            context.getString(R.string.fm_temp_fah, _listCurrent.value?.feels_like)
         )
         listDetail.add(index1)
 
@@ -200,24 +224,21 @@ class WeatherViewModel(
         val index3 = DetailHomeModel(
             3,
             context.getString(R.string.uvi_string),
-            context.getString(R.string.uvi, _listCurrent.value?.uvi)
+            context.getString(R.string.uvi, _listCurrent.value?.uvi?.let { Utils.formatUltraviolet(it) })
         )
         listDetail.add(index3)
 
         val index4 = DetailHomeModel(
             4,
             context.getString(R.string.visibility_string),
-            context.getString(
-                R.string.visibility,
-                Utils.divThousand(_listCurrent.value?.visibility!!)
-            )
+            context.getString(R.string.visibility_mile, _listCurrent.value?.visibility?.let { Utils.convertMeterToMile(it) })
         )
         listDetail.add(index4)
 
         val index5 = DetailHomeModel(
             5,
             context.getString(R.string.dew_point_string),
-            context.getString(R.string.dew_point, _listCurrent.value?.dew_point)
+            context.getString(R.string.dew_point_fah, _listCurrent.value?.dew_point)
         )
         listDetail.add(index5)
 
@@ -257,7 +278,13 @@ class WeatherViewModel(
             val geocoder = Geocoder(context)
             val position = geocoder.getFromLocation(lat, lon, 1)
 
-            loadApi(lat, lon)
+            if (mFirstInstall) {
+                loadApiFirst(lat, lon)
+                mFirstInstall = false
+                mStatus.value = Constants.CELCIUS
+            } else {
+                loadApi(lat, lon)
+            }
             getPosition = position[0].getAddressLine(0)
             showLocation(Utils.formatLocation(context, getPosition))
         } catch (e: Exception) {
@@ -343,7 +370,7 @@ class WeatherViewModel(
         }
     }
 
-    private fun locationChange() {
+    fun locationChange() {
         createLocationRequest()
         createLocationCallback()
         startLocationUpdates()

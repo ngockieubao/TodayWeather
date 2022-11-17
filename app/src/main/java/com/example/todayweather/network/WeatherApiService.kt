@@ -21,7 +21,7 @@ interface WeatherApiService {
         @Query(Constants.URL_EXCLUDE) exclude: String = Constants.URL_EXCLUDE_VALUE,
         @Query(Constants.URL_APPID) appid: String = Constants.URL_APPID_VALUE,
         @Query(Constants.URL_LANG) lang: String = Constants.URL_LANG_VALUE,
-        @Query(Constants.URL_UNITS) units: String = Constants.URL_UNITS_VALUE
+        @Query(Constants.URL_UNITS) units: String = Constants.URL_UNITS_VALUE_DEFAULT
     ): WeatherGetApi
 }
 

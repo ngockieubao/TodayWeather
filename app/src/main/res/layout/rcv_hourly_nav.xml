@@ -17,13 +17,23 @@
         android:paddingHorizontal="17dp"
         android:paddingVertical="8dp">
 
+        <TextView
+            android:id="@+id/tv_header_hourly_nav"
+            style="@style/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setDate="@{item.dt}"
+            tools:text="@string/today" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_hourly_nav_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout_content_hourly_rcv">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgView_hourly_nav_icon"
@@ -37,29 +47,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:setIcon="@{item.weather[0].icon}"
                 app:shapeAppearanceOverlay="@style/RoundImage"
-                app:srcCompat="@drawable/ic_cloud" />
-
-            <TextView
-                android:id="@+id/tv_hourly_nav_humidity"
-                style="@style/txt_nav_daily_blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgView_hourly_nav_icon"
-                app:setPop="@{item.pop}"
-                tools:ignore="SmallSp"
-                tools:text="100%" />
+                app:srcCompat="@drawable/ic_cloud"
+                tools:ignore="ImageContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="330dp"
+            android:id="@+id/constraintLayout_content_hourly_rcv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/constraintLayout_hourly_nav_left"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/tv_header_hourly_nav">
 
             <TextView
                 android:id="@+id/tv_hourly_nav_time"

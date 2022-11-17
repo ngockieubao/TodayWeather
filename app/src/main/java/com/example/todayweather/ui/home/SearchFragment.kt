@@ -13,6 +13,7 @@ import com.example.todayweather.R
 import com.example.todayweather.data.model.City
 import com.example.todayweather.databinding.FragmentSearchBinding
 import com.example.todayweather.util.Constants
+import com.example.todayweather.util.SharedPrefs
 import com.example.todayweather.util.Utils
 import com.example.todayweather.util.Utils.fromJsonToLocation
 import java.util.*
@@ -23,6 +24,8 @@ class SearchFragment : Fragment(), SelectCity {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var searchListAdapter: SearchListAdapter
     private var listCity = ArrayList<City>()
+    private val keyLat: String = Constants.SHARED_PREFS_LAT
+    private val keyLon: String = Constants.SHARED_PREFS_LON
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class SearchFragment : Fragment(), SelectCity {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         // Read list cities json
-        listCity = Utils.readJSONFromAsset(requireContext())?.fromJsonToLocation()!!
+        listCity = Utils.readJsonFromAsset(requireActivity())?.fromJsonToLocation()!!
         searchListAdapter = SearchListAdapter(this)
 
         binding.citySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -40,7 +43,6 @@ class SearchFragment : Fragment(), SelectCity {
                 Toast.makeText(requireActivity(), getString(R.string.searching), Toast.LENGTH_SHORT).show()
                 return true
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     filter(newText)
@@ -65,6 +67,10 @@ class SearchFragment : Fragment(), SelectCity {
 
     override fun selectItem(city: City?) {
         val bundle = bundleOf(Constants.KEY_BUNDLE_SELECT_CITY to city)
+        if (city != null) {
+            SharedPrefs.instance.putString(keyLat, city.lat.toString())
+            SharedPrefs.instance.putString(keyLon, city.lon.toString())
+        }
         findNavController().navigate(R.id.action_searchFragment_to_homeFragment, bundle)
     }
 

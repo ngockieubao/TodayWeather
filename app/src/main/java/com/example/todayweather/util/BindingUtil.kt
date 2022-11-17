@@ -5,7 +5,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.todayweather.data.model.Current
 import com.example.todayweather.data.model.Daily
+import com.example.todayweather.util.Utils.status
+
+private val statusUnitConversion: String? = status
 
 @BindingAdapter("setIcon")
 fun ImageView.setIcon(url: String?) {
@@ -18,15 +22,22 @@ fun ImageView.setIcon(url: String?) {
 
 @BindingAdapter("setTemp")
 fun TextView.setTemp(temp: Double) {
-//    if (status == "celcius")
-    this.text = Utils.formatTemp(context, temp)
-//    if (status == "fah")
-//        this.text = Utils.formatTempFah(context, temp)
+    if (statusUnitConversion == Constants.CELCIUS)
+        this.text = Utils.formatTemp(context, temp)
+    if (statusUnitConversion == Constants.FAHRENHEIT)
+        this.text = Utils.formatTempFah(context, temp)
+    else
+        this.text = Utils.formatTemp(context, temp)
 }
 
 @BindingAdapter("setDewPoint")
 fun TextView.setDewPoint(input: Double) {
-    this.text = Utils.formatDewPoint(context, input)
+    if (statusUnitConversion == Constants.CELCIUS)
+        this.text = Utils.formatDewPoint(context, input)
+    if (statusUnitConversion == Constants.FAHRENHEIT)
+        this.text = Utils.formatDewPointFah(context, input)
+    else
+        this.text = Utils.formatDewPoint(context, input)
 }
 
 @BindingAdapter("setPop")
@@ -41,7 +52,12 @@ fun TextView.setHumidity(input: Double) {
 
 @BindingAdapter("setWindSpeed")
 fun TextView.setWindSpeed(windSpeed: Double) {
-    this.text = Utils.formatWindSpeed(context, windSpeed)
+    if (statusUnitConversion == Constants.CELCIUS)
+        this.text = Utils.formatWindSpeed(context, windSpeed)
+    if (statusUnitConversion == Constants.FAHRENHEIT)
+        this.text = Utils.formatWindSpeedMile(context, windSpeed)
+    else
+        this.text = Utils.formatWindSpeed(context, windSpeed)
 }
 
 @SuppressLint("SimpleDateFormat")
@@ -52,17 +68,27 @@ fun TextView.setTime(dt: Long) {
 
 @BindingAdapter("setDate")
 fun TextView.setDate(dt: Long) {
-    this.text = Utils.formatDate(context, dt)
+    this.text = Utils.formatDateFull(context, dt)
 }
 
 @BindingAdapter(value = ["setTempMax", "setTempMin"])
 fun TextView.setTempMaxMin(tempMax: Double, tempMin: Double) {
-    this.text = Utils.formatTempMaxMin(context, tempMax, tempMin)
+    if (statusUnitConversion == Constants.CELCIUS)
+        this.text = Utils.formatTempMaxMin(context, tempMax, tempMin)
+    if (statusUnitConversion == Constants.FAHRENHEIT)
+        this.text = Utils.formatTempMaxMinFah(context, tempMax, tempMin)
+    else
+        this.text = Utils.formatTempMaxMin(context, tempMax, tempMin)
 }
 
 @BindingAdapter(value = ["setTempCurrent", "setFeelsLike"])
 fun TextView.setTempFeelsLike(temp: Double, feelsLike: Double) {
-    this.text = Utils.formatTempFeelsLike(context, temp, feelsLike)
+    if (statusUnitConversion == Constants.CELCIUS)
+        this.text = Utils.formatTempFeelsLike(context, temp, feelsLike)
+    if (statusUnitConversion == Constants.FAHRENHEIT)
+        this.text = Utils.formatTempFeelsLikeFah(context, temp, feelsLike)
+    else
+        this.text = Utils.formatTempFeelsLike(context, temp, feelsLike)
 }
 
 @BindingAdapter("setStatus")
@@ -72,7 +98,12 @@ fun TextView.setStatus(description: String) {
 
 @BindingAdapter(value = ["setWindStatusSpeed", "setWindStatusDescription"])
 fun TextView.setWindStatus(windSpeed: Double, windDeg: Int) {
-    this.text = Utils.formatWind(context, windSpeed, windDeg)
+    if (statusUnitConversion == Constants.CELCIUS)
+        this.text = Utils.formatWind(context, windSpeed, windDeg)
+    if (statusUnitConversion == Constants.FAHRENHEIT)
+        this.text = Utils.formatWindMile(context, windSpeed, windDeg)
+    else
+        this.text = Utils.formatWind(context, windSpeed, windDeg)
 }
 
 @BindingAdapter("setHomeStatusAbove")
@@ -86,12 +117,15 @@ fun TextView.setHomeStatusAbove(daily: Daily?) {
     }
 }
 
-@BindingAdapter("setHomeStatusBelow")
-fun TextView.setHomeStatusBelow(daily: Daily?) {
+@BindingAdapter(value = ["setHomeStatusBelow", "setHomeStatusBelowFah"])
+fun TextView.setHomeStatusBelow(current: Current?, daily: Daily?) {
     try {
-        this.text = Utils.formatHomeStatusBelow(
-            context, daily!!
-        )
+        if (statusUnitConversion == Constants.CELCIUS)
+            this.text = Utils.formatHomeStatusBelow(context, current!!, daily!!)
+        if (statusUnitConversion == Constants.FAHRENHEIT)
+            this.text = Utils.formatHomeStatusBelowFah(context, current!!, daily!!)
+        else
+            this.text = Utils.formatHomeStatusBelow(context, current!!, daily!!)
     } catch (ex: NullPointerException) {
         LogUtils.logDebug("null", ex.toString())
     }
@@ -100,9 +134,12 @@ fun TextView.setHomeStatusBelow(daily: Daily?) {
 @BindingAdapter("setDailyNavStatus")
 fun TextView.setDailyNavStatus(daily: Daily?) {
     try {
-        this.text = Utils.formatDailyNavStatus(
-            context, daily!!
-        )
+        if (statusUnitConversion == Constants.CELCIUS)
+            this.text = Utils.formatDailyNavStatus(context, daily!!)
+        if (statusUnitConversion == Constants.FAHRENHEIT)
+            this.text = Utils.formatDailyNavStatusFah(context, daily!!)
+        else
+            this.text = Utils.formatDailyNavStatus(context, daily!!)
     } catch (ex: NullPointerException) {
         LogUtils.logDebug("null", ex.toString())
     }

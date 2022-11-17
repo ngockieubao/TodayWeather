@@ -6,11 +6,15 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.example.todayweather.ui.WeatherViewModel" />
+
+        <variable
             name="current"
             type="com.example.todayweather.data.model.Current" />
 
         <variable
-            name="item"
+            name="daily"
             type="com.example.todayweather.data.model.Daily" />
     </data>
 
@@ -211,7 +215,7 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_home_celcius"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
-                        app:setTemp="@{item.temp.max}"
+                        app:setTemp="@{daily.temp.max}"
                         tools:text="32°C" />
 
                     <TextView
@@ -235,7 +239,7 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_home_celcius_slash"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
-                        app:setTemp="@{item.temp.min}"
+                        app:setTemp="@{daily.temp.min}"
                         tools:text="20°C" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -246,7 +250,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout_temp"
-                    app:setDate="@{item.dt}"
+                    app:setDate="@{daily.dt}"
                     tools:text="@string/home_date" />
 
                 <TextView
@@ -269,7 +273,7 @@
                     android:layout_marginStart="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_home_location"
-                    app:setHomeStatusAbove="@{item}"
+                    app:setHomeStatusAbove="@{daily}"
                     tools:text="@string/home_status" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -290,7 +294,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/imgView_home_nav"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:setHomeStatusBelow="@{item}"
+                        app:setHomeStatusBelow="@{current}"
+                        app:setHomeStatusBelowFah="@{daily}"
                         tools:text="@string/home_status_description" />
 
                     <ImageView

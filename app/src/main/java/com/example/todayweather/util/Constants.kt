@@ -34,7 +34,8 @@ object Constants {
     const val URL_EXCLUDE_VALUE = "minutely,alert"
     const val URL_APPID_VALUE = "53fbf527d52d4d773e828243b90c1f8e"
     const val URL_LANG_VALUE = "vi"
-    const val URL_UNITS_VALUE = "metric"
+    const val URL_UNITS_VALUE_DEFAULT = "metric"
+    const val URL_UNITS_VALUE_IMPERIAL = "imperial"
     const val URL_ICON_PREFIX = "https://openweathermap.org/img/wn/"
     const val URL_ICON_SUFFIX = "@2x.png"
 
@@ -48,4 +49,11 @@ object Constants {
     // Delay second
     const val ONE_SECOND = 1000L
     const val ONE_POINT_FIVE_SECONDS = 1500L
+
+    // SharedPrefs
+    const val SHARED_PREFS = "shared_prefs"
+    const val SHARED_PREFS_LAT = "lat"
+    const val SHARED_PREFS_LON = "lon"
+    const val CELCIUS = "celcius"
+    const val FAHRENHEIT = "fah"
 }

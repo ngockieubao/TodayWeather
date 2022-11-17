@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.todayweather.R
 import com.example.todayweather.data.model.City
+import com.example.todayweather.data.model.Current
 import com.example.todayweather.data.model.Daily
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -14,9 +15,17 @@ import java.util.*
 import kotlin.math.roundToInt
 
 object Utils {
+
+    var status = SharedPrefs.instance.getString(Constants.SHARED_PREFS)
+
     fun formatCurrentTime(context: Context, time: Date): String {
         val timeFormat = SimpleDateFormat(context.getString(R.string.fm_time), Locale.getDefault())
         return timeFormat.format(time)
+    }
+
+    fun formatCurrentDate(context: Context, input: Date): String {
+        val timeFormat = SimpleDateFormat(context.getString(R.string.fm_date), Locale.getDefault())
+        return timeFormat.format(input)
     }
 
     fun formatTime(context: Context, time: Long): String {
@@ -26,6 +35,12 @@ object Utils {
     }
 
     fun formatDate(context: Context, date: Long): String {
+        val getDate = Date(date.times(1000))
+        val dateFormat = SimpleDateFormat(context.getString(R.string.fm_date), Locale.getDefault())
+        return dateFormat.format(getDate)
+    }
+
+    fun formatDateFull(context: Context, date: Long): String {
         val dateFormat = Date(date.times(1000))
         val dayOfWeek = SimpleDateFormat(context.getString(R.string.fm_day_of_week), Locale(Constants.LOCALE_LANG))
         val dayOfWeekFormat = dayOfWeek.format(dateFormat)
@@ -36,19 +51,14 @@ object Utils {
 
     fun formatPop(context: Context, pop: Double): String {
         val popFormat = String.format(context.getString(R.string.fm_pop), pop.times(100))
-        return if (pop != 0.0)
-            popFormat
-        else
-            String.format(context.getString(R.string.string_empty))
+        return if (pop != 0.0) popFormat
+        else String.format(context.getString(R.string.string_zero_percent))
+
     }
 
-    fun formatUltraviolet(context: Context, input: Double): String {
-        val popFormat = String.format(context.getString(R.string.fm_uv), input)
-        return if (input == 0.0)
-        // String.format(context.getString(R.string.string_zero))
-            "0"
-        else
-            popFormat
+    fun formatUltraviolet(input: Double): String {
+        return if (input == 0.0) "0"
+        else input.toString()
     }
 
     fun formatHumidity(context: Context, pop: Double): String {
@@ -56,11 +66,15 @@ object Utils {
         return if (pop != 0.0)
             popFormat
         else
-            String.format(context.getString(R.string.string_empty))
+            String.format(context.getString(R.string.fm_humidity_zero_percent))
     }
 
     fun formatDewPoint(context: Context, temp: Double): String {
         return String.format(context.getString(R.string.fm_dew_point), temp)
+    }
+
+    fun formatDewPointFah(context: Context, temp: Double): String {
+        return String.format(context.getString(R.string.fm_dew_point_fah), temp)
     }
 
     fun formatTempFeelsLike(context: Context, temp: Double, tempFeelsLike: Double): String {
@@ -70,8 +84,8 @@ object Utils {
     }
 
     fun formatTempFeelsLikeFah(context: Context, temp: Double, tempFeelsLike: Double): String {
-        val tempFormat = String.format(context.getString(R.string.fm_temp), convertCelsiusToFahrenheit(temp))
-        val tempFeelsLikeFormat = String.format(context.getString(R.string.fm_temp), convertCelsiusToFahrenheit(tempFeelsLike))
+        val tempFormat = String.format(context.getString(R.string.fm_temp), temp)
+        val tempFeelsLikeFormat = String.format(context.getString(R.string.fm_temp), tempFeelsLike)
         return String.format(context.getString(R.string.fm_temp_feels_like_fah), tempFormat, tempFeelsLikeFormat)
     }
 
@@ -82,9 +96,9 @@ object Utils {
     }
 
     fun formatTempMaxMinFah(context: Context, tempMax: Double, tempMin: Double): String {
-        val tempMaxFormat = String.format(context.getString(R.string.fm_temp), convertCelsiusToFahrenheit(tempMax))
-        val tempMinFormat = String.format(context.getString(R.string.fm_temp), convertCelsiusToFahrenheit(tempMin))
-        return String.format(context.getString(R.string.fm_temp_max_min), tempMaxFormat, tempMinFormat)
+        val tempMaxFormat = String.format(context.getString(R.string.fm_temp), tempMax)
+        val tempMinFormat = String.format(context.getString(R.string.fm_temp), tempMin)
+        return String.format(context.getString(R.string.fm_temp_max_min_fah), tempMaxFormat, tempMinFormat)
     }
 
     fun formatTemp(context: Context, temp: Double): String {
@@ -92,7 +106,7 @@ object Utils {
     }
 
     fun formatTempFah(context: Context, temp: Double): String {
-        return String.format(context.getString(R.string.fm_temp_fah), convertCelsiusToFahrenheit(temp))
+        return String.format(context.getString(R.string.fm_temp_fah), temp)
     }
 
     fun formatWindSpeed(context: Context, windSpeed: Double): String {
@@ -100,10 +114,7 @@ object Utils {
     }
 
     fun formatWindSpeedMile(context: Context, windSpeed: Double): String {
-        return String.format(
-            context.getString(R.string.fm_wind_speed_mile),
-            convertKilometerToMile(windSpeed.times(3600).div(1000))
-        )
+        return String.format(context.getString(R.string.fm_wind_speed_mile), windSpeed)
     }
 
     fun formatWind(context: Context, wind: Double, windDeg: Int): String {
@@ -124,26 +135,27 @@ object Utils {
         return String.format(context.getString(R.string.fm_string), upCaseFirstLetter(daily!!.weather[0].description))
     }
 
-    fun formatHomeStatusBelow(context: Context, daily: Daily?): String {
+    fun formatHomeStatusBelow(context: Context, current: Current?, daily: Daily?): String {
         return String.format(
             context.getString(R.string.fm_status_home),
-            upCaseFirstLetter(daily!!.weather[0].description),
-            daily.temp.max,
-            daily.temp.min,
-            formatWindDeg(context, daily.wind_deg),
-            daily.wind_speed
+            upCaseFirstLetter(current!!.weather[0].description),
+            daily?.temp?.max,
+            daily?.temp?.min,
+            formatWindDeg(context, current.wind_deg),
+            current.wind_speed,
+            formatPop(context, daily!!.pop)
         )
     }
 
-    fun formatHomeStatusBelowFah(context: Context, daily: Daily?): String {
+    fun formatHomeStatusBelowFah(context: Context, current: Current?, daily: Daily?): String {
         return String.format(
             context.getString(R.string.fm_status_home_fah),
-            upCaseFirstLetter(daily!!.weather[0].description),
-            convertCelsiusToFahrenheit(daily.temp.max),
-            convertCelsiusToFahrenheit(daily.temp.min),
-            formatWindDeg(context, daily.wind_deg),
-            daily.wind_speed,
-            formatPop(context, daily.pop)
+            upCaseFirstLetter(current!!.weather[0].description),
+            daily?.temp?.max,
+            daily?.temp?.min,
+            formatWindDeg(context, current.wind_deg),
+            current.wind_speed,
+            formatPop(context, daily!!.pop)
         )
     }
 
@@ -163,10 +175,10 @@ object Utils {
         return String.format(
             context.getString(R.string.fm_status_daily_nav_fah),
             upCaseFirstLetter(daily!!.weather[0].description),
-            convertCelsiusToFahrenheit(daily.temp.max),
-            convertCelsiusToFahrenheit(daily.temp.min),
+            daily.temp.max,
+            daily.temp.min,
             formatWindDeg(context, daily.wind_deg),
-            convertKilometerToMile(daily.wind_speed),
+            daily.wind_speed,
             formatPop(context, daily.pop)
         )
     }
@@ -184,7 +196,7 @@ object Utils {
         return BitmapFactory.decodeResource(context.resources, id)
     }
 
-    fun readJSONFromAsset(context: Context): String? {
+    fun readJsonFromAsset(context: Context): String? {
         var json: String? = null
         try {
             val inputStream: InputStream = context.assets.open(Constants.READ_JSON_FROM_ASSETS)
@@ -205,8 +217,8 @@ object Utils {
         return input.times(1.8).plus(32)
     }
 
-    fun convertKilometerToMile(input: Double): Double {
-        return input.times(1.609344)
+    fun convertMeterToMile(input: Int): Double {
+        return input.times(0.000621)
     }
 
     fun divThousand(input: Int): Int {

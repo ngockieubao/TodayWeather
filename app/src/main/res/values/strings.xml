@@ -16,7 +16,7 @@
     <string name="home_temp_slash">/</string>
     <string name="home_temp_min">20°</string>
     <string name="todo">TODO</string>
-    <string name="today">HÔM NAY</string>
+    <string name="today">Hôm nay</string>
     <string name="title_daily_nav">7 Ngày tiếp</string>
     <string name="title_hourly_nav">48 Giờ tiếp</string>
     <string name="feels_like_string">Cảm Giác Như</string>
@@ -36,13 +36,13 @@
     <!-- value-->
     <string name="humidity">%d%%</string>
     <string name="visibility">%d km</string>
-    <string name="visibility_mile">%d dặm</string>
+    <string name="visibility_mile">%.1f dặm</string>
 
     <string name="dew_point">%.0f°C</string>
-    <string name="dew_point_fah">%.0f°C</string>
+    <string name="dew_point_fah">%.0f°F</string>
 
     <string name="pressure">%d mb</string>
-    <string name="uvi">%.1f</string>
+    <string name="uvi">%s</string>
 
     <string name="time">%s</string>
     <string name="fm_string">%s</string>
@@ -54,8 +54,8 @@
     <string name="fm_temp_celsius">%.0f°C</string>
     <string name="fm_temp_fah">%.0f°F</string>
 
-    <string name="fm_wind_status">Gió: %.0fkm/h • %s</string>
-    <string name="fm_wind_status_mile">Gió: %.0fmil/h • %s</string>
+    <string name="fm_wind_status">Gió: %.0f km/h • %s</string>
+    <string name="fm_wind_status_mile">Gió: %.0f mil/h • %s</string>
 
     <string name="fm_wind_speed">%.0f km/h</string>
     <string name="fm_wind_speed_mile">%.0f mil/h</string>
@@ -70,15 +70,16 @@
     <string name="fm_status_home">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h.</string>
     <string name="fm_status_home_fah">Hôm nay - %s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
     <string name="fm_humidity">Độ ẩm: %.0f%%</string>
+    <string name="fm_humidity_zero_percent">Độ ẩm: 0%%</string>
     <string name="fm_dew_point">Điểm sương: %.0f°C</string>
+    <string name="fm_dew_point_fah">Điểm sương: %.0f°F</string>
 
     <string name="fm_status_daily_nav">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
     <string name="fm_status_daily_nav_fah">%s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
 
     <string name="string_empty" />
-    <string name="string_zero">0</string>
+    <string name="string_zero_percent">0%%</string>
 
-    <!-- string hard -->
     <string name="notification_waiting_get_weather_information">Đang lấy thông tin thời tiết</string>
     <string name="id_channel_push_notification">AlarmId</string>
     <string name="name_notification_channel">Alarm</string>

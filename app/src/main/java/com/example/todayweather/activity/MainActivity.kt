@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // fullscreen, no status bar, no title bar :))
+        // Fullscreen, no status bar, no title bar :))
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
@@ -64,20 +64,8 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         mNetworkReceiver = NetworkReceiver()
         mLocationReceiver = LocationReceiver(this)
         dialog = LocationDialog(this)
-        val options = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-            .setEnterAnim(R.anim.from_right)
-            .setExitAnim(R.anim.to_left)
-            .setPopEnterAnim(R.anim.from_left)
-            .setPopExitAnim(R.anim.to_right)
-            .build()
-        val optionsBack = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-            .setEnterAnim(R.anim.from_left)
-            .setExitAnim(R.anim.to_right)
-            .setPopEnterAnim(R.anim.from_right)
-            .setPopExitAnim(R.anim.to_left)
-            .build()
+        val options = initNavOptions()
+        val optionsBack = initNavOptionsBack()
         weatherViewModel = ViewModelProvider(
             this,
             WeatherViewModelFactory(this.application)
@@ -114,11 +102,34 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                     navController.navigate(R.id.dailyFragment, null, options)
                 }
                 R.id.hourlyFragment -> {
-                    navController.navigate(R.id.hourlyFragment, null, options)
+                    if (navController.currentDestination?.id == R.id.homeFragment)
+                        navController.navigate(R.id.hourlyFragment, null, options)
+                    if (navController.currentDestination?.id == R.id.dailyFragment)
+                        navController.navigate(R.id.hourlyFragment, null, optionsBack)
                 }
             }
             true
         }
+    }
+
+    private fun initNavOptionsBack(): NavOptions {
+        return NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.from_left)
+            .setExitAnim(R.anim.to_right)
+            .setPopEnterAnim(R.anim.from_right)
+            .setPopExitAnim(R.anim.to_left)
+            .build()
+    }
+
+    private fun initNavOptions(): NavOptions {
+        return NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.from_right)
+            .setExitAnim(R.anim.to_left)
+            .setPopEnterAnim(R.anim.from_left)
+            .setPopExitAnim(R.anim.to_right)
+            .build()
     }
 
     private fun checkGps() {
@@ -233,8 +244,8 @@ class MainActivity : AppCompatActivity(), LocationImpl {
         return navController.navigateUp()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         unregisterNetworkChanges()
     }
 
@@ -253,7 +264,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
                 }.show()
             }
             "on" -> {
-//                weatherViewModel.locationChange()
+                weatherViewModel.locationChange()
                 val snackbar = createSnackbar(
                     this.getString(R.string.string_location_on),
                     Constants.TIME_SHORT

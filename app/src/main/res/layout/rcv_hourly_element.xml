@@ -6,13 +6,18 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.example.todayweather.ui.WeatherViewModel" />
+
+        <variable
             name="item"
             type="com.example.todayweather.data.model.Hourly" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:background="@color/black">
 
         <LinearLayout
             android:id="@+id/ln_hourly_detail"

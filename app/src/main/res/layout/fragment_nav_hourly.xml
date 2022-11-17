@@ -40,17 +40,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_header_hourly_nav"
-            style="@style/txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:paddingVertical="7dp"
-            android:text="@string/today"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_nav_hourly" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_nav_hourly"
             android:layout_width="match_parent"
@@ -62,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_header_hourly_nav"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_nav_hourly"
             tools:listitem="@layout/rcv_hourly_nav" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
