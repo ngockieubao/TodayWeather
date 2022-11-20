@@ -69,18 +69,18 @@ object Utils {
             String.format(context.getString(R.string.fm_humidity_zero_percent))
     }
 
-    fun formatDewPoint(context: Context, temp: Double): String {
-        return String.format(context.getString(R.string.fm_dew_point), temp)
+    fun formatDewPointCelcius(context: Context, temp: Double): String {
+        return String.format(context.getString(R.string.fm_dew_point_celcius), temp)
     }
 
     fun formatDewPointFah(context: Context, temp: Double): String {
         return String.format(context.getString(R.string.fm_dew_point_fah), temp)
     }
 
-    fun formatTempFeelsLike(context: Context, temp: Double, tempFeelsLike: Double): String {
+    fun formatTempFeelsLikeCelcius(context: Context, temp: Double, tempFeelsLike: Double): String {
         val tempFormat = String.format(context.getString(R.string.fm_temp), temp)
         val tempFeelsLikeFormat = String.format(context.getString(R.string.fm_temp), tempFeelsLike)
-        return String.format(context.getString(R.string.fm_temp_feels_like), tempFormat, tempFeelsLikeFormat)
+        return String.format(context.getString(R.string.fm_temp_feels_like_celcius), tempFormat, tempFeelsLikeFormat)
     }
 
     fun formatTempFeelsLikeFah(context: Context, temp: Double, tempFeelsLike: Double): String {
@@ -89,9 +89,9 @@ object Utils {
         return String.format(context.getString(R.string.fm_temp_feels_like_fah), tempFormat, tempFeelsLikeFormat)
     }
 
-    fun formatTempMaxMin(context: Context, tempMax: Double, tempMin: Double): String {
-        val tempMaxFormat = String.format(context.getString(R.string.fm_temp), tempMax)
-        val tempMinFormat = String.format(context.getString(R.string.fm_temp), tempMin)
+    fun formatTempMaxMinCelcius(context: Context, tempMax: Double, tempMin: Double): String {
+        val tempMaxFormat = String.format(context.getString(R.string.fm_temp_celsius), tempMax)
+        val tempMinFormat = String.format(context.getString(R.string.fm_temp_celsius), tempMin)
         return String.format(context.getString(R.string.fm_temp_max_min), tempMaxFormat, tempMinFormat)
     }
 
@@ -101,7 +101,7 @@ object Utils {
         return String.format(context.getString(R.string.fm_temp_max_min_fah), tempMaxFormat, tempMinFormat)
     }
 
-    fun formatTemp(context: Context, temp: Double): String {
+    fun formatTempCelcius(context: Context, temp: Double): String {
         return String.format(context.getString(R.string.fm_temp_celsius), temp)
     }
 
@@ -110,6 +110,10 @@ object Utils {
     }
 
     fun formatWindSpeed(context: Context, windSpeed: Double): String {
+        return String.format(context.getString(R.string.fm_wind_speed), windSpeed)
+    }
+
+    fun formatWindSpeedKilometre(context: Context, windSpeed: Double): String {
         return String.format(context.getString(R.string.fm_wind_speed), windSpeed.times(3600).div(1000))
     }
 
@@ -118,6 +122,10 @@ object Utils {
     }
 
     fun formatWind(context: Context, wind: Double, windDeg: Int): String {
+        return String.format(context.getString(R.string.fm_wind_status), wind, formatWindDeg(context, windDeg))
+    }
+
+    fun formatWindKilometre(context: Context, wind: Double, windDeg: Int): String {
         return String.format(context.getString(R.string.fm_wind_status), wind, formatWindDeg(context, windDeg))
     }
 
@@ -137,7 +145,7 @@ object Utils {
 
     fun formatHomeStatusBelow(context: Context, current: Current?, daily: Daily?): String {
         return String.format(
-            context.getString(R.string.fm_status_home),
+            context.getString(R.string.fm_status_home_celcius),
             upCaseFirstLetter(current!!.weather[0].description),
             daily?.temp?.max,
             daily?.temp?.min,
@@ -161,7 +169,7 @@ object Utils {
 
     fun formatDailyNavStatus(context: Context, daily: Daily?): String {
         return String.format(
-            context.getString(R.string.fm_status_daily_nav),
+            context.getString(R.string.fm_status_daily_nav_celcius),
             upCaseFirstLetter(daily!!.weather[0].description),
             daily.temp.max,
             daily.temp.min,

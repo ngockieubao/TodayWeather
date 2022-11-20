@@ -74,14 +74,14 @@ class SettingFragment : Fragment() {
             when (radioGroup.checkedRadioButtonId) {
                 R.id.radio_btn_celcius -> {
                     Utils.status = Constants.CELCIUS
-                    weatherViewModel.mStatus.value = Utils.status
+//                    weatherViewModel.mStatus.value = Utils.status
                     SharedPrefs.instance.putString(key, Constants.CELCIUS)
                     getNewApi()
                     this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
                 }
                 R.id.radio_btn_fahrenheit -> {
                     Utils.status = Constants.FAHRENHEIT
-                    weatherViewModel.mStatus.value = Utils.status
+//                    weatherViewModel.mStatus.value = Utils.status
                     SharedPrefs.instance.putString(key, Constants.FAHRENHEIT)
                     getNewApi()
                     this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)

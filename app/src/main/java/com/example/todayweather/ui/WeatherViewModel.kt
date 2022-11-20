@@ -11,20 +11,22 @@ import android.location.Location
 import android.os.Build
 import android.os.Looper
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.*
 import com.example.todayweather.R
 import com.example.todayweather.data.WeatherRepository
 import com.example.todayweather.data.model.*
 import com.example.todayweather.network.WeatherApi
-import com.example.todayweather.util.Constants
-import com.example.todayweather.util.SharedPrefs
-import com.example.todayweather.util.Utils
+import com.example.todayweather.util.*
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
+
+private var mStatus = MutableLiveData<String?>(Utils.status)
 
 @Suppress("DEPRECATION")
 class WeatherViewModel(
@@ -67,7 +69,6 @@ class WeatherViewModel(
     private lateinit var currentTime: Date
     private lateinit var data: WeatherGetApi
 
-    var mStatus = MutableLiveData<String?>(Utils.status)
     var mFirstInstall = true
 
     init {
@@ -194,7 +195,7 @@ class WeatherViewModel(
         val index5 = DetailHomeModel(
             5,
             context.getString(R.string.dew_point_string),
-            context.getString(R.string.dew_point, _listCurrent.value?.dew_point)
+            context.getString(R.string.dew_point_celcius, _listCurrent.value?.dew_point)
         )
         listDetail.add(index5)
 
@@ -401,5 +402,78 @@ class WeatherViewModel(
 
     companion object {
         private const val TAG = "WeatherViewModel"
+    }
+
+}
+
+@BindingAdapter("setTemp")
+fun TextView.setTemp(temp: Double) {
+    if (mStatus.value == Constants.CELCIUS)
+        this.text = Utils.formatTempCelcius(context, temp)
+    if (mStatus.value == Constants.FAHRENHEIT)
+        this.text = Utils.formatTempFah(context, temp)
+}
+
+@BindingAdapter("setDewPoint")
+fun TextView.setDewPoint(input: Double) {
+    if (mStatus.value == Constants.CELCIUS)
+        this.text = Utils.formatDewPointCelcius(context, input)
+    if (mStatus.value == Constants.FAHRENHEIT)
+        this.text = Utils.formatDewPointFah(context, input)
+}
+
+@BindingAdapter("setWindSpeed")
+fun TextView.setWindSpeed(windSpeed: Double) {
+    if (mStatus.value == Constants.CELCIUS)
+        this.text = Utils.formatWindSpeed(context, windSpeed)
+    if (mStatus.value == Constants.FAHRENHEIT)
+        this.text = Utils.formatWindSpeedMile(context, windSpeed)
+}
+
+@BindingAdapter(value = ["setTempMax", "setTempMin"])
+fun TextView.setTempMaxMin(tempMax: Double, tempMin: Double) {
+    if (mStatus.value == Constants.CELCIUS)
+        this.text = Utils.formatTempMaxMinCelcius(context, tempMax, tempMin)
+    if (mStatus.value == Constants.FAHRENHEIT)
+        this.text = Utils.formatTempMaxMinFah(context, tempMax, tempMin)
+}
+
+@BindingAdapter(value = ["setTempCurrent", "setFeelsLike"])
+fun TextView.setTempFeelsLike(temp: Double, feelsLike: Double) {
+    if (mStatus.value == Constants.CELCIUS)
+        this.text = Utils.formatTempFeelsLikeCelcius(context, temp, feelsLike)
+    if (mStatus.value == Constants.FAHRENHEIT)
+        this.text = Utils.formatTempFeelsLikeFah(context, temp, feelsLike)
+}
+
+@BindingAdapter(value = ["setWindStatusSpeed", "setWindStatusDescription"])
+fun TextView.setWindStatus(windSpeed: Double, windDeg: Int) {
+    if (mStatus.value == Constants.CELCIUS)
+        this.text = Utils.formatWind(context, windSpeed, windDeg)
+    if (mStatus.value == Constants.FAHRENHEIT)
+        this.text = Utils.formatWindMile(context, windSpeed, windDeg)
+}
+
+@BindingAdapter(value = ["setHomeStatusBelow", "setHomeStatusBelowFah"])
+fun TextView.setHomeStatusBelow(current: Current?, daily: Daily?) {
+    try {
+        if (mStatus.value == Constants.CELCIUS)
+            this.text = Utils.formatHomeStatusBelow(context, current!!, daily!!)
+        if (mStatus.value == Constants.FAHRENHEIT)
+            this.text = Utils.formatHomeStatusBelowFah(context, current!!, daily!!)
+    } catch (ex: NullPointerException) {
+        LogUtils.logDebug("null", ex.toString())
+    }
+}
+
+@BindingAdapter("setDailyNavStatus")
+fun TextView.setDailyNavStatus(daily: Daily?) {
+    try {
+        if (mStatus.value == Constants.CELCIUS)
+            this.text = Utils.formatDailyNavStatus(context, daily!!)
+        if (mStatus.value == Constants.FAHRENHEIT)
+            this.text = Utils.formatDailyNavStatusFah(context, daily!!)
+    } catch (ex: NullPointerException) {
+        LogUtils.logDebug("null", ex.toString())
     }
 }

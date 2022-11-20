@@ -38,7 +38,8 @@
     <string name="visibility">%d km</string>
     <string name="visibility_mile">%.1f dặm</string>
 
-    <string name="dew_point">%.0f°C</string>
+    <string name="dew_point">%.0f°</string>
+    <string name="dew_point_celcius">%.0f°C</string>
     <string name="dew_point_fah">%.0f°F</string>
 
     <string name="pressure">%d mb</string>
@@ -49,32 +50,40 @@
 
     <string name="fm_pop">%.0f%%</string>
     <string name="fm_uv">%.0f</string>
-    <string name="fm_temp">%.0f</string>
 
+    <string name="fm_temp">%.0f</string>
     <string name="fm_temp_celsius">%.0f°C</string>
     <string name="fm_temp_fah">%.0f°F</string>
 
-    <string name="fm_wind_status">Gió: %.0f km/h • %s</string>
+    <string name="fm_wind_status">Gió: %.0f m/s • %s</string>
+    <string name="fm_wind_status_kilometre">Gió: %.0f km/h • %s</string>
     <string name="fm_wind_status_mile">Gió: %.0f mil/h • %s</string>
 
-    <string name="fm_wind_speed">%.0f km/h</string>
+    <string name="fm_wind_speed">%.0f m/s</string>
+    <string name="fm_wind_speed_kilometre">%.0f km/h</string>
     <string name="fm_wind_speed_mile">%.0f mil/h</string>
 
-    <string name="fm_temp_feels_like">%s°C - Cảm Giác Như: %s°C</string>
+    <string name="fm_temp_feels_like">%s° - Cảm Giác Như: %s°</string>
+    <string name="fm_temp_feels_like_celcius">%s°C - Cảm Giác Như: %s°C</string>
     <string name="fm_temp_feels_like_fah">%s°F - Cảm Giác Như: %s°F</string>
 
-    <string name="fm_temp_max_min">%s° / %s°</string>
+    <string name="fm_temp_max_min">%s / %s</string>
     <string name="fm_temp_max_min_fah">%s°F / %s°F</string>
 
     <string name="fm_day_date">%s, %s</string>
-    <string name="fm_status_home">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h.</string>
+    <string name="fm_status_home">Hôm nay - %s. Cao %.0f°, thấp %.0f°. Gió %s, tốc độ %.0f m/s.</string>
+    <string name="fm_status_home_celcius">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h.</string>
     <string name="fm_status_home_fah">Hôm nay - %s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
+
     <string name="fm_humidity">Độ ẩm: %.0f%%</string>
     <string name="fm_humidity_zero_percent">Độ ẩm: 0%%</string>
-    <string name="fm_dew_point">Điểm sương: %.0f°C</string>
+
+    <string name="fm_dew_point">Điểm sương: %.0f°</string>
+    <string name="fm_dew_point_celcius">Điểm sương: %.0f°C</string>
     <string name="fm_dew_point_fah">Điểm sương: %.0f°F</string>
 
-    <string name="fm_status_daily_nav">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
+    <string name="fm_status_daily_nav">%s. Cao %.0f°, thấp %.0f°. Gió %s, tốc độ %.0f m/s. Khả năng mưa %s.</string>
+    <string name="fm_status_daily_nav_celcius">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
     <string name="fm_status_daily_nav_fah">%s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
 
     <string name="string_empty" />
