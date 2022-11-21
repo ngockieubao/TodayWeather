@@ -10,14 +10,24 @@ class SharedPrefs {
     private val mSharedPreferences: SharedPreferences = WeatherApplication.self()!!.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
     @SuppressLint("CommitPrefEdits")
-    fun putString(key: String, data: String) {
+    fun putStringValue(key: String, data: String) {
         val editor = mSharedPreferences.edit()
         editor.putString(key, data)
         editor.apply()
     }
 
-    fun getString(key: String): String? {
+    fun getStringValue(key: String): String? {
         return mSharedPreferences.getString(key, "")
+    }
+
+    fun putBooleanValue(key: String, data: Boolean) {
+        val editor = mSharedPreferences.edit()
+        editor.putBoolean(key, data)
+        editor.apply()
+    }
+
+    fun getBooleanValue(key: String, data: Boolean): Boolean {
+        return mSharedPreferences.getBoolean(key, data)
     }
 
     companion object {

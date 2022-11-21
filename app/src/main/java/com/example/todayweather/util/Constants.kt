@@ -52,6 +52,7 @@ object Constants {
 
     // SharedPrefs
     const val SHARED_PREFS = "shared_prefs"
+    const val SHARED_PREFS_FIRST_RUN = "shared_prefs_first_run"
     const val SHARED_PREFS_LAT = "lat"
     const val SHARED_PREFS_LON = "lon"
     const val CELCIUS = "celcius"

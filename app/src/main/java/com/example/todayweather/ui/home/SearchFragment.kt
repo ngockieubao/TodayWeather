@@ -68,8 +68,8 @@ class SearchFragment : Fragment(), SelectCity {
     override fun selectItem(city: City?) {
         val bundle = bundleOf(Constants.KEY_BUNDLE_SELECT_CITY to city)
         if (city != null) {
-            SharedPrefs.instance.putString(keyLat, city.lat.toString())
-            SharedPrefs.instance.putString(keyLon, city.lon.toString())
+            SharedPrefs.instance.putStringValue(keyLat, city.lat.toString())
+            SharedPrefs.instance.putStringValue(keyLon, city.lon.toString())
         }
         findNavController().navigate(R.id.action_searchFragment_to_homeFragment, bundle)
     }

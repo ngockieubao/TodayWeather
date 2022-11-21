@@ -5,8 +5,6 @@
     <string name="rcv_detail_title">Chi tiết</string>
 
     <!--  String detail description  -->
-
-    <!-- hard value-->
     <string name="home_status_description">Hôm nay - Mây đen u ám, Cao 32°C, thấp 20°C. Gió đông nam, tốc độ 20km/h. Khả năng mưa 70%.</string>
     <string name="home_status">Mây đen u ám</string>
     <string name="home_location">Hà Nội</string>
@@ -33,7 +31,7 @@
     <string name="fm_day_of_week">EEE</string>
     <string name="fm_date">dd \'THÁNG\' M</string>
 
-    <!-- value-->
+    <!-- value format -->
     <string name="humidity">%d%%</string>
     <string name="visibility">%d km</string>
     <string name="visibility_mile">%.1f dặm</string>
@@ -72,7 +70,7 @@
 
     <string name="fm_day_date">%s, %s</string>
     <string name="fm_status_home">Hôm nay - %s. Cao %.0f°, thấp %.0f°. Gió %s, tốc độ %.0f m/s.</string>
-    <string name="fm_status_home_celcius">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h.</string>
+    <string name="fm_status_home_celcius">Hôm nay - %s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f m/s.</string>
     <string name="fm_status_home_fah">Hôm nay - %s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
 
     <string name="fm_humidity">Độ ẩm: %.0f%%</string>
@@ -83,7 +81,7 @@
     <string name="fm_dew_point_fah">Điểm sương: %.0f°F</string>
 
     <string name="fm_status_daily_nav">%s. Cao %.0f°, thấp %.0f°. Gió %s, tốc độ %.0f m/s. Khả năng mưa %s.</string>
-    <string name="fm_status_daily_nav_celcius">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f km/h. Khả năng mưa %s.</string>
+    <string name="fm_status_daily_nav_celcius">%s. Cao %.0f°C, thấp %.0f°C. Gió %s, tốc độ %.0f m/s. Khả năng mưa %s.</string>
     <string name="fm_status_daily_nav_fah">%s. Cao %.0f°F, thấp %.0f°F. Gió %s, tốc độ %.0f mil/h. Khả năng mưa %s.</string>
 
     <string name="string_empty" />
@@ -131,6 +129,7 @@
         <item>Fri</item>
         <item>Sat</item>
     </string-array>
+
     <string-array name="fm_days_of_week">
         <item>CHỦ NHẬT</item>
         <item>THỨ HAI</item>
@@ -140,6 +139,7 @@
         <item>THỨ SÁU</item>
         <item>THỨ BẢY</item>
     </string-array>
+
     <!--    <string-array name="wind_deg">-->
     <!--        <item>N</item>-->
     <!--        <item>NNE</item>-->

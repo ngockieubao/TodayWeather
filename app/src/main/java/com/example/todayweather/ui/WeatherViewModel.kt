@@ -74,7 +74,6 @@ class WeatherViewModel(
     init {
         createLocationRequest()
         createLocationCallback()
-        SharedPrefs
     }
 
     fun loadApiFirst(lat: Double, lon: Double) {
@@ -82,6 +81,8 @@ class WeatherViewModel(
             try {
                 _networkError.value = false
                 data = callApi(lat = lat, lon = lon)
+                mFirstInstall = false
+                mStatus.value = Constants.CELCIUS
                 weatherRepository.insertWeather(data)
                 getWeatherDatabase()
             } catch (ex: IOException) {
@@ -95,7 +96,7 @@ class WeatherViewModel(
         viewModelScope.launch {
             try {
                 _networkError.value = false
-                mStatus.value = SharedPrefs.instance.getString(Constants.SHARED_PREFS)
+                mStatus.value = SharedPrefs.instance.getStringValue(Constants.SHARED_PREFS)
 
                 if (mStatus.value == Constants.CELCIUS)
                     data = callApi(lat = lat, lon = lon)
@@ -251,6 +252,20 @@ class WeatherViewModel(
         listDetail.add(index6)
     }
 
+    private fun checkFirstRun(lat: Double, lon: Double) {
+        if (SharedPrefs.instance.getBooleanValue(Constants.SHARED_PREFS_FIRST_RUN, true)) {
+            // Do first run stuff here then set 'first-run' as false
+            // using the following line to edit/commit prefs
+            SharedPrefs.instance.putBooleanValue(Constants.SHARED_PREFS_FIRST_RUN, false)
+            // First time get lat-lon current location to unit conversion
+            SharedPrefs.instance.putStringValue(Constants.SHARED_PREFS_LAT, lat.toString())
+            SharedPrefs.instance.putStringValue(Constants.SHARED_PREFS_LON, lon.toString())
+            loadApiFirst(lat, lon)
+        } else {
+            loadApi(lat, lon)
+        }
+    }
+
     fun getLastLocation() {
         try {
             fusedLocationClient.lastLocation
@@ -279,13 +294,7 @@ class WeatherViewModel(
             val geocoder = Geocoder(context)
             val position = geocoder.getFromLocation(lat, lon, 1)
 
-            if (mFirstInstall) {
-                loadApiFirst(lat, lon)
-                mFirstInstall = false
-                mStatus.value = Constants.CELCIUS
-            } else {
-                loadApi(lat, lon)
-            }
+            checkFirstRun(lat, lon)
             getPosition = position[0].getAddressLine(0)
             showLocation(Utils.formatLocation(context, getPosition))
         } catch (e: Exception) {

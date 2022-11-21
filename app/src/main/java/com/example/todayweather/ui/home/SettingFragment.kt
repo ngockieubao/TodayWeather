@@ -32,7 +32,7 @@ class SettingFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSettingBinding.inflate(inflater, container, false)
 
-        val getSharedPrefs: String? = SharedPrefs.instance.getString(key)
+        val getSharedPrefs: String? = SharedPrefs.instance.getStringValue(key)
         if (getSharedPrefs != null) {
             when (getSharedPrefs) {
                 Constants.CELCIUS -> binding.radioBtnCelcius.isChecked = true
@@ -40,17 +40,17 @@ class SettingFragment : Fragment() {
             }
         } else Toast.makeText(requireActivity(), "Key - null", Toast.LENGTH_SHORT).show()
 
-        val getSharedPrefsLat = SharedPrefs.instance.getString(keyLat)
-        val getSharedPrefsLon = SharedPrefs.instance.getString(keyLon)
+        return binding.root
+    }
+
+    private fun getNewApi() {
+        val getSharedPrefsLat = SharedPrefs.instance.getStringValue(keyLat)
+        val getSharedPrefsLon = SharedPrefs.instance.getStringValue(keyLon)
         if (getSharedPrefsLat != null || getSharedPrefsLon != null) {
             lat = getSharedPrefsLat()
             lon = getSharedPrefsLon()
         }
 
-        return binding.root
-    }
-
-    private fun getNewApi() {
         if (lat == null || lon == null) {
             // Get lat-lon current location
             weatherViewModel.getLastLocation()
@@ -74,15 +74,13 @@ class SettingFragment : Fragment() {
             when (radioGroup.checkedRadioButtonId) {
                 R.id.radio_btn_celcius -> {
                     Utils.status = Constants.CELCIUS
-//                    weatherViewModel.mStatus.value = Utils.status
-                    SharedPrefs.instance.putString(key, Constants.CELCIUS)
+                    SharedPrefs.instance.putStringValue(key, Constants.CELCIUS)
                     getNewApi()
                     this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
                 }
                 R.id.radio_btn_fahrenheit -> {
                     Utils.status = Constants.FAHRENHEIT
-//                    weatherViewModel.mStatus.value = Utils.status
-                    SharedPrefs.instance.putString(key, Constants.FAHRENHEIT)
+                    SharedPrefs.instance.putStringValue(key, Constants.FAHRENHEIT)
                     getNewApi()
                     this.findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
                 }
@@ -91,10 +89,10 @@ class SettingFragment : Fragment() {
     }
 
     private fun getSharedPrefsLat(): Double {
-        return SharedPrefs.instance.getString(keyLat)!!.toDouble()
+        return SharedPrefs.instance.getStringValue(keyLat)!!.toDouble()
     }
 
     private fun getSharedPrefsLon(): Double {
-        return SharedPrefs.instance.getString(keyLon)!!.toDouble()
+        return SharedPrefs.instance.getStringValue(keyLon)!!.toDouble()
     }
 }

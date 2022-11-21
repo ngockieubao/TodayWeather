@@ -16,7 +16,7 @@ import kotlin.math.roundToInt
 
 object Utils {
 
-    var status = SharedPrefs.instance.getString(Constants.SHARED_PREFS)
+    var status = SharedPrefs.instance.getStringValue(Constants.SHARED_PREFS)
 
     fun formatCurrentTime(context: Context, time: Date): String {
         val timeFormat = SimpleDateFormat(context.getString(R.string.fm_time), Locale.getDefault())

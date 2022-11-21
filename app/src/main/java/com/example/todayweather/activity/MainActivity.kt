@@ -3,10 +3,7 @@ package com.example.todayweather.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
@@ -165,7 +162,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
             )
         } else {
             weatherViewModel.getLastLocation()
-//            startPushNotifications()
+            startPushNotifications()
         }
     }
 
@@ -183,7 +180,7 @@ class MainActivity : AppCompatActivity(), LocationImpl {
             ) {
                 Snackbar.make(binding.root, "Permissions granted.", Snackbar.LENGTH_SHORT).show()
                 weatherViewModel.getLastLocation()
-//                startPushNotifications()
+                startPushNotifications()
             } else {
                 Snackbar.make(binding.root, "Permissions denied.", Snackbar.LENGTH_SHORT).show()
                 openSettingPermissions()
