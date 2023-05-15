@@ -14,7 +14,7 @@
 - Basic weather information based on your device's current location.
 
 ------<img src="https://i.ibb.co/pZj3qQZ/scr1.png" height="500" width="250">
---------<img src="https://i.ibb.co/6ZGd0D4/scr2.png" width="250" height="500">
+--------<img src="https://i.ibb.co/6ZGd0D4/scr2.png" height="500" width="250">
 
 - Several indicators with detailed weather information for the current day
 
